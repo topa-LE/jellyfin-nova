@@ -13,6 +13,7 @@
 
 ![Themes](https://img.shields.io/badge/Themes-3_Variants-8b5cf6?style=flat-square) ![Spotlight](https://img.shields.io/badge/Spotlight-Integrated-3b82f6?style=flat-square) ![Docker](https://img.shields.io/badge/Docker-Persistent-0ea5e9?style=flat-square) ![Fonts](https://img.shields.io/badge/Fonts-Local-22c55e?style=flat-square)
 
+> [!NOTE]
 > **Development Preview** — Jellyfin Nova is under active development.
 
 </div>
@@ -73,8 +74,7 @@ sudo bash nova-installer.sh
 
 Follow the interactive installer instructions.
 
-> **Important**
->
+> [!WARNING]
 > Jellyfin Nova is still under development.
 > Use a test environment before deploying to production.
 
@@ -160,8 +160,7 @@ It is not a complete comparison with every Abyss release.
 
 ## 🖼️ Screenshots
 
-> **Coming Soon**
->
+> [!TIP]
 > Original Jellyfin Nova screenshots will be added
 > after the visual design has been finalized.
 
