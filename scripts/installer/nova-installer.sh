@@ -1440,9 +1440,9 @@ install_nova() {
     # Install Nova CSS, fonts, plugins and Spotlight from the package.
     local installer_dir
     installer_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
-    local nova_package="${NOVA_PACKAGE:-${installer_dir}/jellyfin-nova-package.tar.gz}"
+    local nova_package="${NOVA_PACKAGE:-}"
 
-    if [[ ! -f "$nova_package" ]]; then
+    if [[ -z "$nova_package" || ! -f "$nova_package" ]]; then
         if [[ -n "${NOVA_PACKAGE:-}" ]]; then
             exit_error "Explicit Nova package not found: ${nova_package}"
         fi
@@ -1450,7 +1450,7 @@ install_nova() {
         step "Downloading Nova package..."
         nova_package="$(mktemp "${TMPDIR:-/tmp}/jellyfin-nova-package.XXXXXXXX.tar.gz")"
         trap "rm -f -- $(printf '%q' "$nova_package")" EXIT
-        if ! curl -fsSL "${RAW}/scripts/installer/jellyfin-nova-package.tar.gz" -o "$nova_package"; then
+        if ! curl -fsSL "https://github.com/${REPO}/releases/download/nova-latest/jellyfin-nova-package.tar.gz" -o "$nova_package"; then
             rm -f -- "$nova_package"
             exit_error "Failed to download Nova package."
         fi
@@ -1670,9 +1670,9 @@ uninstall_nova() {
     # Validate the package manifest before changing Jellyfin.
     local installer_dir
     installer_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
-    local nova_package="${NOVA_PACKAGE:-${installer_dir}/jellyfin-nova-package.tar.gz}"
+    local nova_package="${NOVA_PACKAGE:-}"
 
-    if [[ ! -f "$nova_package" ]]; then
+    if [[ -z "$nova_package" || ! -f "$nova_package" ]]; then
         if [[ -n "${NOVA_PACKAGE:-}" ]]; then
             exit_error "Explicit Nova package not found: ${nova_package}"
         fi
@@ -1681,7 +1681,7 @@ uninstall_nova() {
         nova_package="$(mktemp "${TMPDIR:-/tmp}/jellyfin-nova-package.XXXXXXXX.tar.gz")"
         trap "rm -f -- $(printf '%q' "$nova_package")" EXIT
 
-        if ! curl -fsSL "${RAW}/scripts/installer/jellyfin-nova-package.tar.gz" -o "$nova_package"; then
+        if ! curl -fsSL "https://github.com/${REPO}/releases/download/nova-latest/jellyfin-nova-package.tar.gz" -o "$nova_package"; then
             exit_error "Failed to download Nova package."
         fi
     fi
