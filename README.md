@@ -1,222 +1,207 @@
 <div align="center">
 
-# [Abyss](https://aumgupta.github.io/abyss-jellyfin/) for Jellyfin
+<img src="https://raw.githubusercontent.com/jellyfin/jellyfin-ux/master/branding/SVG/icon-transparent.svg" alt="Jellyfin" width="76" height="76">
 
-![GitHub License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
-![GitHub Release](https://img.shields.io/github/v/release/topa-LE/jellyfin-nova?style=for-the-badge)
-![jsDelivr Requests](https://img.shields.io/jsdelivr/gh/hm/topa-LE/jellyfin-nova?style=for-the-badge&label=Usage&logo=none)
-[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/topa-LE/jellyfin-nova/total?style=for-the-badge)](https://github.com/topa-LE/jellyfin-nova/releases/latest)
+# Jellyfin Nova
 
-<img alt="Abyss Logo" src="docs/assets/favicon/apple-touch-icon.png" style="width: 72px;">
+### A modern visual experience for Jellyfin
 
-A clean and minimal theme for Jellyfin with frosted glass surfaces, refined typography, smooth animations and a minimal design language that re-skins JellyFin almost exhaustively. [Video Demo](https://youtu.be/CAjI7qgvJzo)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+![Release](https://img.shields.io/github/v/release/topa-LE/jellyfin-nova?style=for-the-badge)
+![Usage](https://img.shields.io/jsdelivr/gh/hm/topa-LE/jellyfin-nova?style=for-the-badge&label=Usage&logo=none)
+[![Downloads](https://img.shields.io/github/downloads/topa-LE/jellyfin-nova/total?style=for-the-badge)](https://github.com/topa-LE/jellyfin-nova/releases/latest)
 
+**Custom Themes · Local Fonts · Spotlight · Docker Integration**
 
-
-<a href="https://aumgupta.github.io/abyss-jellyfin/">
-  <img src="https://img.shields.io/badge/View%20%26%20Install-→-f5f5f7?style=for-the-badge&labelColor=2f2f2f" alt="Install" width=273.5 />
-</a>
+> **Development Preview** — Jellyfin Nova is under active development.
 
 </div>
 
-## Demo Video
-[![Abyss Demo](docs/assets/images/demo-thumbnail.png)](https://youtu.be/CAjI7qgvJzo)
-
-## Preview
-
-<a href="https://youtu.be/CAjI7qgvJzo">
-  <img src="docs/assets/images/preview.png" style="width:100%;"/>
-</a>
-
-<details>
-
-<summary><h2>See full preview</h2></summary>
-
-<a href="https://youtu.be/CAjI7qgvJzo">
-  <img src="docs/assets/images/preview-full.png" style="width:100%;"/>
-</a>
-
-</details>
-
 ---
+
+## Overview
+
+**Jellyfin Nova** is a visual customization project for the
+[Jellyfin](https://jellyfin.org/) media server.
+
+Nova is based on the open-source Abyss theme and is being developed
+as an independent project with its own installation system,
+theme distribution and persistent Docker integration.
+
+The project aims to provide a consistent visual experience across
+Jellyfin's navigation, media libraries, detail pages and
+selected administration areas.
 
 ## Features
 
-- **One-click installer**: `abyss-setup-vX.X.X.exe` (Windows) and `abyss-setup-vX.X.X.sh` (Linux) configure your entire Jellyfin instance, CSS, client and dashboard themes, home section order, and Spotlight, all automatically. The theme selectors are intentionally locked to Dark after installation.
-- **Jellyfin 12 support**: styles both the Modern React/MUI interface and the Desktop (Legacy) interface using stable component classes and Jellyfin theme variables.
-- **Spotlight home banner**: a cinematic banner on your home screen showing your current Continue Watching item, complete with backdrop image, metadata pills (rating, runtime, score), and a resume play button.
-- **Frosted glass UI**: header, drawer, dialogs, toasts, and footer all use `backdrop-filter` blur for a layered, depth-rich interface
-- **Refined typography**: *Google Sans* throughout, with consistent weight and spacing
-- **Smooth transitions and animations**: every interaction uses carefully tuned `cubic-bezier` easing. Home sections animate in with a staggered fade-up entrance on load. The favourite (heart) button has a spring pop animation.
-- **Floating sidebar**: pill-shaped drawer with rounded corners and a snappy slide animation
-- **Pill tab bar**: active tab highlighted with a filled pill indicator
-- **Every element targeted**: styling covers cards, indicators, sliders, checkboxes, form inputs, the media player OSD, now playing bar, chapter thumbnails, search page, cast thumbnails (9 responsive breakpoints), login page, detail pages, metadata manager, and the admin dashboard
-- **Responsive**: mobile layout tweaks, ultrawide support, and cast thumbnail scaling across all breakpoints
-- **Customisable**: CSS variables let you retheme without touching the rest of the file
-
-
+<table width="837" style="width:837px;table-layout:fixed;">
+<colgroup>
+<col width="261" style="width:261px;">
+<col width="576" style="width:576px;">
+</colgroup>
+<thead>
+<tr><th width="261" align="left">Component</th><th width="576" align="left">Description</th></tr>
+</thead>
+<tbody>
+<tr><td width="261">Nova Themes</td><td width="576">Three bundled theme variants with ongoing visual refinements.</td></tr>
+<tr><td width="261">Nova Spotlight</td><td width="576">Integrated Spotlight presentation for the Jellyfin interface.</td></tr>
+<tr><td width="261">Local Fonts</td><td width="576">Bundled font resources without external CSS font dependencies.</td></tr>
+<tr><td width="261">Plugin Styling</td><td width="576">Additional styling for supported Jellyfin plugins.</td></tr>
+<tr><td width="261">Docker Installation</td><td width="576">Container-aware installation of Nova web assets.</td></tr>
+<tr><td width="261">Docker Persistence</td><td width="576">Automatic restoration of Nova assets on supported container startups.</td></tr>
+<tr><td width="261">Installer</td><td width="576">Dedicated Linux shell installer with Docker integration.</td></tr>
+</tbody>
+</table>
 
 ## Installation
 
-### Linux & MacOS
+### Linux / Docker
 
-Download the latest **`abyss-setup-vX.X.X.sh`** from the [Releases](https://github.com/topa-LE/jellyfin-nova/releases/latest) page and run it:
+Download the current development installer:
 
 ```bash
-chmod +x abyss-setup-vX.X.X.sh
-sudo ./abyss-setup-vX.X.X.sh
+curl -fsSL \
+  https://raw.githubusercontent.com/topa-LE/jellyfin-nova/main/scripts/installer/nova-installer.sh \
+  -o nova-installer.sh
 ```
 
-> [!NOTE]
-> Requires `curl` and `python3`, which are available by default on most Linux distributions.
+Review the downloaded script and start the installer:
 
-For detailed steps go to the [Setup Guide](SETUP.md).
+```bash
+sudo bash nova-installer.sh
+```
 
-### Windows
+Follow the interactive installer instructions.
 
-Download the latest **`abyss-setup-vX.X.X.exe`** from the [Releases](https://github.com/topa-LE/jellyfin-nova/releases/latest) page and run it. The installer will:
+> **Important**
+>
+> Jellyfin Nova is still under development.
+> Use a test environment before deploying to production.
 
-- Apply the Abyss CSS to your Jellyfin server automatically
-- Set the client and dashboard themes to Dark
-- Configure your home screen sections in the correct order
-- Install the Spotlight add-on (cinematic home banner)
-- Restart Jellyfin when done
+### Docker Persistence
 
-For detailed steps go to the [Setup Guide](SETUP.md).
+Supported LinuxServer Jellyfin installations use a persistent
+Nova source directory and a container startup hook.
 
+<table width="837" style="width:837px;table-layout:fixed;">
+<colgroup>
+<col width="261" style="width:261px;">
+<col width="576" style="width:576px;">
+</colgroup>
+<thead>
+<tr><th width="261" align="left">Container Path</th><th width="576" align="left">Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td width="261"><code>/config/nova</code></td><td width="576">Persistent Nova theme resources.</td></tr>
+<tr><td width="261"><code>/custom-cont-init.d/nova-init.sh</code></td><td width="576">Startup hook restoring the Nova web integration.</td></tr>
+<tr><td width="261"><code>/usr/share/jellyfin/web/nova</code></td><td width="576">Active Nova assets served by Jellyfin.</td></tr>
+</tbody>
+</table>
+
+The required persistent mounts must be configured correctly
+for the particular Docker deployment.
+
+The startup hook restores the Nova assets and Spotlight
+integration during container startup.
+
+### Windows and macOS
+
+These environments have not yet completed the same
+validation process as the tested Docker setup.
+
+Installation instructions will follow after verification.
+
+## Nova vs. Original Abyss
+
+Jellyfin Nova originated from the open-source Abyss project,
+but is being developed as a separate distribution.
+
+<table width="837" style="width:837px;table-layout:fixed;">
+<colgroup>
+<col width="261" style="width:261px;">
+<col width="576" style="width:576px;">
+</colgroup>
+<thead>
+<tr><th width="261" align="left">Area</th><th width="576" align="left">Jellyfin Nova</th></tr>
+</thead>
+<tbody>
+<tr><td width="261">Project Identity</td><td width="576">Independent repository, branding and development.</td></tr>
+<tr><td width="261">Theme Packaging</td><td width="576">Dedicated Nova package containing CSS, fonts and Spotlight.</td></tr>
+<tr><td width="261">Docker Integration</td><td width="576">Container-aware installation and persistent startup integration.</td></tr>
+<tr><td width="261">Spotlight</td><td width="576">Nova-specific loader and locally bundled resources.</td></tr>
+<tr><td width="261">Theme Variants</td><td width="576">Three variants under independent visual development.</td></tr>
+<tr><td width="261">Documentation</td><td width="576">New project-specific documentation and installation guidance.</td></tr>
+</tbody>
+</table>
+
+This overview describes Nova's development direction.
+It is not a complete comparison with every Abyss release.
+
+## Development Status
+
+<table width="837" style="width:837px;table-layout:fixed;">
+<colgroup>
+<col width="261" style="width:261px;">
+<col width="576" style="width:576px;">
+</colgroup>
+<thead>
+<tr><th width="261" align="left">Area</th><th width="576" align="left">Status</th></tr>
+</thead>
+<tbody>
+<tr><td width="261">LinuxServer Docker</td><td width="576">Installation and restart restoration tested with Jellyfin 12.2.0.</td></tr>
+<tr><td width="261">Nova CSS</td><td width="576">Successfully installed and served; visual refinements remain.</td></tr>
+<tr><td width="261">Spotlight</td><td width="576">Integration tested in the development environment.</td></tr>
+<tr><td width="261">Theme Variants</td><td width="576">Three variants available; styling improvements ongoing.</td></tr>
+<tr><td width="261">Fresh Installation</td><td width="576">Additional clean-environment validation planned.</td></tr>
+<tr><td width="261">Windows / macOS</td><td width="576">Further installer development and validation required.</td></tr>
+<tr><td width="261">Documentation</td><td width="576">Being rebuilt for Jellyfin Nova.</td></tr>
+</tbody>
+</table>
+
+## Screenshots
+
+> **Coming Soon**
+>
+> Original Jellyfin Nova screenshots will be added
+> after the visual design has been finalized.
+
+## Roadmap
+
+- Finalize all three Nova theme variants.
+- Refine the Jellyfin administration interface.
+- Test installation on a fresh Jellyfin environment.
+- Complete platform-specific installer verification.
+- Replace inherited documentation and preview assets.
+- Prepare the first fully documented Nova release.
+
+## Repository
+
+**GitHub:** https://github.com/topa-LE/jellyfin-nova
+
+Development currently takes place on the `main` branch.
+
+## License & Acknowledgements
+
+Jellyfin Nova is distributed under the **MIT License**.
+
+See [LICENSE](LICENSE) for the complete license text
+and applicable copyright notices.
+
+This project is derived from
+[Abyss for Jellyfin](https://github.com/AumGupta/abyss-jellyfin).
+
+The original authors and contributors retain their
+respective copyright and attribution rights.
+
+Third-party font licenses are preserved in their
+respective source directories.
 
 ---
 
-> [!NOTE]
-> If you are on Windows.
-> **Windows SmartScreen may show a warning!** It is completely normal, the setup is 100% safe. Click **More info** then **Run anyway**. This happens because the installer is new and hasn't yet built a download reputation with Microsoft.
->
-> <details>
-> <summary><em>Why is this safe to run?</em></summary>
->
-> <br>
->
-> The installer (`abyss-setup.exe`) is automatically compiled from [`setup.ps1`](setup.ps1) via [GitHub Actions](.github/workflows/build-installer.yml) on every release. You can read every line of `setup.ps1` before running, it is plain PowerShell with no obfuscation.
->
-> The installer will ask for your Jellyfin **server URL**, **admin username**, and **admin password**. These are sent directly to your own local Jellyfin server using the standard Jellyfin API, the same API your browser uses when you log in. Nothing is sent to any external server. The credentials are used only to authenticate and apply theme settings, and are never stored anywhere.
->
-> The build process is fully transparent and auditable, click through to the [Actions log](https://github.com/topa-LE/jellyfin-nova/actions) to see exactly which commit produced the exe you downloaded.
->
-> </details>
+<div align="center">
 
-### Docker Install
+**Jellyfin Nova**
 
-The steps to install Abyss inside a docker container can be found in the detailed [SETUP](SETUP.md) guide.
+Developed by [topa-LE](https://github.com/topa-LE)
 
-### Manual Install
-
-The steps to apply Abyss entirely manually can be found in the detailed [SETUP](SETUP.md) guide.
-
-> Quick Preview: 
-> ```css
-> @import url('https://cdn.jsdelivr.net/gh/topa-LE/jellyfin-nova@main/abyss.css');
->```
-> Copy and Paste in the branding section in your jellyfin dashboard.
-
-> [!NOTE]
-> The quick preview import given above is useful only to have a look at how the theme looks, but to actually get the full feel of Abyss, follow all the steps in the SETUP guide.
-
-### Plugin Support
-
-If you use additional plugins, like *Jellyfin Enhanced*, *Media Bar Enhanced*, etc, then you can follow the [Plugin Support](SETUP.md) steps in the SETUP.md guide.
-
-<details>
-
-<summary><h2>Customisation</h2></summary>
-
-Override any of these variables at the top of your **Custom CSS** field, after the `@import` line:
-
-```css
-@import url('https://cdn.jsdelivr.net/gh/topa-LE/jellyfin-nova@main/abyss.css');
-
-:root {
-    /* Accent colour: R, G, B only, no rgb() wrapper */
-    --abyss-accent: 245, 245, 247;   /* default: near-white */
-    /* Same colour, space-separated for Jellyfin 12 / MUI */
-    --abyss-accent-channel: 245 245 247;
-
-    /* Corner rounding applied globally */
-    --abyss-radius: 24px;            /* default: 24px */
-
-    /* Episode count / indicator pill background */
-    --abyss-indicator: 55, 55, 55;   /* default: dark grey */
-}
-```
-
-### Example accent colours
-
-| Look | Value |
-|---|---|
-| Default (near-white) | `245, 245, 247` |
-| Warm white | `255, 250, 240` |
-| Soft blue | `100, 160, 255` |
-| Teal | `50, 200, 180` |
-| Rose | `255, 100, 120` |
-
-### Lite mode
-
-For lower-power mobile, TV, and embedded clients, import the optional Lite override after the main theme:
-
-```css
-@import url('https://cdn.jsdelivr.net/gh/topa-LE/jellyfin-nova@main/abyss.css');
-@import url('https://cdn.jsdelivr.net/gh/topa-LE/jellyfin-nova@main/styles/abyss-lite.css');
-```
-
-Lite mode keeps the same colours, typography, spacing, and component styling while reducing blur, shadows, and entrance motion.
-
-> NOTE:
-> 
-> You can also change the font by adding a *Google Fonts* (or any other source) `@import` and overriding the `body` font-family after your theme import. For example, to use [Inter](https://fonts.google.com/specimen/Inter):
-> ```css
-> @import url('https://cdn.jsdelivr.net/gh/topa-LE/jellyfin-nova@main/abyss.css');
-> @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
->
-> body {
->     font-family: "Inter", sans-serif;
->     font-optical-sizing: auto;
->     font-style: normal;
->     font-variation-settings: "GRAD" 0;
-> }
-> ```
-> Browse fonts at [fonts.google.com](https://fonts.google.com) and replace `"Inter"` with any family name you pick.
-
-</details>
-
----
-
-## Compatibility
-
-| Jellyfin version | Status |
-|---|---|
-| 12.1.x | Tested (Modern and Legacy web UI) |
-| 10.11.x | Tested |
-| 10.10.x | Should work |
-| Earlier | Untested |
-
-> [!NOTE] 
-> Jellyfin 12 features a new Material UI (MUI), implemented by *default* via `Settings`>`Display`>`Display Mode`>`Auto`. Since, this is a new interface, changes to Abyss are being constantly made to keep it at par with changes in Jellyfin versions. In case you want to keep the previous look of jellyfin (before versoin 12), they have provide a way to do so by `Settings`>`Display`>`Display Mode`>`Desktop (Legacy)`. Changes will take effect after manually reloading the web client.
-
-> [!IMPORTANT]
-> Abyss is built and tested for the **Jellyfin web client** accessed via a desktop browser. The mobile web experience includes layout tweaks but is not the primary focus. The Jellyfin desktop app (Jellyfin Media Player) and TV clients may work but are not specifically targeted and results may vary.
-
-<details>
-<summary>Notes</summary>
-
-- The **Jellyfin admin dashboard** (`/dashboard`) is a separate React app and does not load Custom CSS. Abyss styles the main client only (home, libraries, detail pages, player).
-- Backdrop blur requires `backdrop-filter` support: Chrome, Edge, Safari, and Firefox 103+.
-- The installer selects the Dark base theme for the client and dashboard. Abyss requires Dark to display correctly, so the corresponding theme selectors in both Modern and Legacy web UI are intentionally shown as locked while Dark is active. Selecting another base theme is unsupported.
-
-</details>
-
-## Contributing
-
-Pull requests are welcome. For suggestions, feature requests, or bug reports, open an issue on the [Issues](https://github.com/topa-LE/jellyfin-nova/issues) page. Please include your Jellyfin version and a screenshot where relevant.
-
-## License
-
-Abyss is licensed under the [MIT License](https://github.com/topa-LE/jellyfin-nova?tab=MIT-1-ov-file).
+</div>
