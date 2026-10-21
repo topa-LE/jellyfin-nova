@@ -28,11 +28,11 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Run tests
-        run: npm run check
-
       - name: Build Nova distribution
         run: node scripts/build-nova.mjs
+
+      - name: Run tests
+        run: npm run check
 
       - name: Create installation package
         run: |
