@@ -1,17 +1,17 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/jellyfin/jellyfin-ux/master/branding/SVG/icon-transparent.svg" alt="Jellyfin" width="76" height="76">
+<img src="https://raw.githubusercontent.com/jellyfin/jellyfin-ux/master/branding/SVG/icon-transparent.svg" alt="Jellyfin Logo" width="88" height="88">
 
-# Jellyfin Nova
+# 💜 Jellyfin Nova
 
-### A modern visual experience for Jellyfin
+### ✨ A modern visual experience for Jellyfin
 
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 ![Release](https://img.shields.io/github/v/release/topa-LE/jellyfin-nova?style=for-the-badge)
 ![Usage](https://img.shields.io/jsdelivr/gh/hm/topa-LE/jellyfin-nova?style=for-the-badge&label=Usage&logo=none)
 [![Downloads](https://img.shields.io/github/downloads/topa-LE/jellyfin-nova/total?style=for-the-badge)](https://github.com/topa-LE/jellyfin-nova/releases/latest)
 
-**Custom Themes · Local Fonts · Spotlight · Docker Integration**
+![Themes](https://img.shields.io/badge/Themes-3_Variants-8b5cf6?style=flat-square) ![Spotlight](https://img.shields.io/badge/Spotlight-Integrated-3b82f6?style=flat-square) ![Docker](https://img.shields.io/badge/Docker-Persistent-0ea5e9?style=flat-square) ![Fonts](https://img.shields.io/badge/Fonts-Local-22c55e?style=flat-square)
 
 > **Development Preview** — Jellyfin Nova is under active development.
 
@@ -19,7 +19,7 @@
 
 ---
 
-## Overview
+## 🌌 Overview
 
 **Jellyfin Nova** is a visual customization project for the
 [Jellyfin](https://jellyfin.org/) media server.
@@ -32,7 +32,7 @@ The project aims to provide a consistent visual experience across
 Jellyfin's navigation, media libraries, detail pages and
 selected administration areas.
 
-## Features
+## 🎨 Features
 
 <table width="837" style="width:837px;table-layout:fixed;">
 <colgroup>
@@ -53,9 +53,9 @@ selected administration areas.
 </tbody>
 </table>
 
-## Installation
+## 🚀 Installation
 
-### Linux / Docker
+### 🐧 Linux / Docker
 
 Download the current development installer:
 
@@ -78,7 +78,7 @@ Follow the interactive installer instructions.
 > Jellyfin Nova is still under development.
 > Use a test environment before deploying to production.
 
-### Docker Persistence
+### 🐳 Docker Persistence
 
 Supported LinuxServer Jellyfin installations use a persistent
 Nova source directory and a container startup hook.
@@ -104,14 +104,14 @@ for the particular Docker deployment.
 The startup hook restores the Nova assets and Spotlight
 integration during container startup.
 
-### Windows and macOS
+### 💻 Windows and macOS
 
 These environments have not yet completed the same
 validation process as the tested Docker setup.
 
 Installation instructions will follow after verification.
 
-## Nova vs. Original Abyss
+## 🔀 Nova vs. Original Abyss
 
 Jellyfin Nova originated from the open-source Abyss project,
 but is being developed as a separate distribution.
@@ -137,7 +137,7 @@ but is being developed as a separate distribution.
 This overview describes Nova's development direction.
 It is not a complete comparison with every Abyss release.
 
-## Development Status
+## 🛠️ Development Status
 
 <table width="837" style="width:837px;table-layout:fixed;">
 <colgroup>
@@ -158,14 +158,14 @@ It is not a complete comparison with every Abyss release.
 </tbody>
 </table>
 
-## Screenshots
+## 🖼️ Screenshots
 
 > **Coming Soon**
 >
 > Original Jellyfin Nova screenshots will be added
 > after the visual design has been finalized.
 
-## Roadmap
+## 🧭 Roadmap
 
 - Finalize all three Nova theme variants.
 - Refine the Jellyfin administration interface.
@@ -174,13 +174,13 @@ It is not a complete comparison with every Abyss release.
 - Replace inherited documentation and preview assets.
 - Prepare the first fully documented Nova release.
 
-## Repository
+## 📦 Repository
 
 **GitHub:** https://github.com/topa-LE/jellyfin-nova
 
 Development currently takes place on the `main` branch.
 
-## License & Acknowledgements
+## 📜 License & Acknowledgements
 
 Jellyfin Nova is distributed under the **MIT License**.
 
@@ -198,10 +198,4 @@ respective source directories.
 
 ---
 
-<div align="center">
-
-**Jellyfin Nova**
-
-Developed by [topa-LE](https://github.com/topa-LE)
-
-</div>
+**Made with ❤️ by [topa-LE](https://github.com/topa-LE)** · [MIT License](LICENSE) · [GitHub](https://github.com/topa-LE/jellyfin-nova)
