@@ -8,8 +8,8 @@
  * Background design approved during live testing (step 203).
  * Selectors verified on Jellyfin 12.2.0 (steps 205–206).
  *
- * The theme is activated by setting:
- * data-nova-theme="dark" on the HTML element.
+ * Dark is the default when no Nova theme is selected.
+ * Gray and Blue remain selectable via data-nova-theme.
  */
 
 /* ==========================================================
@@ -58,8 +58,8 @@
    2. GLOBAL JELLYFIN BACKGROUND
    ========================================================== */
 
-html[data-nova-theme="dark"],
-html[data-nova-theme="dark"] .backgroundContainer:not(.withBackdrop) {
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]),
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .backgroundContainer:not(.withBackdrop) {
     background-image: var(--nova-gradient-main) !important;
     background-color: var(--nova-background) !important;
     background-attachment: fixed !important;
@@ -72,7 +72,7 @@ html[data-nova-theme="dark"] .backgroundContainer:not(.withBackdrop) {
    3. HEADER BACKGROUND
    ========================================================== */
 
-html[data-nova-theme="dark"] .skinHeader {
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .skinHeader {
     background: rgba(16, 21, 28, 0.66) !important;
 }
 
@@ -80,7 +80,7 @@ html[data-nova-theme="dark"] .skinHeader {
    4. LOGIN BOX – NOVA DARK
    ========================================================== */
 
-html[data-nova-theme="dark"] {
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) {
     --nova-login-border: #080b0f;
     --nova-login-shadow:
         0 28px 75px rgba(0, 0, 0, 0.58),
@@ -98,16 +98,16 @@ html[data-nova-theme="dark"] {
     );
 }
 
-html[data-nova-theme="dark"] .manualLoginForm,
-html[data-nova-theme="dark"] .loginForm {
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .manualLoginForm,
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .loginForm {
     background: var(--nova-login-card-gradient) !important;
     border: 1px solid var(--nova-login-border) !important;
     border-radius: var(--nova-login-radius) !important;
     box-shadow: var(--nova-login-shadow) !important;
 }
 
-html[data-nova-theme="dark"] .manualLoginForm .emby-input,
-html[data-nova-theme="dark"] .loginForm .emby-input {
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .manualLoginForm .emby-input,
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .loginForm .emby-input {
     background: #11161c !important;
     border: 1px solid #343b43 !important;
     border-radius: var(--nova-login-radius) !important;
@@ -115,14 +115,14 @@ html[data-nova-theme="dark"] .loginForm .emby-input {
     box-shadow: none !important;
 }
 
-html[data-nova-theme="dark"] .manualLoginForm .emby-input:focus,
-html[data-nova-theme="dark"] .loginForm .emby-input:focus {
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .manualLoginForm .emby-input:focus,
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .loginForm .emby-input:focus {
     border-color: #dc9b66 !important;
     box-shadow: 0 0 0 2px rgba(220, 155, 102, 0.12) !important;
 }
 
-html[data-nova-theme="dark"] .manualLoginForm .button-submit,
-html[data-nova-theme="dark"] .loginForm .button-submit {
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .manualLoginForm .button-submit,
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .loginForm .button-submit {
     background: linear-gradient(
         180deg,
         #30363e 0%,
@@ -136,17 +136,17 @@ html[data-nova-theme="dark"] .loginForm .button-submit {
         inset 0 1px 0 rgba(255, 255, 255, 0.055) !important;
 }
 
-html[data-nova-theme="dark"] .manualLoginForm .button-submit:hover,
-html[data-nova-theme="dark"] .loginForm .button-submit:hover {
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .manualLoginForm .button-submit:hover,
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .loginForm .button-submit:hover {
     background: #343b44 !important;
     border-color: #080b0f !important;
 }
 
 /* Remember-me checkbox: dark background and orange checkmark. */
-html[data-nova-theme="dark"]
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"])
 .checkboxContainer:has(.chkRememberLogin)
 .checkboxOutline,
-html[data-nova-theme="dark"]
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"])
 .chkRememberLogin:checked ~ .checkboxOutline {
     background: linear-gradient(
         145deg,
@@ -161,14 +161,14 @@ html[data-nova-theme="dark"]
         inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
 }
 
-html[data-nova-theme="dark"]
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"])
 .checkboxContainer:has(.chkRememberLogin)
 .checkboxIcon-checked {
     color: #dc9b66 !important;
     -webkit-text-fill-color: #dc9b66 !important;
 }
 
-html[data-nova-theme="dark"]
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"])
 .checkboxContainer:has(.chkRememberLogin)
 .checkboxIcon-unchecked {
     color: #7e8994 !important;
