@@ -1,0 +1,29 @@
+/*
+ * Jellyfin Nova – Blue
+ * Marine- und stahlblaue Dark-Palette.
+ *
+ * Migrationsstatus: Farbgrundlage, noch nicht aktiv.
+ */
+
+:root[data-nova-theme="blue"] {
+    --nova-background: #09111b;
+    --nova-surface: #142435;
+    --nova-glass-tint: 20, 36, 53;
+    --nova-surface-raised: #20384d;
+    --nova-text: #dce7f0;
+    --nova-text-muted: #a4bbce;
+    --nova-border: #36546b;
+
+    --nova-gradient-main: linear-gradient(
+        145deg,
+        #2a4b65 0%,
+        #152c40 48%,
+        #09111b 100%
+    );
+
+    --nova-gradient-surface: linear-gradient(
+        135deg,
+        #25435b 0%,
+        #112334 100%
+    );
+}

@@ -1,0 +1,147 @@
+/*
+ * Jellyfin Nova – Media Player
+ * Ausgangsbasis: Abyss, Abschnitt MEDIA PLAYER.
+ *
+ * Migrationsstatus: Nova-Variablen angepasst.
+ * In nova.css eingebunden.
+ */
+
+/* 8. MEDIA PLAYER */
+
+.nowPlayingPageImage {
+    border: none;
+}
+
+.osdPoster img {
+    border-radius: var(--nova-radius);
+    border: none;
+}
+
+.startTimeText,
+.endTimeText {
+    width: 3.4em;
+    display: block;
+    text-align: center;
+}
+
+.osdTitle {
+    margin-left: 0.5em;
+}
+
+.skinHeader.osdHeader {
+    height: 5em;
+}
+
+.osdTextContainer {
+    margin: 0 !important;
+    margin-top: 0.2em !important;
+    padding-left: 0.5em !important;
+    padding-right: 0.5em !important;
+}
+
+.nowPlayingBarCurrentTime {
+    width: 6em;
+}
+
+.upNextDialog-countdownText {
+    color: rgb(var(--nova-accent-rgb));
+}
+
+.iconOsdProgressInner {
+    background: rgb(var(--nova-accent-rgb));
+}
+
+/* Chapter thumb */
+.chapterThumb {
+    height: 14vh;
+    min-width: 14vh;
+    box-shadow: 0 0 1.9vh #000;
+}
+
+.chapterThumbText {
+    font-size: 1em;
+}
+
+.chapterThumbTextContainer {
+    right: auto;
+    bottom: 4px;
+    padding: .25em 0.7em;
+}
+
+.chapterThumbContainer {
+    box-shadow: 0 0 1.9vh #000;
+}
+
+.sliderBubble {
+    background: #0000;
+    -webkit-transform: translate3d(-50%, -108%, 0);
+    transform: translate3d(-50%, -108%, 0);
+}
+
+/* Playing Bar */
+.nowPlayingBarTop {
+    margin-top: 24px;
+}
+
+.videoOsdBottom .osdControls,
+.nowPlayingBar {
+    border-radius: 24px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+}
+
+.nowPlayingBar .nowPlayingImage {
+    width: 2.91em;
+    border-radius: 8px;
+}
+
+.nowPlayingBarPositionContainer {
+    top: -1.5em;
+    padding: 0 8px;
+}
+
+.nowPlayingBarInfoContainer {
+    margin-left: 8px;
+}
+
+body:has(#videoOsdPage) .skinHeader .MuiTypography-root.MuiTypography-body1 {
+    font-size: large;
+    font-weight: 500;
+    -webkit-backdrop-filter: blur(var(--nova-glass-blur));
+    backdrop-filter: blur(var(--nova-glass-blur));
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+.videoOsdBottom {
+    padding: 0 !important;
+    margin: 24px !important;
+    border-radius: 24px;
+    background: none !important;
+}
+
+.osdTimeText {
+    margin-left: 0 !important;
+    opacity: 0.5;
+}
+
+/* Track selector */
+.trackSelections .selectContainer .detailTrackSelect {
+    padding: .5em 1.9em .5em .5em;
+}
+
+.trackSelections .selectContainer .selectArrowContainer .selectArrow {
+    margin-top: .2em;
+}
+
+.trackSelections .selectContainer {
+    align-items: center;
+}
+
+/* Slider track rounding */
+.mdl-slider-background-flex,
+.mdl-slider-background-flex-inner,
+.mdl-slider-background-upper,
+.mdl-slider-background-lower {
+    border-radius: 2px;
+}

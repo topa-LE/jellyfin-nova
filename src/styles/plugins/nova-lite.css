@@ -1,0 +1,43 @@
+/*
+ * Jellyfin Nova – Lite Mode
+ * Ausgangsbasis: Abyss, styles/abyss-lite.css.
+ *
+ * Migrationsstatus: Nova-Variablen und Importhinweis angepasst.
+ * Optionales Performance-Modul; nicht in nova.css eingebunden.
+ */
+
+/* Optional low-power override. Import after nova.css. */
+:root {
+    --nova-backdrop-blur: 12px;
+    --nova-glass-blur: 8px;
+}
+
+.verticalSection,
+.ratingbutton-withrating .material-icons.favorite {
+    animation: none !important;
+}
+
+.backdropImage,
+.blurhash-canvas {
+    will-change: auto !important;
+}
+
+.mainDrawer,
+.dialog,
+.toast,
+.emby-tabs-slider,
+.videoOsdBottom .osdControls,
+.appfooter {
+    box-shadow: none !important;
+}
+
+.cardOverlayContainer,
+.cardOverlayButtonIcon,
+.paper-icon-button-light,
+.emby-tab-button,
+.button-flat,
+.navMenuOption,
+.listItem,
+.actionSheetMenuItem {
+    transition-duration: 0.15s !important;
+}

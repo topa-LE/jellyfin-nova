@@ -1,0 +1,778 @@
+/*
+ * Jellyfin Nova – Components
+ * Ausgangsbasis: Abyss, Abschnitt COMPONENTS.
+ *
+ * Migrationsstatus: Nova-Variablen angepasst.
+ * In nova.css eingebunden.
+ */
+
+/* 6. COMPONENTS */
+
+/* Buttons & Interactive */
+
+.raised,
+.fab,
+a[data-role="button"] {
+    background: rgba(40, 40, 40, 0.8) !important;
+    transition: background 0.37s var(--nova-ease),
+        color 0.37s var(--nova-ease),
+        border-color 0.37s var(--nova-ease),
+        box-shadow 0.37s var(--nova-ease) !important;
+}
+
+.raised:hover,
+.fab:hover,
+a[data-role="button"]:hover {
+    background: rgba(var(--nova-accent-rgb), 0.5) !important;
+}
+
+.raised:hover,
+.fab:hover,
+.navMenuOption:hover,
+.listItem:hover,
+.actionSheetMenuItem:hover {
+    background: rgb(var(--nova-accent-rgb)) !important;
+    color: #121212;
+    font-weight: 700;
+}
+
+.listItem-content:hover {
+    color: #121212;
+}
+
+.actionSheetMenuItem {
+    border-radius: var(--nova-radius) !important;
+}
+
+.actionSheetContent {
+    padding: .7em .6em !important;
+}
+
+.cardContent.cardImageContainer {
+    box-shadow: 0 0 3px rgba(200, 200, 200, 0.35) inset;
+}
+
+.paper-icon-button-light:hover,
+.paper-icon-button-light:hover:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.paper-icon-button-light {
+    border-radius: var(--nova-radius);
+}
+
+.emby-tab-button {
+    padding: 0.5em 1.5em;
+    margin: 0 2.5px;
+    border-radius: 50px;
+    border: 3px solid transparent;
+}
+
+.emby-tab-button-active {
+    background: rgb(var(--nova-accent-rgb)) !important;
+    color: #121212 !important;
+    border-radius: 50px;
+}
+
+.emby-tab-button-active:hover {
+    color: #121212 !important;
+}
+
+.button-flat:hover {
+    background: rgba(0, 0, 0, 0.4);
+    color: rgb(var(--nova-accent-rgb)) !important;
+}
+
+.detailButton {
+    border-radius: var(--nova-radius);
+    max-width: 15vw !important;
+}
+
+.button-submit {
+    position: sticky;
+    bottom: 24px;
+    margin-top: 48px !important;
+    box-shadow: 0 0 24px 2px rgba(var(--nova-accent-rgb), 0.2);
+    z-index: 2;
+    color: rgba(245, 245, 247);
+}
+
+html[data-theme="dark"] #displayPreferencesPage form button[type="submit"].MuiButton-root {
+    position: sticky;
+    bottom: 48px;
+    width: 97%;
+    align-self: center;
+    margin-top: 48px !important;
+    box-shadow: 0 0 24px 2px rgba(var(--nova-accent-rgb), 0.2);
+    z-index: 2;
+    min-height: 3.25rem;
+    border-radius: var(--nova-radius);
+    color: rgb(var(--nova-accent-rgb)) !important;
+    font-weight: 500;
+    font-family: "Google Sans", sans-serif;
+    border: solid 1px rgba(245, 245, 247, 0.2) !important;
+}
+
+html[data-theme="dark"] #displayPreferencesPage form button[type="submit"].MuiButton-root:hover {
+    font-weight: 700;
+    color: #121212 !important;
+    background-color: rgba(var(--nova-accent-rgb), 0.88) !important;
+}
+
+/* Active / played / link states */
+.paper-icon-button-light:hover,
+.raised.homeLibraryButton:hover,
+.button-flat:hover,
+.playstatebutton-icon-played,
+.ratingbutton-icon-withrating,
+.paper-icon-button-light:hover:not(:disabled),
+.emby-tab-button:hover,
+.selectLabelFocused,
+.inputLabelFocused,
+.textareaLabelFocused,
+.buttonActive,
+.button-link {
+    color: rgb(var(--nova-accent-rgb));
+}
+
+#itemDetailPage .button-link {
+    text-align: left;
+}
+
+.ratingbutton-icon-withrating {
+    color: rgb(249, 38, 114) !important;
+}
+
+/* Theme user setting tab buttons */
+div[data-role="controlgroup"] a.ui-btn-active {
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: white !important;
+}
+
+div[data-role="controlgroup"] a[data-role="button"] {
+    display: table-cell !important;
+    margin: 0 !important;
+}
+
+/* Home Library Buttons */
+
+.homeLibraryButton {
+    min-width: 12em;
+    margin: 0.4em;
+    width: auto !important;
+}
+
+.raised.homeLibraryButton {
+    background: rgba(0, 0, 0, 0.3) !important;
+    transition: background 0.37s var(--nova-ease),
+        border-color 0.37s var(--nova-ease),
+        box-shadow 0.37s var(--nova-ease);
+    border: solid 1px rgba(var(--nova-accent-rgb), 0) !important;
+}
+
+.raised.homeLibraryButton:hover {
+    background: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Dialogs & Overlays */
+
+.playerStats-stats,
+.upNextContainer,
+.dialog,
+.toast {
+    border-radius: 24px !important;
+}
+
+.iconOsd {
+    right: 24px;
+    top: 8.5%;
+    border-radius: 18px !important;
+}
+
+.iconOsdIcon {
+    margin: .5em .63em 0 .63em;
+}
+
+.iconOsdProgressOuter {
+    margin: 1.5em .25em 0.35em;
+}
+
+.formDialogHeader {
+    border-top-left-radius: var(--nova-radius);
+    border-top-right-radius: var(--nova-radius);
+}
+
+.formDialogFooter {
+    border-bottom-left-radius: var(--nova-radius);
+    border-bottom-right-radius: var(--nova-radius);
+}
+
+.formDialogFooter-clear,
+.formDialogHeader-clear,
+.innerCardFooterClear {
+    background-color: transparent !important;
+}
+
+.formDialogContent {
+    margin-bottom: 6.2em;
+}
+
+.dialogContentInner {
+    padding: .5em 1em 1em;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+/* Cards */
+
+.visualCardBox,
+.cardImageContainer {
+    box-shadow: none;
+}
+
+.cardBox-bottompadded {
+    margin-bottom: 0.6em !important;
+}
+
+.cardOverlayContainer {
+    border-radius: var(--nova-radius) !important;
+    border: solid 1px rgba(var(--nova-accent-rgb), 0.0) !important;
+    transition: border-color 0.15s var(--nova-ease) !important;
+}
+
+
+.button-submit,
+.cardOverlayContainer:hover,
+.dialog,
+.toast,
+.upNextContainer,
+.playerStats-stats,
+.raised.homeLibraryButton:hover {
+    border: solid 1px rgba(245, 245, 247, 0.2) !important;
+}
+
+.cardPadder {
+    background-color: #0000 !important;
+    box-shadow: none !important;
+    border-radius: var(--nova-radius) !important;
+}
+
+.card.show-animation:focus>.cardBox {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: transform 0.37s var(--nova-ease) !important;
+}
+
+
+
+/* Card Indicators */
+.indicator {
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.cardIndicators,
+.listItemIndicators {
+    right: .225em;
+    top: .225em;
+    padding: 2px;
+}
+
+.mediaSourceIndicator {
+    left: 0.5em;
+    top: 0.5em;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: none;
+    border-radius: var(--nova-radius);
+}
+
+.innerCardFooter {
+    margin: .5em;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: none;
+}
+
+.countIndicator {
+    background: rgba(var(--nova-accent-rgb), 0.8);
+    box-shadow: none;
+    border-radius: 10px !important;
+    padding: 4px;
+    font-weight: bolder;
+}
+
+.playedIndicator {
+    background: rgb(var(--nova-accent-rgb));
+    box-shadow: none;
+    border-radius: 10px !important;
+    padding: 4px;
+    font-weight: bolder;
+}
+
+.cardOverlayButton-br button[title="Watched"] .MuiSvgIcon-root[data-testid="CheckIcon"] {
+    border-radius: 8px;
+    background: rgb(var(--nova-accent-rgb));
+    color: black;
+}
+
+.cardOverlayButton-br.cardIndicators {
+    bottom: 0;
+    position: absolute;
+}
+
+/* Indicators & Progress */
+
+.missingIndicator,
+.unairedIndicator {
+    background: #ae3030eb;
+    padding: .3em .6em;
+    color: #fff;
+}
+
+.transcodingProgress>div,
+.itemProgressBarForeground {
+    background-color: rgba(var(--nova-accent-rgb), 0.3);
+}
+
+.playbackProgress>div {
+    background-color: rgba(var(--nova-accent-rgb), 0.75);
+}
+
+.backgroundProgress>div {
+    background: rgba(0, 0, 0, 0);
+    background-color: #0000;
+}
+
+.itemProgressBar {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* Sliders */
+
+.mdl-slider-background-lower {
+    background-color: rgb(var(--nova-accent-rgb));
+}
+
+.mdl-slider::-moz-range-thumb {
+    border-radius: 50%;
+    background: rgb(var(--nova-accent-rgb));
+}
+
+.mdl-slider::-ms-thumb {
+    border-radius: 50%;
+    background: rgb(var(--nova-accent-rgb));
+}
+
+.mdl-slider::-webkit-slider-thumb {
+    border-radius: 50%;
+    background: rgb(var(--nova-accent-rgb));
+}
+
+.sliderMarker {
+    width: 3px;
+    border-radius: 2px;
+}
+
+/* Toggle Switches */
+
+.mdl-switch__input:checked+.mdl-switch__label+.mdl-switch__trackContainer>.mdl-switch__track {
+    background: rgba(var(--nova-accent-rgb), 0.5);
+}
+
+.mdl-switch__input:checked+.mdl-switch__label+.mdl-switch__trackContainer>.mdl-switch__thumb {
+    background: rgb(var(--nova-accent-rgb));
+}
+
+/* Spinner */
+
+.mdl-spinner__layer-1 {
+    border-color: rgb(var(--nova-accent-rgb));
+}
+
+.mdl-spinner__layer-2 {
+    border-color: rgba(128, 128, 128, 1);
+}
+
+.mdl-spinner__layer-3 {
+    border-color: rgba(40, 40, 40, 1);
+}
+
+.mdl-spinner__layer-4 {
+    border-color: rgba(0, 0, 0, 1);
+}
+
+/* Progress Ring */
+
+.progressring-spiner {
+    border-color: rgb(var(--nova-accent-rgb)) !important;
+    border-width: .35em;
+}
+
+.progressring {
+    margin: .4em;
+}
+
+.progressring-bg {
+    display: none;
+}
+
+/* Lists */
+
+.listItem {
+    padding-left: 1em;
+    margin-bottom: 2px !important;
+}
+
+.listItem bdi:first-of-type {
+    font-weight: 500;
+    font-variation-settings: "wght" 500;
+    transition: color 0.3s ease;
+}
+
+.listItem bdi p {
+    font-weight: 400 !important;
+    font-variation-settings: "wght" 400 !important;
+}
+
+.listItem:hover bdi:first-of-type {
+    font-weight: 600;
+    font-variation-settings: "wght" 600;
+}
+
+.listItem:hover bdi p,
+.listItem:hover bdi p::before {
+    font-weight: 400 !important;
+    font-variation-settings: "wght" 400 !important;
+}
+
+.listItem-border {
+    border-color: rgba(var(--nova-accent-rgb), 0) !important;
+}
+
+.listItemIcon {
+    background: #0000 !important;
+    border-radius: var(--nova-radius) !important;
+}
+
+.listItem-indexnumberleft {
+    margin: 1em;
+}
+
+.listItemImageButton {
+    margin: auto;
+    font-size: 1.6em !important;
+    border-radius: var(--nova-radius) !important;
+}
+
+.listItemImageButton-icon {
+    padding: 0;
+}
+
+.listItemImageButton:hover {
+    color: rgb(var(--nova-accent-rgb));
+}
+
+.secondary.listItem-overview.listItemBodyText {
+    height: unset !important;
+    margin: 0;
+}
+
+.listItem:hover,
+.listItem:hover .secondary,
+.listItem:hover .listItem-secondaryText,
+.listItem:hover p,
+.listItem:hover span,
+.listItem:hover div,
+.listItem:hover .runtime,
+.listItem:hover .starIcon::before,
+.listItem:hover .starRatingContainer,
+.listItem:hover .listItem-overview {
+    color: #121212b7 !important;
+}
+
+.listItem:hover,
+.listItem:hover .listItemBodyText {
+    color: #121212 !important;
+}
+
+.listItem:hover .material-icons,
+.listItem:hover .listItemImageButton {
+    color: #121212 !important;
+}
+
+.listItem:hover .countIndicator,
+.listItem:hover .playedIndicator {
+    background: rgba(0, 0, 0, 0.15);
+    color: #121212 !important;
+}
+
+.listItem:hover .itemProgressBarForeground {
+    background-color: rgba(18, 18, 18, 0.6) !important;
+}
+
+.listItem:hover .itemProgressBar {
+    background: rgba(18, 18, 18, 0.2) !important;
+}
+
+.listItem:hover .ratingbutton-icon-withrating {
+    color: rgb(249, 38, 114) !important;
+}
+
+.listItem:hover .listItemImageButton-icon {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Form Inputs */
+#homeScreenPreferencesPage,
+#languagePreferencesPage {
+    & form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    & .button-submit {
+        width: 97%;
+        align-self: center !important;
+    }
+}
+
+#quickConnectPreferencesPage .inputContainer {
+    text-align: center;
+}
+
+.emby-input,
+.emby-textarea {
+    padding: .4em .55em;
+}
+
+.emby-textarea {
+    font-family: monospace;
+    font-size: 10pt;
+}
+
+.emby-select {
+    padding: .35em 1.9em .35em .35em;
+}
+
+.selectArrow {
+    margin-top: 1.05em;
+}
+
+.itemSelectionPanel,
+.checkboxOutline,
+.emby-input,
+.emby-textarea,
+.emby-select-withcolor,
+.checkboxOutline:focus,
+.emby-input:focus,
+.emby-textarea:focus,
+.emby-select-withcolor:focus {
+    border: 1px solid rgba(40, 40, 40, 0.8);
+}
+
+.checkboxOutline {
+    border-color: rgba(var(--nova-accent-rgb), 0.3) !important;
+    transition: background 0.2s var(--nova-ease),
+        border-color 0.2s var(--nova-ease);
+}
+
+input[type="checkbox"]:checked~.checkboxOutline,
+input[type="checkbox"]:checked+.checkboxOutline {
+    background: rgb(var(--nova-accent-rgb)) !important;
+    border-color: rgb(var(--nova-accent-rgb)) !important;
+}
+
+.checkboxIcon {
+    color: #121212 !important;
+}
+
+input[type="checkbox"]:focus~.checkboxOutline,
+input[type="checkbox"]:focus+.checkboxOutline {
+    outline: 2px solid rgba(var(--nova-accent-rgb), 0.4) !important;
+    outline-offset: 2px;
+}
+
+#txtQuickConnectCode {
+    font-size: xxx-large;
+    font-weight: 900;
+    letter-spacing: 12px;
+    text-align: center;
+    margin-top: 12px;
+}
+
+/* Paper / Table */
+
+.sessionCardFooter {
+    border: none;
+}
+
+#user_usage_report_table,
+.detailTable {
+    background: rgba(0, 0, 0, .5);
+}
+
+.detailTableBodyRow-shaded {
+    background: #0000 !important;
+}
+
+/* Sync Play */
+
+.syncPlayIconCircle {
+    color: rgb(var(--nova-accent-rgb)) !important;
+    text-shadow: none !important;
+}
+
+/* Subtitle Preview */
+
+.subtitleappearance-preview {
+    background: linear-gradient(140deg, rgb(var(--nova-accent-rgb)), #111) !important;
+}
+
+.subtitleappearance-preview #sliderVertical {
+    margin: 24px !important;
+}
+
+.subtitle {
+    padding-left: 0 !important;
+}
+
+/* Others */
+#userProfilePage .readOnlyContent,
+.readOnlyContent .verticalSection,
+#languagePreferencesPage .settingsContainer .verticalSection,
+.subtitleAppearanceSection,
+.homeScreenSettingsContainer .perLibrarySettings,
+.homeScreenSettingsContainer .verticalSection-extrabottompadding,
+.settingsContainer .MuiStack-root .MuiStack-root {
+    padding: 16px;
+    background-color: rgba(var(--nova-glass-tint), 0.69);
+    border-radius: 32px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: solid 1px rgba(245, 245, 247, 0.2) !important;
+}
+
+.settingsContainer .MuiStack-root .MuiStack-root .MuiStack-root {
+    border-radius: 12px !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 8px !important;
+}
+
+.homeScreenSettingsContainer .verticalSection-extrabottompadding .verticalSection {
+    padding: 0 !important;
+    border-radius: 0;
+    background: none !important;
+    box-shadow: none;
+    border: none !important;
+}
+
+.homeScreenSettingsContainer .perLibrarySettings {
+    margin-bottom: 36px !important;
+}
+
+.homeScreenSettingsContainer .paperList {
+    padding: 12px;
+    background-color: rgba(var(--nova-glass-tint), 0.69);
+    border-radius: 24px !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    margin: 0 !important;
+}
+
+.readOnlyContent .adminSection {
+    border-radius: 32px 32px 6px 6px !important;
+    margin-bottom: 12px !important;
+}
+
+.readOnlyContent .userSection {
+    border-radius: 6px 6px 32px 32px !important;
+}
+
+.readOnlyContent .userSection .sectionTitle {
+    padding-top: 0 !important;
+}
+
+#userProfilePage .readOnlyContent {
+    padding: 0 !important;
+}
+
+#userProfilePage .readOnlyContent div {
+    align-items: baseline !important;
+    margin-right: 12px !important;
+}
+
+#image,
+#uploadImage {
+    border-radius: 24px !important;
+    margin: 12px !important;
+}
+
+#quickConnectPreferencesPage {
+    justify-items: center;
+}
+
+.itemSelectionPanel {
+    padding: 12px !important;
+}
+
+.selectionCommandsPanel {
+    padding: 1.5em 24px !important;
+}
+
+.selectionCommandsPanel * {
+    color: rgb(var(--nova-accent-rgb));
+}
+
+[dir=ltr] .playerStats-stats {
+    padding: 1em 3em 2em 2em;
+}
+
+
+.playerStats-stat {
+    align-items: baseline;
+}
+
+.playerStats-stat-header {
+    font-size: medium !important;
+}
+
+.playerStats-stat-label {
+    opacity: 0.5;
+    padding-bottom: 2px;
+}
+
+.playerStats-stat-value {
+    font-family: monospace;
+    font-size: medium;
+}
+
+.playerStats-closeButton {
+    margin: 10px;
+}
+
+[dir="ltr"] .upNextContainer {
+    margin: 0px 2em 10.4em 0px;
+}
+
+#castCollapsible,
+#scenesCollapsible,
+#similarCollapsible,
+.moreFromSeasonSection {
+    overflow: hidden;
+}
+
+.playstatebutton-icon-played::before {
+    background-color: rgba(var(--nova-accent-rgb), 0.8);
+    border-radius: 8px;
+    color: #000;
+}
+
+.listItem-content:hover .playstatebutton-icon-played::before {
+    background-color: #000;
+    color: rgba(var(--nova-accent-rgb), 0.8);
+}
+
+.listItem-content:hover .playedIndicator {
+    background: rgba(var(--nova-accent-rgb));
+    color: #121212 !important;
+}

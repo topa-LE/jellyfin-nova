@@ -1,0 +1,29 @@
+/*
+ * Jellyfin Nova – Gray
+ * Graphitgraue Dark-Palette.
+ *
+ * Migrationsstatus: Farbgrundlage, noch nicht aktiv.
+ */
+
+:root[data-nova-theme="gray"] {
+    --nova-background: #171b20;
+    --nova-surface: #252b31;
+    --nova-glass-tint: 37, 43, 49;
+    --nova-surface-raised: #343b43;
+    --nova-text: #e3e7eb;
+    --nova-text-muted: #aeb8c2;
+    --nova-border: #46515b;
+
+    --nova-gradient-main: linear-gradient(
+        145deg,
+        #414a53 0%,
+        #292f36 48%,
+        #171b20 100%
+    );
+
+    --nova-gradient-surface: linear-gradient(
+        135deg,
+        #343c44 0%,
+        #232a30 100%
+    );
+}

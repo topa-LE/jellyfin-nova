@@ -1,0 +1,100 @@
+/*
+ * Jellyfin Nova – Rounded Corners
+ * Ausgangsbasis: Abyss, Abschnitt ROUNDED CORNERS.
+ *
+ * Migrationsstatus: Nova-Radiusvariable angepasst.
+ * In nova.css eingebunden.
+ */
+
+/* 7. ROUNDED CORNERS */
+
+.missingIndicator,
+.unairedIndicator,
+.detailTable,
+.primaryImageWrapper>img,
+.toast,
+.paperList,
+.cardContent,
+.sessionNowPlayingInnerContent,
+.subtitleappearance-preview,
+.listItemImage,
+.listItemImageButton,
+.listItemButton,
+.listItem,
+.cardImage,
+.fab,
+.raised,
+.multiSelectCheckboxOutline,
+.itemSelectionPanel,
+.cardContent-button,
+.cardContent-shadow,
+.itemDetailImage,
+.cardImageContainer,
+.listItemIcon,
+.blurhash-canvas,
+.countIndicator,
+.playedIndicator,
+.listItem-border,
+.visualCardBox,
+.chapterThumbTextContainer,
+.chapterThumbContainer,
+.chapterThumb,
+.emby-input,
+.emby-textarea,
+.nowPlayingPageImage,
+.upNextDialog-poster-img,
+.cardOverlayButtonIcon,
+.innerCardFooter {
+    border-radius: var(--nova-radius) !important;
+}
+
+.osdPoster img {
+    border-radius: var(--nova-radius);
+    border: none;
+}
+
+div[data-role="controlgroup"] a[data-role="button"]:first-child {
+    border-bottom-left-radius: var(--nova-radius);
+    border-top-left-radius: var(--nova-radius);
+}
+
+div[data-role="controlgroup"] a[data-role="button"]:last-child {
+    border-bottom-right-radius: var(--nova-radius);
+    border-top-right-radius: var(--nova-radius);
+}
+
+#dashboardPage .cardContent,
+#dashboardPage .sessionNowPlayingInnerContent {
+    border-radius: var(--nova-radius) var(--nova-radius) 0 0 !important;
+}
+
+#divVirtualFolders .cardImageContainer,
+#divVirtualFolders .cardContent {
+    border-radius: var(--nova-radius) var(--nova-radius) 0 0 !important;
+}
+
+#userProfilesPage .cardImage,
+#userProfilesPage .cardContent {
+    border-radius: var(--nova-radius) var(--nova-radius) 0 0 !important;
+}
+
+[dir=ltr] .emby-select,
+#inputTextColor,
+.checkboxOutline {
+    border-radius: 8px !important;
+}
+
+.dialog-fullscreen {
+    border-radius: 8px !important;
+}
+
+.upNextContainer,
+.playerStats,
+.playerStats-stats {
+    border-radius: 24px !important;
+}
+
+.detailImageContainer .cardImageContainer,
+.detailImageContainer .card {
+    border-radius: 24px !important;
+}

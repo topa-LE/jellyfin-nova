@@ -1,0 +1,490 @@
+/*
+ * Jellyfin Nova – Responsive & Media Queries
+ * Ausgangsbasis: Abyss, Abschnitt RESPONSIVE / MEDIA QUERIES.
+ *
+ * Migrationsstatus: Nova-Variablen angepasst.
+ * In nova.css eingebunden.
+ */
+
+/* 13. RESPONSIVE / MEDIA QUERIES */
+
+/* Mobile layout tweaks */
+
+.layout-mobile .detailPagePrimaryContainer {
+    background: transparent;
+}
+
+.layout-mobile .adminDrawerLogo {
+    border-bottom: none;
+}
+
+.layout-mobile #itemDetailPage .parentName,
+.layout-mobile #itemDetailPage .parentNameLast,
+.layout-mobile #itemDetailPage .itemName.subtitle {
+    text-align: left;
+    justify-content: left;
+}
+
+.layout-mobile #itemDetailPage .mainDetailButtons,
+.layout-mobile #itemDetailPage .itemMiscInfo {
+    justify-content: left;
+}
+
+.layout-mobile .itemBackdrop {
+    position: relative;
+    background-size: cover;
+    background-position: center 20%;
+    background-repeat: no-repeat;
+    margin-top: 0;
+    z-index: 0;
+    -webkit-mask-image:
+        linear-gradient(to bottom, black 40%, transparent 100%),
+        linear-gradient(to right, transparent 0%, black 25%, black 70%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 8%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        linear-gradient(to bottom, black 40%, transparent 100%),
+        linear-gradient(to right, transparent 0%, black 25%, black 70%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 8%);
+    mask-composite: intersect;
+}
+
+.layout-mobile .detailLogo {
+    margin-top: -15vh;
+    margin-bottom: 4vh !important;
+    margin-left: 40vw !important;
+    width: 50vw !important;
+}
+
+.layout-mobile .sectionTitleTextButton>.material-icons {
+    padding-top: .2em;
+}
+
+.layout-mobile .listItemImageButton {
+    background: rgba(0, 0, 0, 0);
+}
+
+.layout-mobile .sectionTitle {
+    padding-top: 0em;
+}
+
+.layout-mobile #itemDetailPage .itemName.infoText.parentNameLast {
+    display: block;
+}
+
+.layout-mobile :not(.sectionTitleContainer-cards)>.sectionTitle-cards {
+    padding-top: 0em;
+}
+
+/* TV Layout */
+
+.card:focus .cardBox.visualCardBox,
+.card:focus .cardBox:not(.visualCardBox) .cardScalable {
+    border-radius: 24px !important;
+    border: 0.3em solid rgb(var(--nova-accent-rgb)) !important;
+    transition: all 0.5s !important;
+}
+
+.layout-tv .pageTitle,
+.layout-tv .cardText {
+    font-size: revert;
+}
+
+.layout-tv .emby-tab-button {
+    padding: 0.3em 1.2em;
+    margin: 4px;
+}
+
+.layout-tv .sliderMarker {
+    height: 24px !important;
+}
+
+.layout-tv .chapterThumbContainer {
+    transform: scale(1.5) !important;
+    top: -72px !important;
+}
+
+.emby-button.show-focus:focus,
+.headerButton.show-focus:focus,
+.actionSheetMenuItem.show-focus:focus {
+    background: rgb(var(--nova-accent-rgb)) !important;
+    color: #121212 !important;
+}
+
+.headerButton.show-focus:focus,
+.raised.button-submit.emby-button.show-focus:focus {
+    transform: scale(1.02) !important;
+    transition: transform 0.3s !important;
+    margin-top: .4em !important;
+    margin-bottom: .4em !important;
+}
+
+.headerUserButton.show-focus:focus {
+    transform: none !important;
+}
+
+#itemDetailPage .emby-button.show-focus:focus {
+    transform: scale(1.1) !important;
+    padding: 0 .4em;
+    margin: .4em;
+    border-radius: 10px;
+    background: rgb(var(--nova-accent-rgb)) !important;
+    color: #121212 !important;
+}
+
+.emby-tab-button.show-focus {
+    background: transparent;
+    transform: none !important;
+    color: #999;
+}
+
+.emby-button.emby-tab-button.show-focus:focus {
+    background: transparent !important;
+    transform: none !important;
+    border-color: rgb(var(--nova-accent-rgb));
+    color: rgb(var(--nova-accent-rgb)) !important;
+}
+
+.emby-tab-button.show-focus:focus .emby-button-foreground {
+    transform: scale(1.1) !important;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.emby-tab-button.show-focus:focus.emby-tab-button-active {
+    background: rgb(var(--nova-accent-rgb)) !important;
+    color: #121212 !important;
+    border-color: transparent !important;
+    border-radius: 50px;
+}
+
+.emby-select-withcolor {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.libraryPage .paper-icon-button-light.show-focus:focus,
+#videoOsdPage .paper-icon-button-light.show-focus:focus {
+    background: rgb(var(--nova-accent-rgb)) !important;
+    color: #121212 !important;
+    padding: 4px !important;
+}
+
+/* Desktop layout & TV*/
+.layout-desktop #itemDetailPage .btnPlay,
+.layout-tv #itemDetailPage .btnPlay {
+    margin-right: 12px !important;
+    padding: .4em 1.4em .4em 1em !important;
+}
+
+.layout-desktop #itemDetailPage .btnPlay .detailButton-content::after,
+.layout-tv #itemDetailPage .btnPlay .detailButton-content::after {
+    content: "Play";
+    margin-left: 0.45em;
+    font-weight: 700;
+    font-size: 0.9em;
+}
+
+.layout-desktop #itemDetailPage:has(.btnReplay:not(.hide)) .btnPlay .detailButton-content::after,
+.layout-tv #itemDetailPage:has(.btnReplay:not(.hide)) .btnPlay .detailButton-content::after {
+    content: "Resume";
+}
+
+.layout-tv .detailImageContainer .card,
+.layout-desktop .detailImageContainer .card {
+    position: fixed !important;
+    top: 15% !important;
+}
+
+.layout-tv .detailPageSecondaryContainer.padded-left,
+.layout-desktop .detailPageSecondaryContainer.padded-left {
+    padding-left: max(env(safe-area-inset-left), 32.45vw);
+}
+
+
+
+.withSectionTabs .headerTop {
+    width: 100% !important;
+    align-self: center !important;
+}
+
+@media (max-width: 100em) {
+    .withSectionTabs .headerTop {
+        padding-bottom: 0;
+    }
+}
+
+@media all and (min-width: 75em) {
+    .cardOverlayFab-primary {
+        background-color: #00000000;
+    }
+
+    .cardOverlayButtonIcon {
+        background-color: #00000000 !important;
+    }
+
+    .cardOverlayContainer {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .headerTabs.sectionTabs {
+        margin-top: -4.9em !important;
+    }
+}
+
+@media all and (max-width: 75em) {
+    .cardOverlayFab-primary {
+        background-color: #00000000;
+    }
+
+    .cardOverlayButtonIcon {
+        background-color: #00000000 !important;
+    }
+
+    .cardOverlayContainer {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .cardOverlayButton {
+        padding: 0.25em;
+    }
+}
+
+/* Tablets (mobile layout): clear the absolutely positioned detail image (left 5% + max-width 30vw) */
+@media screen and (min-width: 768px) {
+    .layout-mobile .detailRibbon {
+        padding-left: calc(35vw + 1.5rem) !important;
+    }
+
+    .layout-mobile #itemDetailPage .itemName.originalTitle {
+        text-align: left;
+    }
+}
+
+@media all and (max-width: 26em) {
+    .homeLibraryButton {
+        min-width: 45%;
+        width: auto !important;
+    }
+
+    .pageTitle {
+        font-size: medium !important;
+        font-weight: 500;
+        padding: 0 6px !important;
+    }
+
+    .sectionTitle {
+        font-size: 1.2em;
+        font-weight: 500;
+    }
+
+    .headerLeft,
+    .headerRight {
+        padding: 0 12px;
+    }
+
+    .detailImageContainer .cardImageContainer,
+    .detailImageContainer .card {
+        border-radius: 12px !important;
+    }
+
+    .emby-tab-button {
+        padding: 0.4em 1.2em;
+    }
+
+    .paper-icon-button-light>.material-icons {
+        font-size: 1.4em !important;
+    }
+
+    .paper-icon-button-light {
+        padding: 8px;
+    }
+
+    .btnPause {
+        position: fixed !important;
+        left: 42vw;
+        transform: translateY(-45vh);
+        font-size: 2em;
+    }
+
+    .MuiDrawer-paper {
+        width: 60vw;
+    }
+}
+
+@media screen and (max-height: 26em) and (orientation: landscape) {
+    .pageTitle {
+        font-size: large !important;
+    }
+
+    .btnPause {
+        position: fixed !important;
+        left: 42vw;
+        transform: translateY(-45vh);
+        font-size: 2em;
+        backdrop-filter: blur(15px) !important;
+        background-color: rgba(var(--nova-glass-tint), 0.69) !important;
+        border-radius: 20px !important;
+    }
+
+    body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs {
+        margin-top: -4.9em !important;
+    }
+}
+
+@media all and (min-width: 100em) {
+    .button-flat {
+        margin: .2em !important;
+        padding: .85em !important;
+    }
+
+    .listItemImage.listItemImage-large.itemAction.lazy {
+        height: 160px !important;
+    }
+
+    .listItem-content {
+        height: unset !important;
+    }
+}
+
+@media all and (max-width: 100em) {
+    .mainDetailButtons {
+        font-size: 155%;
+    }
+
+    .listItemImage.listItemImage-large.itemAction.lazy {
+        height: 160px !important;
+    }
+
+    .listItem-content {
+        height: unset !important;
+    }
+
+    .secondary.listItem-overview.listItemBodyText {
+        height: unset !important;
+        margin: 0;
+    }
+
+    #indexPage .itemProgressBar,
+    .libraryPage .itemProgressBar,
+    #itemDetailPage .itemProgressBar {
+        margin-right: .8em;
+    }
+}
+
+@media (min-aspect-ratio: 1.98/1) {
+    .detailImageContainer .card {
+        width: 21vw !important;
+    }
+
+    .detailRibbon {
+        padding-left: 28.45vw !important;
+    }
+
+    .detailPagePrimaryContent,
+    .layout-tv .detailPageSecondaryContainer.padded-left,
+    .layout-desktop .detailPageSecondaryContainer.padded-left {
+        padding-left: 28.45vw !important;
+    }
+
+    .detailPageContent {
+        padding-left: 28.45vw !important;
+    }
+}
+
+@media (min-aspect-ratio: 2.7/1) {
+    .detailImageContainer .card {
+        width: 16vw !important;
+    }
+
+    .detailRibbon {
+        padding-left: 23.45vw !important;
+    }
+
+    .detailPagePrimaryContent,
+    .layout-tv .detailPageSecondaryContainer.padded-left,
+    .layout-desktop .detailPageSecondaryContainer.padded-left {
+        padding-left: 23.45vw !important;
+    }
+
+    .detailPageContent {
+        padding-left: 23.45vw !important;
+    }
+}
+
+/* Backdrop filter support */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+
+    html[data-theme="dark"] .MuiDialog-paper,
+    .manualLoginForm,
+    .dialog,
+    .iconOsd,
+    .mainDrawer,
+    .toast,
+    .emby-tabs-slider,
+    .videoOsdBottom .osdControls,
+    .readOnlyContent .verticalSection,
+    .button-submit,
+    .upNextContainer,
+    .selectionCommandsPanel,
+    .playerStats-stats,
+    .appfooter,
+    html[data-theme="dark"] #displayPreferencesPage form button[type="submit"].MuiButton-root {
+        -webkit-backdrop-filter: blur(var(--nova-glass-blur)) !important;
+        backdrop-filter: blur(var(--nova-glass-blur)) !important;
+        background-color: rgba(var(--nova-glass-tint), 0.69) !important;
+    }
+
+    .raised.cancel.block.btnForgotPassword.emby-button,
+    .btnQuick,
+    .pageTitle,
+    .videoOsdBottom,
+    .headerButton {
+        -webkit-backdrop-filter: blur(var(--nova-glass-blur)) !important;
+        backdrop-filter: blur(var(--nova-glass-blur)) !important;
+    }
+
+    .paper-icon-button-light:hover,
+    #itemDetailPage .itemProgressBar,
+    #dashboardPage .backgroundProgress>div {
+        backdrop-filter: blur(4px);
+    }
+
+    .indicator {
+        backdrop-filter: blur(2px);
+    }
+
+    @media all and (max-width: 75em) {
+        .cardOverlayButtonIcon {
+            background-color: rgba(0, 0, 0, 0.35) !important;
+            backdrop-filter: blur(4px);
+        }
+    }
+
+    #indexPage .itemProgressBar,
+    .libraryPage .itemProgressBar,
+    #itemDetailPage .itemProgressBar {
+        backdrop-filter: blur(4px);
+        background: rgba(0, 0, 0, 0.35) !important;
+    }
+
+    body:has(.nowPlayingBar:not(.hide)) .backgroundContainer.withBackdrop {
+        -webkit-backdrop-filter: blur(var(--nova-glass-blur));
+        backdrop-filter: blur(var(--nova-glass-blur));
+    }
+}
+
+/* Item container margins */
+.itemsContainer>.card>.cardBox {
+    margin-left: 0.6em !important;
+    margin-right: 0.8em;
+}
+
+/* Episode list image sizing */
+.listItemImage.listItemImage-large.itemAction.lazy {
+    transition: filter 0.15s var(--nova-ease);
+    margin-top: 3px;
+    margin-bottom: 3px;
+}

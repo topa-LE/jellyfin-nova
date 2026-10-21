@@ -1,0 +1,44 @@
+/*
+ * Jellyfin Nova – Main Stylesheet
+ *
+ * Zentraler Einstiegspunkt fuer das modulare Nova-CSS.
+ * Bindet lokale Schriften, Core-Module und drei Farbpaletten ein.
+ *
+ * Die CSS-Module werden durch scripts/build-nova.mjs
+ * zu dist/nova.css zusammengefuehrt.
+ *
+ * Migrationsstatus: CSS-Grundstruktur und lokaler Build erstellt.
+ * Spotlight, Installer und Theme-Umschaltung folgen separat.
+ */
+
+@import url("./core/fonts.css");
+@import url("./core/base.css");
+@import url("./core/typography.css");
+@import url("./core/layout.css");
+@import url("./core/components.css");
+@import url("./core/corners.css");
+@import url("./core/player.css");
+@import url("./core/dashboard.css");
+@import url("./core/detail.css");
+@import url("./core/login.css");
+@import url("./core/cast.css");
+@import url("./core/responsive.css");
+@import url("./core/search.css");
+@import url("./core/animations.css");
+@import url("./themes/nova-gray.css");
+@import url("./themes/nova-dark.css");
+@import url("./themes/nova-blue.css");
+
+:root {
+    --nova-font-family: "Titillium Web", system-ui, sans-serif;
+    --nova-accent: #dc9b66;
+    --nova-accent-rgb: 220, 155, 102;
+
+    --nova-radius: 12px;
+
+    --nova-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --nova-ease-snappy: cubic-bezier(0.4, 0, 0.2, 1);
+
+    --nova-backdrop-blur: 23px;
+    --nova-glass-blur: 15px;
+}

@@ -1,0 +1,88 @@
+/*
+ * Jellyfin Nova – Search Page
+ * Ausgangsbasis: Abyss, Abschnitt SEARCH PAGE.
+ *
+ * Migrationsstatus: Nova-Variablen angepasst.
+ * In nova.css eingebunden.
+ */
+
+/* 14. SEARCH PAGE */
+
+.searchSuggestionsList .emby-button {
+    color: rgba(var(--nova-accent-rgb), 0.6);
+    font-weight: 100;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-align: left;
+}
+
+#searchTextInput {
+    font-weight: bold;
+    font-size: 24px;
+    padding: 12px 18px;
+    letter-spacing: 1.1px;
+}
+
+.searchFieldsInner .inputLabel {
+    display: none;
+}
+
+.searchfields-icon {
+    align-self: center !important;
+}
+
+.verticalSection.searchSuggestions .sectionTitle {
+    display: none;
+}
+
+.verticalSection.searchSuggestions {
+    text-align: left !important;
+    padding: 12px 0 0 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: calc(100vh - 190px);
+    overflow: hidden;
+}
+
+.searchSuggestionsList {
+    width: fit-content;
+    min-width: min(908px, calc(100vw - 70px));
+    padding-left: 50px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-height: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--nova-accent-rgb), 0.5) transparent;
+}
+
+.searchSuggestionsList::-webkit-scrollbar {
+    width: 4px;
+}
+
+.searchSuggestionsList::-webkit-scrollbar-thumb {
+    background: rgba(var(--nova-accent-rgb), 0.5);
+    border-radius: var(--nova-radius);
+}
+
+.searchSuggestionsList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.noItemsMessage.centerMessage {
+    font-weight: 100 !important;
+    font-size: 36px;
+    letter-spacing: 1.2px;
+    opacity: 0.8;
+}
+
+.centerMessage {
+    padding: 2em 0 !important;
+}
+
+@media all and (max-width: 50em) {
+    .searchSuggestionsList {
+        min-width: calc(100vw - 80px);
+        padding-left: 44px;
+    }
+}

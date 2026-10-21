@@ -1,0 +1,43 @@
+/*
+ * Jellyfin Nova – Login Page
+ * Ausgangsbasis: Abyss, Abschnitt LOGIN PAGE.
+ *
+ * Migrationsstatus: Nova-Akzentvariable angepasst.
+ * In nova.css eingebunden.
+ */
+
+/* 11. LOGIN PAGE */
+
+#loginPage {
+    background-size: cover !important;
+}
+
+#loginPage .readOnlyContent,
+#loginPage form {
+    max-width: 22em;
+}
+
+#loginPage h1 {
+    display: none;
+}
+
+#loginPage .padded-left.padded-right.padded-bottom-page {
+    margin-top: 8em;
+}
+
+#loginPage .raised.cancel.block.btnForgotPassword.emby-button {
+    margin-top: 0.8em;
+    background: rgba(var(--nova-accent-rgb), 0.0) !important;
+}
+
+#loginPage .raised.cancel.block.btnForgotPassword.emby-button:hover {
+    color: rgb(var(--nova-accent-rgb)) !important;
+}
+
+.manualLoginForm {
+    border-radius: 24px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: solid 1px rgba(245, 245, 247, 0.2) !important;
+    padding: 24px 12px 7px;
+    margin-bottom: 24px;
+}

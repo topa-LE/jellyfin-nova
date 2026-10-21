@@ -1,0 +1,102 @@
+/*
+ * Jellyfin Nova – Item Detail Page
+ * Ausgangsbasis: Abyss, Abschnitt ITEM DETAIL PAGE.
+ *
+ * Migrationsstatus: Nova-Variablen angepasst.
+ * In nova.css eingebunden.
+ */
+
+/* 10. ITEM DETAIL PAGE */
+
+.mainDetailButtons {
+    font-size: 120%;
+}
+
+.hide+.detailPageWrapperContainer .itemName {
+    display: block !important;
+}
+
+.sectionTitleTextButton:hover {
+    color: transparent;
+}
+
+/* Progress bars on item pages */
+#indexPage .innerCardFooterClear,
+.libraryPage .innerCardFooterClear,
+#itemDetailPage .innerCardFooterClear {
+    background-color: transparent !important;
+    box-shadow: none;
+}
+
+#indexPage .itemProgressBarForeground,
+.libraryPage .itemProgressBarForeground,
+#itemDetailPage .itemProgressBarForeground,
+#indexPage .itemProgressBar,
+.libraryPage .itemProgressBar,
+#itemDetailPage .itemProgressBar {
+    border-radius: var(--nova-radius);
+}
+
+#indexPage .itemProgressBarForeground,
+.libraryPage .itemProgressBarForeground,
+#itemDetailPage .itemProgressBarForeground {
+    background-color: rgba(var(--nova-accent-rgb), 0.95) !important;
+}
+
+#indexPage .itemProgressBar,
+.libraryPage .itemProgressBar,
+#itemDetailPage .itemProgressBar {
+    height: 7px;
+    background: rgba(0, 0, 0, 0.4);
+    margin: .5em .8em;
+}
+
+#itemDetailPage .detailButton {
+    padding: 8px !important;
+    margin-right: 8px !important;
+}
+
+#itemDetailPage .btnPlay {
+    background: rgba(255, 255, 255, 0.95);
+    color: #111;
+    max-width: none !important;
+}
+
+#itemDetailPage .btnPlay:hover {
+    background: #fff;
+    color: #111 !important;
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+}
+
+#itemDetailPage .btnPlay .detailButton-content {
+    flex-direction: row !important;
+}
+
+#itemDetailPage .btnReplay {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#itemDetailPage .btnReplay:hover {
+    background: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 0.9) !important;
+    transform: scale(1.05);
+}
+
+#itemDetailPage:has(.btnReplay.hide) .btnPlayTrailer {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#itemDetailPage:has(.btnReplay.hide) #itemDetailPage .btnPlayTrailer:hover {
+    background: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 0.9) !important;
+    transform: scale(1.05);
+}

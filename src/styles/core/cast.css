@@ -1,0 +1,76 @@
+/*
+ * Jellyfin Nova – Cast Thumbnails
+ * Ausgangsbasis: Abyss, Abschnitt CAST THUMBNAILS.
+ *
+ * Migrationsstatus: Originalregeln unveraendert uebernommen.
+ * In nova.css eingebunden.
+ */
+
+/* 12. CAST THUMBNAILS (responsive sizing) */
+
+.layout-desktop #castContent .card.overflowPortraitCard,
+.layout-desktop #guestCastContent .card.overflowPortraitCard {
+    width: 10vw !important;
+    font-size: 90% !important;
+}
+
+.layout-desktop #castContent .cardScalable,
+.layout-desktop #guestCastContent .cardScalable {
+    width: calc(10vw - 0.6em) !important;
+    height: calc(14vw - 0.6em) !important;
+}
+
+.layout-tablet #castContent .card.overflowPortraitCard,
+.layout-tablet #guestCastContent .card.overflowPortraitCard {
+    width: 17vw !important;
+    font-size: 90% !important;
+}
+
+.layout-tablet #castContent .cardScalable,
+.layout-tablet #guestCastContent .cardScalable {
+    width: calc(17vw - 0.6em) !important;
+    height: calc(12vw - 0.6em) !important;
+}
+
+.layout-mobile #castContent .card.overflowPortraitCard,
+.layout-mobile #guestCastContent .card.overflowPortraitCard {
+    width: 35vw !important;
+    font-size: 90% !important;
+}
+
+.layout-mobile #castContent .cardScalable,
+.layout-mobile #guestCastContent .cardScalable {
+    width: calc(35vw - 0.6em) !important;
+    height: calc(35vw - 0.6em) !important;
+}
+
+.layout-mobile .innerCardFooterClear {
+    padding-right: 24px !important;
+}
+
+.layout-mobile .noItemsMessage.centerMessage {
+    font-size: 28px;
+}
+
+.layout-mobile .centerMessage {
+    width: 90% !important;
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+
+    .layout-mobile #castContent .card.overflowPortraitCard,
+    .layout-mobile #guestCastContent .card.overflowPortraitCard {
+        width: 31.2vw !important;
+        font-size: 90% !important;
+    }
+
+    .layout-mobile #castContent .cardScalable,
+    .layout-mobile #guestCastContent .cardScalable {
+        width: calc(31.2vw - 0.6em) !important;
+        height: calc(31.2vw - 0.6em) !important;
+    }
+
+    .layout-mobile .innerCardFooterClear {
+        padding-right: 24px !important;
+    }
+}

@@ -1,0 +1,29 @@
+/*
+ * Jellyfin Nova – Dark
+ * Tiefschwarze Dark-Palette mit warmen Lichtakzenten.
+ *
+ * Migrationsstatus: Farbgrundlage, noch nicht aktiv.
+ */
+
+:root[data-nova-theme="dark"] {
+    --nova-background: #090b0e;
+    --nova-surface: #171a1e;
+    --nova-glass-tint: 23, 26, 30;
+    --nova-surface-raised: #25282d;
+    --nova-text: #e5e6e8;
+    --nova-text-muted: #a7aaae;
+    --nova-border: #3c4148;
+
+    --nova-gradient-main: linear-gradient(
+        145deg,
+        #303035 0%,
+        #17191d 45%,
+        #08090c 100%
+    );
+
+    --nova-gradient-surface: linear-gradient(
+        135deg,
+        #29272a 0%,
+        #151619 100%
+    );
+}

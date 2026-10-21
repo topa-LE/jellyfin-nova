@@ -1,0 +1,147 @@
+/*
+ * Jellyfin Nova – Typography
+ * Ausgangsbasis: Abyss, Abschnitt TYPOGRAPHY.
+ *
+ * Migrationsstatus: Nova-Variablen angepasst.
+ * In nova.css eingebunden.
+ */
+
+/* 4. TYPOGRAPHY */
+
+.headerTabs.sectionTabs {
+    text-size-adjust: 110%;
+    font-size: 110%;
+    padding-top: 8px;
+    margin-top: -2em;
+    width: fit-content;
+    max-width: 95vw;
+    align-self: center !important;
+    border-radius: 50px;
+}
+
+.pageTitle {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: x-large;
+    opacity: 0.8;
+    font-weight: 500;
+    border-radius: 12px;
+}
+
+.pageTitle:not(:empty) {
+    padding: 0 12px;
+}
+
+.pageTitle.pageTitleWithLogo.pageTitleWithDefaultLogo {
+    display: none !important;
+}
+
+
+#tvRecommendedPage .pageTitle,
+#moviesPage .pageTitle,
+#musicRecommendedPage .pageTitle,
+#itemDetailPage .pageTitle {
+    display: none !important;
+}
+
+#videoOsdPage .pageTitle {
+    display: flex !important;
+}
+
+.settingsContainer .MuiTypography-h2,
+.sectionTitle {
+    font-weight: 600;
+}
+
+.settingsContainer .MuiTypography-h2,
+.homeScreenSettingsContainer .sectionTitle,
+#quickConnectPreferencesPage .sectionTitle,
+.settingsContainer .sectionTitle {
+    font-size: xx-large;
+}
+
+.settingsContainer .MuiTypography-h2 {
+    margin-block-start: 0.83em;
+}
+
+.settingsContainer .MuiInputBase-root.MuiFilledInput-underline::after,
+.settingsContainer .MuiInputBase-root.MuiFilledInput-underline::before {
+    border-bottom: none !important;
+}
+
+#favoritesTab .sectionTitle,
+.homeSectionsContainer .sectionTitle {
+    margin-left: .4em !important;
+    margin-top: .2em !important;
+    margin-bottom: .2em !important;
+}
+
+.sectionTitleTextButton>.material-icons {
+    margin: 0;
+}
+
+.sectionTitleTextButton:not(.padded-left) {
+    padding: 4px 12px 6px 6px !important;
+    margin-left: -6px !important;
+    border-radius: var(--nova-radius);
+}
+
+.sectionTitleTextButton>.sectionTitle {
+    margin-right: 16px;
+}
+
+.inputLabel,
+.selectLabel,
+.checkboxLabel {
+    font-weight: 500;
+}
+
+.cardText {
+    padding: .06em .5em 0 .06em;
+    font-weight: 200;
+    font-size: medium;
+    opacity: 0.8;
+}
+
+.cardText-first {
+    margin-top: 4px !important;
+    font-weight: 600;
+    font-size: larger !important;
+    opacity: 1 !important;
+}
+
+.cardTextCentered,
+.cardTextCentered>.textActionButton {
+    text-align: left !important;
+}
+
+.itemName {
+    margin: .5em 0 !important;
+}
+
+.starIcon {
+    color: rgba(var(--nova-accent-rgb), .8);
+}
+
+.dialog {
+    font-weight: 500;
+}
+
+.formDialogHeaderTitle {
+    font-weight: bold !important;
+    margin-left: 0 !important;
+}
+
+#dialogToc {
+    overflow: clip;
+    display: flex;
+    flex-direction: column;
+}
+
+#dialogToc .toc {
+    overflow-y: scroll;
+}
+
+#dialogToc .toc li {
+    margin-bottom: 12px;
+}

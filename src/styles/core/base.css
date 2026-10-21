@@ -1,0 +1,148 @@
+/*
+ * Jellyfin Nova – Base
+ * Ausgangsbasis: Abyss, Abschnitt BASE / GLOBAL.
+ *
+ * Migrationsstatus: Nova-Variablen angepasst.
+ * In nova.css eingebunden.
+ */
+
+/* 3. BASE / GLOBAL */
+
+#reactRoot {
+    scrollbar-gutter: stable;
+}
+
+body {
+    font-family: var(--nova-font-family, system-ui, sans-serif);
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "GRAD" 0;
+    overscroll-behavior: none;
+}
+
+.material-icons {
+    font-family: 'Material Icons Round' !important;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: 'liga';
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    scrollbar-color: rgba(var(--nova-accent-rgb), 0.8) #0000 !important;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: #0000;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: #0000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(var(--nova-accent-rgb), 0.8) !important;
+    border-radius: var(--nova-radius);
+}
+
+fieldset {
+    border: 1px solid rgba(40, 40, 40, 0.8);
+    border-radius: 0.4em;
+}
+
+progress {
+    border-radius: var(--nova-radius);
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(var(--nova-accent-rgb), 0.22);
+}
+
+progress::-webkit-progress-bar {
+    border-radius: var(--nova-radius);
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 0px solid rgba(var(--nova-accent-rgb), 0.22);
+}
+
+progress::-moz-progress-bar {
+    border-radius: var(--nova-radius);
+    background-color: rgba(var(--nova-accent-rgb), 0.75);
+}
+
+progress::-webkit-progress-value {
+    border-radius: var(--nova-radius);
+    background-color: rgba(var(--nova-accent-rgb), 0.75);
+}
+
+.taskProgressOuter,
+.taskProgressInner {
+    border-radius: var(--nova-radius) !important;
+}
+
+.taskProgressOuter {
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(var(--nova-accent-rgb), 0.22);
+}
+
+.taskProgressInner,
+#videoOsdPage .sliderMarker.watched {
+    background: rgba(var(--nova-accent-rgb), 1) !important;
+}
+
+#videoOsdPage .sliderMarker.unwatched {
+    background: hsl(0deg 0% 30%) !important;
+}
+
+.mdl-slider-background-flex {
+    background: hsl(0deg 0% 30%) !important;
+}
+
+#divRunningTasks span {
+    color: rgba(var(--nova-accent-rgb), 0.75) !important;
+}
+
+#scheduledTasksPage span {
+    color: rgba(var(--nova-accent-rgb), 0.75) !important;
+}
+
+/* Override browser default blue focus/selection colour */
+::selection {
+    background: rgba(var(--nova-accent-rgb), 0.25);
+    color: rgb(var(--nova-accent-rgb));
+}
+
+::-moz-selection {
+    background: rgba(var(--nova-accent-rgb), 0.25);
+    color: rgb(var(--nova-accent-rgb));
+}
+
+:focus-visible {
+    outline-color: rgba(var(--nova-accent-rgb), 0.6) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.emby-input:focus,
+.emby-textarea:focus,
+.emby-select:focus,
+.emby-select-withcolor:focus,
+.checkboxOutline:focus {
+    border-color: rgba(var(--nova-accent-rgb), 0.4) !important;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+    accent-color: rgb(var(--nova-accent-rgb));
+}
+
+/* Override Chromium/Electron blue accent globally */
+:root {
+    accent-color: rgb(var(--nova-accent-rgb));
+}

@@ -71,10 +71,13 @@ test('shell css transform is idempotent and uninstall is surgical', { skip: proc
   assert.equal(JSON.parse(uninstalled.stdout).CustomCss, original);
 });
 
-test('windows powershell css transform is surgical', { skip: process.platform !== 'win32' }, () => {
+const powershellCommand = process.platform === 'win32' ? 'powershell.exe' : 'pwsh';
+const powershellAvailable = spawnSync(powershellCommand, ['-NoProfile', '-Command', '$PSVersionTable.PSVersion.ToString()'], { encoding: 'utf8' }).status === 0;
+
+test('windows powershell css transform is surgical', { skip: !powershellAvailable }, () => {
   const setupPath = fileURLToPath(new URL('../setup.ps1', import.meta.url)).replaceAll("'", "''");
   const command = `$env:ABYSS_SETUP_LIB_ONLY='1'; . '${setupPath}'; $original='.other-plugin { color: red; }'; $installed=Add-AbyssCssText $original; $uninstalled=Remove-AbyssCssText $installed; [pscustomobject]@{Installed=$installed;Uninstalled=$uninstalled}|ConvertTo-Json -Compress`;
-  const result = spawnSync('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', command], { encoding: 'utf8' });
+  const result = spawnSync(powershellCommand, ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', command], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stderr);
   const transformed = JSON.parse(result.stdout);
   assert.ok(transformed.Installed.indexOf('@import') < transformed.Installed.indexOf('.other-plugin'));

@@ -1,0 +1,132 @@
+/*
+ * Jellyfin Nova – Animations & Keyframes
+ * Ausgangsbasis: Abyss, Abschnitt ANIMATIONS & KEYFRAMES.
+ *
+ * Migrationsstatus: Nova-Variablen angepasst.
+ * In nova.css eingebunden.
+ */
+
+/* 15. ANIMATIONS & KEYFRAMES */
+
+html[data-theme="dark"] .MuiDrawer-root *,
+.playstatebutton-icon-played::before,
+.cardOverlayContainer,
+.cardOverlayButtonIcon,
+.cardOverlayButton,
+.paper-icon-button-light,
+.emby-tab-button,
+.emby-tab-button-active,
+.button-flat,
+.navMenuOption,
+.listItem,
+.actionSheetMenuItem {
+    transition: background 0.37s var(--nova-ease),
+        color 0.37s var(--nova-ease),
+        border-color 0.37s var(--nova-ease),
+        opacity 0.37s var(--nova-ease),
+        transform 0.37s var(--nova-ease) !important;
+}
+
+.mainDrawer {
+    transition: transform 0.18s var(--nova-ease-snappy) !important;
+}
+
+/* Favourite button heart animation — all contexts */
+@keyframes nova-heart-pop {
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.3);
+    }
+
+    70% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes nova-heart-glow {
+    0% {
+        filter: drop-shadow(0 0 0px rgba(249, 38, 114, 0));
+    }
+
+    40% {
+        filter: drop-shadow(0 0 10px rgba(249, 38, 114, 0.9));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 0px rgba(249, 38, 114, 0));
+    }
+}
+
+.ratingbutton-withrating .material-icons.favorite {
+    animation: nova-heart-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) normal none,
+        nova-heart-glow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) normal none;
+}
+
+/* Section entrance animations, all pages */
+@keyframes nova-section-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.settingsContainer .MuiStack-root .MuiStack-root,
+.verticalSection:nth-child(1) {
+    animation: nova-section-fade-up 0.7s var(--nova-ease) both 0.05s;
+}
+
+.verticalSection:nth-child(2) {
+    animation: nova-section-fade-up 0.7s var(--nova-ease) both 0.1s;
+}
+
+.verticalSection:nth-child(3) {
+    animation: nova-section-fade-up 0.7s var(--nova-ease) both 0.15s;
+}
+
+.verticalSection:nth-child(4) {
+    animation: nova-section-fade-up 0.7s var(--nova-ease) both 0.2s;
+}
+
+.verticalSection:nth-child(5) {
+    animation: nova-section-fade-up 0.7s var(--nova-ease) both 0.25s;
+}
+
+.verticalSection:nth-child(6) {
+    animation: nova-section-fade-up 0.7s var(--nova-ease) both 0.3s;
+}
+
+.verticalSection:nth-child(7) {
+    animation: nova-section-fade-up 0.7s var(--nova-ease) both 0.35s;
+}
+
+.verticalSection:nth-child(8) {
+    animation: nova-section-fade-up 0.7s var(--nova-ease) both 0.4s;
+}
+
+.verticalSection:nth-child(n+9) {
+    animation: nova-section-fade-up 0.7s var(--nova-ease) both 0.45s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -1,0 +1,191 @@
+/*
+ * Jellyfin Nova – Local Fonts
+ * Alle Schriftdateien werden lokal ausgeliefert.
+ * Keine externen Font-CDNs.
+ *
+ * Migrationsstatus: Definitionen eingebunden; lokale Schriftdateien im Build enthalten.
+ */
+
+@font-face {
+    font-family: "Clear Sans";
+    src: url("../../fonts/clear-sans/clear-sans.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Clear Sans";
+    src: url("../../fonts/clear-sans/clear-sans-bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Cuprum";
+    src: url("../../fonts/cuprum/Cuprum-Variable.woff2") format("woff2");
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Dosis";
+    src: url("../../fonts/dosis/Dosis-Variable.woff2") format("woff2");
+    font-weight: 200 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("../../fonts/inter/InterVariable.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Maven Pro";
+    src: url("../../fonts/maven-pro/MavenPro.woff2") format("woff2");
+    font-weight: 400 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Play";
+    src: url("../../fonts/play/Play-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Play";
+    src: url("../../fonts/play/Play-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Roboto Condensed";
+    src: url("../../fonts/roboto-condensed/RobotoCondensed-Variable.woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Saira Condensed";
+    src: url("../../fonts/saira-condensed/SairaCondensed-Thin.woff2") format("woff2");
+    font-weight: 250;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Saira Condensed";
+    src: url("../../fonts/saira-condensed/SairaCondensed-ExtraLight.woff2") format("woff2");
+    font-weight: 275;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Saira Condensed";
+    src: url("../../fonts/saira-condensed/SairaCondensed-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Saira Condensed";
+    src: url("../../fonts/saira-condensed/SairaCondensed-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Saira Condensed";
+    src: url("../../fonts/saira-condensed/SairaCondensed-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Saira Condensed";
+    src: url("../../fonts/saira-condensed/SairaCondensed-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Saira Condensed";
+    src: url("../../fonts/saira-condensed/SairaCondensed-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Saira Condensed";
+    src: url("../../fonts/saira-condensed/SairaCondensed-ExtraBold.woff2") format("woff2");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Saira Condensed";
+    src: url("../../fonts/saira-condensed/SairaCondensed-Black.woff2") format("woff2");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../../fonts/titillium-web/TitilliumWeb-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../../fonts/titillium-web/TitilliumWeb-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../../fonts/titillium-web/TitilliumWeb-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Titillium Web";
+    src: url("../../fonts/titillium-web/TitilliumWeb-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Ubuntu Condensed";
+    src: url("../../fonts/ubuntu-condensed/UbuntuCondensed-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
