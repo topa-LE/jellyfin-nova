@@ -1,9 +1,9 @@
 /*
  * Jellyfin Nova – Login Page
- * Ausgangsbasis: Abyss, Abschnitt LOGIN PAGE.
+ * Created by topa-LE
  *
- * Migrationsstatus: Nova-Akzentvariable angepasst.
- * In nova.css eingebunden.
+ * Shared login layout and component geometry.
+ * Theme-specific colors are defined in the Nova theme files.
  */
 
 /* 11. LOGIN PAGE */
@@ -34,10 +34,29 @@
     color: rgb(var(--nova-accent-rgb)) !important;
 }
 
+/* ==========================================================
+   LOGIN BOX – SHARED GEOMETRY
+   ========================================================== */
+
+:root {
+    --nova-login-radius: 6px;
+}
+
 .manualLoginForm {
-    border-radius: 24px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border: solid 1px rgba(245, 245, 247, 0.2) !important;
+    border-radius: var(--nova-login-radius) !important;
+    box-shadow: var(--nova-login-shadow, 0 4px 30px rgba(0, 0, 0, 0.1));
+    border: 1px solid var(--nova-login-border, rgba(245, 245, 247, 0.2)) !important;
     padding: 24px 12px 7px;
     margin-bottom: 24px;
+}
+
+.manualLoginForm .emby-input,
+.manualLoginForm .button-submit,
+.loginForm .emby-input,
+.loginForm .button-submit {
+    border-radius: var(--nova-login-radius) !important;
+}
+
+.checkboxContainer:has(.chkRememberLogin) .checkboxOutline {
+    border-radius: var(--nova-login-radius) !important;
 }

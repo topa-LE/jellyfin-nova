@@ -75,3 +75,101 @@ html[data-nova-theme="dark"] .backgroundContainer:not(.withBackdrop) {
 html[data-nova-theme="dark"] .skinHeader {
     background: rgba(16, 21, 28, 0.66) !important;
 }
+
+/* ==========================================================
+   4. LOGIN BOX – NOVA DARK
+   ========================================================== */
+
+html[data-nova-theme="dark"] {
+    --nova-login-border: #080b0f;
+    --nova-login-shadow:
+        0 28px 75px rgba(0, 0, 0, 0.58),
+        0 8px 24px rgba(0, 0, 0, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.075),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+
+    --nova-login-card-gradient: linear-gradient(
+        155deg,
+        #30343a 0%,
+        #262b32 18%,
+        #1d232b 42%,
+        #171d25 68%,
+        #11161d 100%
+    );
+}
+
+html[data-nova-theme="dark"] .manualLoginForm,
+html[data-nova-theme="dark"] .loginForm {
+    background: var(--nova-login-card-gradient) !important;
+    border: 1px solid var(--nova-login-border) !important;
+    border-radius: var(--nova-login-radius) !important;
+    box-shadow: var(--nova-login-shadow) !important;
+}
+
+html[data-nova-theme="dark"] .manualLoginForm .emby-input,
+html[data-nova-theme="dark"] .loginForm .emby-input {
+    background: #11161c !important;
+    border: 1px solid #343b43 !important;
+    border-radius: var(--nova-login-radius) !important;
+    color: #e5e6e8 !important;
+    box-shadow: none !important;
+}
+
+html[data-nova-theme="dark"] .manualLoginForm .emby-input:focus,
+html[data-nova-theme="dark"] .loginForm .emby-input:focus {
+    border-color: #dc9b66 !important;
+    box-shadow: 0 0 0 2px rgba(220, 155, 102, 0.12) !important;
+}
+
+html[data-nova-theme="dark"] .manualLoginForm .button-submit,
+html[data-nova-theme="dark"] .loginForm .button-submit {
+    background: linear-gradient(
+        180deg,
+        #30363e 0%,
+        #1b2129 100%
+    ) !important;
+    border: 1px solid #080b0f !important;
+    border-radius: var(--nova-login-radius) !important;
+    color: #e5e6e8 !important;
+    box-shadow:
+        0 5px 16px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.055) !important;
+}
+
+html[data-nova-theme="dark"] .manualLoginForm .button-submit:hover,
+html[data-nova-theme="dark"] .loginForm .button-submit:hover {
+    background: #343b44 !important;
+    border-color: #080b0f !important;
+}
+
+/* Remember-me checkbox: dark background and orange checkmark. */
+html[data-nova-theme="dark"]
+.checkboxContainer:has(.chkRememberLogin)
+.checkboxOutline,
+html[data-nova-theme="dark"]
+.chkRememberLogin:checked ~ .checkboxOutline {
+    background: linear-gradient(
+        145deg,
+        #353b43 0%,
+        #20262e 55%,
+        #151a21 100%
+    ) !important;
+    border: 1px solid #080b0f !important;
+    border-radius: var(--nova-login-radius) !important;
+    box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+html[data-nova-theme="dark"]
+.checkboxContainer:has(.chkRememberLogin)
+.checkboxIcon-checked {
+    color: #dc9b66 !important;
+    -webkit-text-fill-color: #dc9b66 !important;
+}
+
+html[data-nova-theme="dark"]
+.checkboxContainer:has(.chkRememberLogin)
+.checkboxIcon-unchecked {
+    color: #7e8994 !important;
+}
