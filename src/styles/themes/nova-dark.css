@@ -1,12 +1,22 @@
 /*
- * Jellyfin Nova – Dark
- * Tiefschwarze Dark-Palette mit warmen Lichtakzenten.
+ * Jellyfin Nova – Dark Theme
  *
- * Migrationsstatus: Farbgrundlage, noch nicht aktiv.
+ * Deep charcoal background with subtle layered gradients.
+ * Base color: #10151c
+ *
+ * Background design approved during live testing (step 203).
+ * Selectors verified on Jellyfin 12.2.0 (steps 205–206).
+ *
+ * The theme is activated by setting:
+ * data-nova-theme="dark" on the HTML element.
  */
 
+/* ==========================================================
+   1. DARK THEME COLOR PALETTE
+   ========================================================== */
+
 :root[data-nova-theme="dark"] {
-    --nova-background: #090b0e;
+    --nova-background: #10151c;
     --nova-surface: #171a1e;
     --nova-glass-tint: 23, 26, 30;
     --nova-surface-raised: #25282d;
@@ -14,16 +24,53 @@
     --nova-text-muted: #a7aaae;
     --nova-border: #3c4148;
 
-    --nova-gradient-main: linear-gradient(
-        145deg,
-        #303035 0%,
-        #17191d 45%,
-        #08090c 100%
-    );
+    /* Approved background: linear + radial + linear. */
+    --nova-gradient-main:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.38) 0%,
+            rgba(0, 0, 0, 0) 45%,
+            rgba(0, 0, 0, 0.30) 100%
+        ),
+        radial-gradient(
+            ellipse at 50% 75%,
+            rgba(51, 55, 61, 0.35) 0%,
+            rgba(28, 33, 40, 0.18) 45%,
+            rgba(16, 21, 28, 0) 85%
+        ),
+        linear-gradient(
+            to bottom,
+            #10151c 0%,
+            #1c2229 50%,
+            #10151c 100%
+        );
 
+    /* Secondary gradient for raised surfaces. */
     --nova-gradient-surface: linear-gradient(
         135deg,
         #29272a 0%,
         #151619 100%
     );
+}
+
+/* ==========================================================
+   2. GLOBAL JELLYFIN BACKGROUND
+   ========================================================== */
+
+html[data-nova-theme="dark"],
+html[data-nova-theme="dark"] .backgroundContainer:not(.withBackdrop) {
+    background-image: var(--nova-gradient-main) !important;
+    background-color: var(--nova-background) !important;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+
+/* ==========================================================
+   3. HEADER BACKGROUND
+   ========================================================== */
+
+html[data-nova-theme="dark"] .skinHeader {
+    background: rgba(16, 21, 28, 0.66) !important;
 }
