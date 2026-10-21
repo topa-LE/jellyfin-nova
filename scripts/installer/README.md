@@ -1,56 +1,53 @@
-# Jellyfin Nova – Nova Installer
+# Jellyfin Nova Installer
 
-Eigenstaendige Installationswerkzeuge fuer das Repository
-topa-LE/jellyfin-nova.
+The Jellyfin Nova installer provides an interactive installation
+workflow for supported Jellyfin environments.
 
-## Verbindliche Bezeichnungen
+## Components
 
-- Installer-Verzeichnis: scripts/installer/
-- Linux/macOS: nova-installer.sh
-- Windows: nova-installer.ps1
-- Docker: nova-installer-docker.sh
-- Installationsverzeichnis in Jellyfin: nova/
-- CSS-Einstiegspunkt: nova.css
-- Spotlight-Kennungen: nova-spotlight
-- CSS-Verwaltungsblock: NOVA THEME START / NOVA THEME END
+| File | Purpose |
+|---|---|
+| `nova-installer.sh` | Interactive Linux shell installer |
+| `jellyfin-nova-package.tar.gz` | Bundled Nova distribution package |
+| `../docker/nova-init.sh` | Persistent Docker startup integration |
 
-## Paketquelle
+## Installation
 
-Das Nova-Paket wird durch scripts/build-nova.mjs erzeugt.
+Download the development installer:
 
-Der Inhalt von dist/ wird spaeter unter nova/ im
-Jellyfin-Webverzeichnis bereitgestellt:
+```bash
+curl -fsSL \
+  https://raw.githubusercontent.com/topa-LE/jellyfin-nova/main/scripts/installer/nova-installer.sh \
+  -o nova-installer.sh
+```
 
-    nova/
-    ├── nova.css
-    ├── fonts/
-    ├── plugins/
-    └── spotlight/
-        ├── spotlight-loader.js
-        ├── spotlight.html
-        └── spotlight.css
+Review the script and run:
 
-## Installationsregeln
+```bash
+sudo bash nova-installer.sh
+```
 
-- Ausschliesslich Nova-Dateien installieren und verwalten.
-- Bestehende fremde Custom-CSS-Eintraege erhalten.
-- Keine automatische Entfernung alter Abyss-Installationen.
-- Installation und Deinstallation wiederholbar gestalten.
-- Vor Aenderungen bestehende Dateien sichern.
-- Relative CSS-, Spotlight- und Schriftpfade erhalten.
-- Keine externen Schrift-CDNs.
-- Keine produktiven Jellyfin-Server ohne Freigabe veraendern.
-- Linux/macOS, Windows und Docker getrennt testen.
-- Keine Commits oder Pushes ohne ausdrueckliche Freigabe.
+Follow the interactive prompts.
 
-## Geplante Implementierung
+## Docker
 
-1. Lokale Paketbereitstellung und Validierung.
-2. Nova Installer fuer Linux/macOS.
-3. Nova Installer fuer Windows.
-4. Nova Installer fuer Docker.
-5. Sichere Installation und Deinstallation.
-6. Automatische Integrationstests.
+Supported LinuxServer Jellyfin deployments can use the Nova
+startup hook to restore the installed theme assets when
+the container starts.
 
-Die tatsaechliche CSS-URL wird erst bei der Implementierung
-anhand des Jellyfin-Webpfads festgelegt und getestet.
+The Docker configuration must provide the persistent
+mounts required by the installation.
+
+## Current Status
+
+- LinuxServer Docker installation tested with Jellyfin 12.2.0.
+- Nova assets and Spotlight verified after a container restart.
+- Further fresh-installation testing is planned.
+- Windows and macOS installation workflows are not yet fully validated.
+
+## License
+
+See the repository's [MIT License](../../LICENSE).
+
+Jellyfin Nova is derived from the open-source
+[Abyss for Jellyfin](https://github.com/AumGupta/abyss-jellyfin).

@@ -1,6 +1,5 @@
 setup.exe
 
-abyss-setup-*.exe
 
 # Generated Jellyfin Nova build output
 /dist/
