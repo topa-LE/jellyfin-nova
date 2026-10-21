@@ -73,6 +73,12 @@ trap cleanup EXIT
 
 cp -R "${SOURCE_DIR}/." "$STAGE_DIR/"
 
+# Jellyfin runs as an unprivileged user (abc in LinuxServer images).
+# mktemp -d creates the staging directory with mode 700.
+# Make the staged web assets accessible before activating them.
+find "$STAGE_DIR" -type d -exec chmod 755 {} +
+find "$STAGE_DIR" -type f -exec chmod a+r {} +
+
 if [[ -d "$TARGET_DIR" ]]; then
     PREVIOUS_DIR="$(mktemp -d "${WEB_DIR}/.nova-previous.XXXXXXXX")"
     rmdir "$PREVIOUS_DIR"

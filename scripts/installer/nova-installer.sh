@@ -223,6 +223,14 @@ copy_nova_to_docker() {
         return 1
     fi
 
+    # Ensure Jellyfin can read Nova assets regardless of the staging umask.
+    if ! docker exec "$container" find "$stage" -type d -exec chmod 755 {} + ||
+       ! docker exec "$container" find "$stage" -type f -exec chmod a+r {} +; then
+        warn "Could not set Nova web asset permissions."
+        docker exec "$container" rm -rf -- "$stage" || true
+        return 1
+    fi
+
     if docker exec "$container" test -e "$target"; then
         if ! docker exec "$container" mv "$target" "$previous"; then
             docker exec "$container" rm -rf -- "$stage" || true
