@@ -21,12 +21,23 @@ test('Nova distribution contains the complete CSS', () => {
 });
 
 test('Nova distribution contains all three themes', () => {
-    for (const theme of ['gray', 'dark', 'blue']) {
+    // Dark is the default; Gray and Blue require explicit selection.
+    assert.match(
+        css,
+        /:root:not\(\[data-nova-theme="gray"\]\):not\(\[data-nova-theme="blue"\]\)\s*\{/
+    );
+
+    for (const theme of ['gray', 'blue']) {
         assert.match(
             css,
             new RegExp(`data-nova-theme=["']${theme}["']`)
         );
     }
+
+    assert.doesNotMatch(
+        css,
+        /:root\[data-nova-theme=["']dark["']\]/
+    );
 });
 
 test('Nova distribution uses local font resources', async () => {
