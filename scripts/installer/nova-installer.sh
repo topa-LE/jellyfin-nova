@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# ============================================================
+# Created with ♥ by topa-LE
+# ============================================================
+
 set -euo pipefail
 
 # ==============================================================================
@@ -297,7 +301,7 @@ install_nova_docker_init_hook() {
         fi
     fi
 
-    local expected_sha256="25481963390375647f860c6680939a75b505ff0ca5c4978910ecdd6951fdfd47"
+    local expected_sha256="966ae5affe3c4a3f7ef498c7c548a03552c66b3ecb5de5560652dc092835233f"
     local actual_sha256
 
     if ! actual_sha256="$(python3 - "$hook_file" <<'PYHASH'

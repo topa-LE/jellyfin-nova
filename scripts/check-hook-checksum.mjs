@@ -1,3 +1,7 @@
+/* ============================================================
+ * Created with ♥ by topa-LE
+ * ============================================================ */
+
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { dirname, resolve } from 'node:path';

@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# ============================================================
+# Created with ♥ by topa-LE
+# ============================================================
+
 set -euo pipefail
 
 # Jellyfin Nova updater
