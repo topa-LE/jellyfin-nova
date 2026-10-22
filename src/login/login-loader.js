@@ -5,6 +5,7 @@
  * Created by topa-LE
  *
  * Adds the locally bundled Jellyfin logo to the login page.
+ * Places the password recovery button inside the login form.
  * Supports Jellyfin's single-page navigation.
  */
 
@@ -26,19 +27,7 @@
         console.warn("[nova-login] Could not resolve logo URL.", error);
     }
 
-    function installLoginLogo() {
-        var page = document.querySelector(LOGIN_SELECTOR);
-
-        if (!page) {
-            return;
-        }
-
-        var form = page.querySelector(FORM_SELECTOR);
-
-        if (!form || !form.parentNode) {
-            return;
-        }
-
+    function installLoginLogo(page, form) {
         var existing = document.getElementById(LOGO_ID);
 
         if (existing) {
@@ -62,22 +51,55 @@
         form.parentNode.insertBefore(link, form);
     }
 
+    function installForgotButton(page, form) {
+        var forgot = page.querySelector("button.btnForgotPassword");
+        var login = form.querySelector("button.button-submit");
+
+        if (!forgot || !login) {
+            return;
+        }
+
+        if (
+            forgot.previousElementSibling === login &&
+            forgot.classList.contains("nova-forgot-inside-login")
+        ) {
+            return;
+        }
+
+        forgot.className = login.className;
+        forgot.classList.add("btnForgotPassword");
+        forgot.classList.add("nova-forgot-inside-login");
+        forgot.classList.remove("button-submit");
+
+        forgot.removeAttribute("style");
+        forgot.type = "button";
+
+        login.insertAdjacentElement("afterend", forgot);
+    }
+
+    function installLogin() {
+        var page = document.querySelector(LOGIN_SELECTOR);
+
+        if (!page) {
+            return;
+        }
+
+        var form = page.querySelector(FORM_SELECTOR);
+
+        if (!form || !form.parentNode) {
+            return;
+        }
+
+        installLoginLogo(page, form);
+        installForgotButton(page, form);
+    }
+
     function boot() {
-        installLoginLogo();
+        installLogin();
 
         if (typeof MutationObserver === "function") {
             var observer = new MutationObserver(function () {
-                var page = document.querySelector(LOGIN_SELECTOR);
-
-                if (!page || !page.querySelector(FORM_SELECTOR)) {
-                    return;
-                }
-
-                var logo = document.getElementById(LOGO_ID);
-
-                if (!logo || !logo.isConnected) {
-                    installLoginLogo();
-                }
+                installLogin();
             });
 
             observer.observe(document.body, {
