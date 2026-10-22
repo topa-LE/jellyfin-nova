@@ -37,8 +37,13 @@
     function installLoginLogo(page, form) {
         var existing = document.getElementById(LOGO_ID);
 
+        var target = form.parentElement.id === "nova-login-card"
+            ? form.parentElement
+            : form;
+
         if (existing) {
-            if (existing.isConnected && existing.parentNode === form.parentNode) {
+            if (existing.parentNode === target.parentNode &&
+                existing.nextElementSibling === target) {
                 return;
             }
 
@@ -55,7 +60,7 @@
         image.alt = "Jellyfin";
 
         link.appendChild(image);
-        form.parentNode.insertBefore(link, form);
+        target.parentNode.insertBefore(link, target);
     }
 
     function installForgotButton(page, form) {
@@ -149,8 +154,8 @@
             return;
         }
 
-        installLoginLogo(page, form);
         installForgotButton(page, form);
+        installLoginLogo(page, form);
     }
 
     function boot() {

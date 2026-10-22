@@ -154,7 +154,8 @@ html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .loginForm .but
 }
 
 html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .manualLoginForm .button-submit:hover,
-html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .loginForm .button-submit:hover {
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .loginForm .button-submit:hover,
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) #loginPage #nova-login-card button.nova-forgot-inside-login:hover {
     background: #343b44 !important;
     border-color: #080b0f !important;
 }

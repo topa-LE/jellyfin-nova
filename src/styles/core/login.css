@@ -280,8 +280,8 @@ body:has(#forgotPasswordPage:not(.hide)) .MuiAppBar-root {
 
 #loginPage #nova-login-card button.nova-forgot-inside-login {
     display: block !important;
-    width: calc(100% - 36px) !important;
+    width: calc(100% - 24px) !important;
     max-width: none !important;
-    margin: 12px 18px 0 !important;
+    margin: 12px 12px 0 !important;
     box-sizing: border-box !important;
 }
