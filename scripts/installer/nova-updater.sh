@@ -76,7 +76,7 @@ curl -fsSL "${RAW_BASE}/scripts/docker/nova-init.sh" -o "${CURRENT_HOOK_DIR}/nov
 bash -n "$CURRENT_INSTALLER"
 bash -n "${CURRENT_HOOK_DIR}/nova-init.sh"
 
-expected_hook_sha256="$(sed -n 's/^[[:space:]]*local expected_sha256="\\([0-9a-f]\\{64\\}\\)"/\\1/p' "$CURRENT_INSTALLER")"
+expected_hook_sha256="$(sed -n 's/^[[:space:]]*local expected_sha256="\([0-9a-f]\{64\}\)"/\1/p' "$CURRENT_INSTALLER")"
 actual_hook_sha256="$(sha256sum "${CURRENT_HOOK_DIR}/nova-init.sh")"
 actual_hook_sha256="${actual_hook_sha256%% *}"
 
