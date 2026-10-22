@@ -102,7 +102,11 @@ echo "===== 5. INSTALL UPDATE ====="
 install_nova_docker_package "$CONTAINER" "$ARCHIVE" "$WEB_DIR"
 
 echo
-echo "===== 6. VERIFY INSTALLATION ====="
+echo "===== 6. UPDATE HTML INTEGRATION ====="
+set_nova_docker_spotlight_index "$CONTAINER" "$WEB_DIR" install
+
+echo
+echo "===== 7. VERIFY INSTALLATION ====="
 persistent_hash="$(docker exec "$CONTAINER" sha256sum /config/nova/nova.css)"
 active_hash="$(docker exec "$CONTAINER" sha256sum "${WEB_DIR}/nova/nova.css")"
 
