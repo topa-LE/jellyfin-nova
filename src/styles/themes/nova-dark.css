@@ -16,7 +16,7 @@
    1. DARK THEME COLOR PALETTE
    ========================================================== */
 
-:root[data-nova-theme="dark"] {
+:root:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) {
     --nova-background: #10151c;
     --nova-surface: #171a1e;
     --nova-glass-tint: 23, 26, 30;
@@ -164,6 +164,18 @@ html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"])
 html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"])
 .checkboxContainer:has(.chkRememberLogin)
 .checkboxIcon-checked {
+    color: #dc9b66 !important;
+    -webkit-text-fill-color: #dc9b66 !important;
+}
+
+/* Use a reliable Unicode checkmark instead of the Material Icons glyph. */
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"])
+.checkboxContainer:has(.chkRememberLogin)
+.checkboxIcon-checked::before {
+    content: "✓" !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 19px !important;
+    font-weight: 700 !important;
     color: #dc9b66 !important;
     -webkit-text-fill-color: #dc9b66 !important;
 }
