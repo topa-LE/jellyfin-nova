@@ -5,7 +5,7 @@
  * Created by topa-LE
  *
  * Adds the locally bundled Jellyfin logo to the login page.
- * Places the password recovery button inside the login form.
+ * Places password recovery inside the visual login card, outside the form.
  * Supports Jellyfin's single-page navigation.
  */
 

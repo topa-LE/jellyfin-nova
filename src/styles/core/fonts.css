@@ -1,9 +1,9 @@
 /*
  * Jellyfin Nova – Local Fonts
- * Alle Schriftdateien werden lokal ausgeliefert.
- * Keine externen Font-CDNs.
+ * All font files are served locally.
+ * No external font CDNs.
  *
- * Migrationsstatus: Definitionen eingebunden; lokale Schriftdateien im Build enthalten.
+ * Migration status: Definitions integrated; local font files included in the build.
  */
 
 @font-face {

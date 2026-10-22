@@ -1,9 +1,9 @@
 /*
  * Jellyfin Nova – Lite Mode
- * Ausgangsbasis: Abyss, styles/abyss-lite.css.
+ * Based on: Abyss, styles/abyss-lite.css.
  *
- * Migrationsstatus: Nova-Variablen und Importhinweis angepasst.
- * Optionales Performance-Modul; nicht in nova.css eingebunden.
+ * Migration status: Nova variables and import instructions adjusted.
+ * Optional performance module; not included in nova.css.
  */
 
 /* Optional low-power override. Import after nova.css. */

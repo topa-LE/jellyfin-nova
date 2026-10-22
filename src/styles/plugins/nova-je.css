@@ -1,10 +1,10 @@
 /*
  * Jellyfin Nova – Jellyfin Enhanced Integration
- * Ausgangsbasis: Abyss, styles/abyss-je.css.
- * Originalkompatibilitaet: Jellyfin Enhanced v11.3.0.0.
+ * Based on: Abyss, styles/abyss-je.css.
+ * Original compatibility: Jellyfin Enhanced v11.3.0.0.
  *
- * Migrationsstatus: Nova-Variablen angepasst.
- * Optionales Zusatzmodul; nicht in nova.css eingebunden.
+ * Migration status: Nova variables adjusted.
+ * Optional extension module; not included in nova.css.
  */
 
 /* overrides for jellyfin-enhanced v11.3.0.0 */

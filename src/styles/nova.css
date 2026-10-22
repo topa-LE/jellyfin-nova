@@ -1,14 +1,14 @@
 /*
  * Jellyfin Nova – Main Stylesheet
  *
- * Zentraler Einstiegspunkt fuer das modulare Nova-CSS.
- * Bindet lokale Schriften, Core-Module und drei Farbpaletten ein.
+ * Central entry point for the modular Nova CSS.
+ * Includes local fonts, core modules, and three color palettes.
  *
- * Die CSS-Module werden durch scripts/build-nova.mjs
- * zu dist/nova.css zusammengefuehrt.
+ * The CSS modules are combined by scripts/build-nova.mjs
+ * into dist/nova.css.
  *
- * Migrationsstatus: CSS-Grundstruktur und lokaler Build erstellt.
- * Spotlight, Installer und Theme-Umschaltung folgen separat.
+ * Migration status: Core CSS structure and local build established.
+ * Spotlight, installer, and theme switching are handled separately.
  */
 
 @import url("./core/fonts.css");

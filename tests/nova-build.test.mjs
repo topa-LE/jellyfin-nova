@@ -1,8 +1,8 @@
 /*
  * Jellyfin Nova – Build-Tests
  *
- * Prueft die lokal erzeugte Distribution.
- * Fuehrt keinen Build aus und veraendert keine Quelldateien.
+ * Checks the locally generated distribution.
+ * Does not run a build or modify source files.
  */
 
 import assert from 'node:assert/strict';

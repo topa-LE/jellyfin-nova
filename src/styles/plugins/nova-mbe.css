@@ -1,10 +1,10 @@
 /*
  * Jellyfin Nova – Media Bar Enhanced Integration
- * Ausgangsbasis: Abyss, styles/abyss-mbe.css.
- * Originalkompatibilitaet: Media Bar Enhanced v1.9.0.0.
+ * Based on: Abyss, styles/abyss-mbe.css.
+ * Original compatibility: Media Bar Enhanced v1.9.0.0.
  *
- * Migrationsstatus: Nova-Akzentfarbe und Schriftsteuerung angepasst.
- * Optionales Zusatzmodul; nicht in nova.css eingebunden.
+ * Migration status: Nova accent color and font controls adjusted.
+ * Optional extension module; not included in nova.css.
  */
 
 /* overrides for media-bar-enhanced v1.9.0.0 */

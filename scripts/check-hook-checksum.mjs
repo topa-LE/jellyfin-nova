@@ -26,7 +26,7 @@ const matches = [
 
 if (matches.length !== 1) {
     throw new Error(
-        `Erwartet genau eine Startup-Hook-Pruefsumme, gefunden: ${matches.length}`
+        `Expected exactly one startup hook checksum, found: ${matches.length}`
     );
 }
 
@@ -37,10 +37,10 @@ const actual = createHash('sha256')
     .digest('hex');
 
 if (expected !== actual) {
-    console.error('FEHLER: Nova Startup-Hook-Pruefsumme stimmt nicht.');
+    console.error('ERROR: Nova startup hook checksum does not match.');
     console.error(`Installer: ${expected}`);
     console.error(`Hook:      ${actual}`);
     process.exitCode = 1;
 } else {
-    console.log('OK: Nova Startup-Hook-Pruefsumme stimmt.');
+    console.log('OK: Nova startup hook checksum matches.');
 }

@@ -1,11 +1,11 @@
 /*
  * Jellyfin Nova – CSS Build
  *
- * Fuehrt die modularen Nova-CSS-Dateien zusammen.
- * Kopiert lokale Schriftdateien und optionale Zusatzmodule.
+ * Combines the modular Nova CSS files.
+ * Copies local font files and optional modules.
  *
- * Keine externen npm-Abhaengigkeiten.
- * Keine Veraenderungen an den Quelldateien.
+ * No external npm dependencies.
+ * Does not modify source files.
  */
 
 import { readFile, writeFile, mkdir, copyFile, rm, rename, lstat } from 'node:fs/promises';
@@ -62,11 +62,11 @@ async function buildCss(path) {
     const absolutePath = resolve(path);
 
     if (!insideDirectory(absolutePath, resolve(sourceRoot, 'styles'))) {
-        fail(`CSS-Datei ausserhalb des Nova-Styles-Verzeichnisses: ${absolutePath}`);
+        fail(`CSS file outside the Nova styles directory: ${absolutePath}`);
     }
 
     if (!existsSync(absolutePath)) {
-        fail(`CSS-Datei fehlt: ${absolutePath}`);
+        fail(`CSS file missing: ${absolutePath}`);
     }
 
     if (importedFiles.has(absolutePath)) {
@@ -122,7 +122,7 @@ async function buildCss(path) {
         }
 
         if (!existsSync(resource)) {
-            fail(`Schriftdatei fehlt: ${resource}`);
+            fail(`Font file missing: ${resource}`);
         }
 
         const destination = relative(fontRoot, resource).split(sep).join('/');
@@ -138,14 +138,14 @@ async function buildCss(path) {
 async function main() {
     for (const path of [stagingRoot, backupRoot]) {
         if (existsSync(path)) {
-            fail(`Vorheriger Build-Zwischenstand vorhanden: ${path}`);
+            fail(`Previous build staging directory exists: ${path}`);
         }
     }
 
     if (existsSync(outputRoot)) {
         const info = await lstat(outputRoot);
         if (!info.isDirectory() || info.isSymbolicLink()) {
-            fail('dist ist kein regulaeres Verzeichnis.');
+            fail('dist is not a regular directory.');
         }
     }
 
@@ -168,17 +168,17 @@ async function main() {
         const path = resolve(sourceRoot, 'styles/plugins', name);
 
         if (!existsSync(path)) {
-            fail(`Optionales CSS-Modul fehlt: ${name}`);
+            fail(`Optional CSS module missing: ${name}`);
         }
 
         const text = await readFile(path, 'utf8');
 
         if (/@import\b/i.test(text)) {
-            fail(`Unerwarteter Import im Zusatzmodul: ${name}`);
+            fail(`Unexpected import in optional module: ${name}`);
         }
 
         if (/url\s*\(/i.test(text)) {
-            fail(`Ressourcenpfad im Zusatzmodul muss geprueft werden: ${name}`);
+            fail(`Resource path in optional module requires verification: ${name}`);
         }
 
         plugins.set(name, text);
@@ -188,7 +188,7 @@ async function main() {
         const source = resolve(sourceRoot, 'spotlight', name);
 
         if (!existsSync(source)) {
-            fail(`Spotlight-Datei fehlt: ${name}`);
+            fail(`Spotlight file missing: ${name}`);
         }
     }
 
@@ -274,20 +274,20 @@ async function main() {
         await rm(backupRoot, { recursive: true, force: true });
     }
 
-    console.log(`CSS-Module: ${importedFiles.size}`);
-    console.log(`Schriftdateien: ${fontFiles.size}`);
-    console.log(`Optionale Module: ${plugins.size}`);
-    console.log(`Spotlight-Dateien: ${spotlightFiles.length}`);
+    console.log(`CSS modules: ${importedFiles.size}`);
+    console.log(`Font files: ${fontFiles.size}`);
+    console.log(`Optional modules: ${plugins.size}`);
+    console.log(`Spotlight files: ${spotlightFiles.length}`);
     console.log();
-    console.log('Erstellt: dist/nova.css');
-    console.log('Erstellt: dist/fonts/');
-    console.log('Erstellt: dist/plugins/');
-    console.log('Erstellt: dist/spotlight/');
+    console.log('Created: dist/nova.css');
+    console.log('Created: dist/fonts/');
+    console.log('Created: dist/plugins/');
+    console.log('Created: dist/spotlight/');
     console.log();
-    console.log('Kein Deployment, kein Commit, kein Push.');
+    console.log('No deployment, no commit, no push.');
 }
 
 main().catch(error => {
-    console.error(`BUILD-FEHLER: ${error.message}`);
+    console.error(`BUILD ERROR: ${error.message}`);
     process.exitCode = 1;
 });
