@@ -253,3 +253,31 @@ body:has(#forgotPasswordPage:not(.hide)) .MuiAppBar-root {
 .checkboxContainer:has(.chkRememberLogin) .checkboxOutline {
     border-radius: var(--nova-login-radius) !important;
 }
+
+
+/* Shared visual card; password recovery stays outside the login form. */
+#loginPage #nova-login-card {
+    width: min(580px, calc(100vw - 32px)) !important;
+    max-width: 580px !important;
+    margin: 0 auto !important;
+    padding-bottom: 18px !important;
+    box-sizing: border-box !important;
+}
+
+#loginPage #nova-login-card .manualLoginForm {
+    width: 100% !important;
+    max-width: none !important;
+    margin-bottom: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+#loginPage #nova-login-card button.nova-forgot-inside-login {
+    display: block !important;
+    width: calc(100% - 36px) !important;
+    max-width: none !important;
+    margin: 12px 18px 0 !important;
+    box-sizing: border-box !important;
+}

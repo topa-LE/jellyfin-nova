@@ -198,3 +198,13 @@ html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"])
 .checkboxIcon-unchecked {
     color: #7e8994 !important;
 }
+
+
+/* Extend the existing login card appearance around both separate controls. */
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"])
+#loginPage #nova-login-card {
+    background: var(--nova-login-card-gradient) !important;
+    border: 1px solid var(--nova-login-border) !important;
+    border-radius: var(--nova-login-radius) !important;
+    box-shadow: var(--nova-login-shadow) !important;
+}

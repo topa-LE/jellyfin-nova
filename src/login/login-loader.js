@@ -63,7 +63,8 @@
         }
 
         if (
-            forgot.previousElementSibling === form &&
+            form.parentElement.id === "nova-login-card" &&
+            forgot.parentElement === form.parentElement &&
             forgot.classList.contains("nova-forgot-inside-login")
         ) {
             return;
@@ -77,7 +78,16 @@
         forgot.removeAttribute("style");
         forgot.type = "button";
 
-        form.insertAdjacentElement("afterend", forgot);
+        var card = form.parentElement;
+
+        if (card.id !== "nova-login-card") {
+            card = document.createElement("div");
+            card.id = "nova-login-card";
+            form.parentNode.insertBefore(card, form);
+            card.appendChild(form);
+        }
+
+        card.appendChild(forgot);
     }
 
     function installResetPage() {
