@@ -4,6 +4,6 @@
   "scripts": {
     "browser:fixture": "node tests/browser-server.mjs",
     "test": "node --test tests/*.test.mjs",
-    "check": "npm test && bash -n scripts/installer/nova-installer.sh && bash -n scripts/docker/nova-init.sh && bash -n scripts/installer/nova-updater.sh"
+    "check": "npm test && node scripts/check-hook-checksum.mjs && bash -n scripts/installer/nova-installer.sh && bash -n scripts/docker/nova-init.sh && bash -n scripts/installer/nova-updater.sh"
   }
 }

@@ -297,7 +297,7 @@ install_nova_docker_init_hook() {
         fi
     fi
 
-    local expected_sha256="e110217364f2dc833056177814bd2236534609cc7e4284c4ad550b65a24da14f"
+    local expected_sha256="25481963390375647f860c6680939a75b505ff0ca5c4978910ecdd6951fdfd47"
     local actual_sha256
 
     if ! actual_sha256="$(python3 - "$hook_file" <<'PYHASH'
