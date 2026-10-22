@@ -8,7 +8,7 @@
  * Keine Veraenderungen an den Quelldateien.
  */
 
-import { readFile, writeFile, mkdir, copyFile, rm } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, copyFile, rm, rename, lstat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { resolve, dirname, relative, join, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -17,11 +17,21 @@ const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const sourceRoot = resolve(projectRoot, 'src');
 const entryFile = resolve(sourceRoot, 'styles/nova.css');
 const outputRoot = resolve(projectRoot, 'dist');
+const stagingRoot = resolve(projectRoot, '.dist-nova-building');
+const backupRoot = resolve(projectRoot, '.dist-nova-previous');
 
 const spotlightFiles = [
     'spotlight-loader.js',
     'spotlight.html',
     'spotlight.css'
+];
+
+const assetFiles = [
+    'jellyfin-logo.png'
+];
+
+const loginFiles = [
+    'login-loader.js'
 ];
 
 const optionalModules = [
@@ -122,8 +132,17 @@ async function buildCss(path) {
 }
 
 async function main() {
+    for (const path of [stagingRoot, backupRoot]) {
+        if (existsSync(path)) {
+            fail(`Vorheriger Build-Zwischenstand vorhanden: ${path}`);
+        }
+    }
+
     if (existsSync(outputRoot)) {
-        fail('dist existiert bereits. Kein automatisches Ueberschreiben.');
+        const info = await lstat(outputRoot);
+        if (!info.isDirectory() || info.isSymbolicLink()) {
+            fail('dist ist kein regulaeres Verzeichnis.');
+        }
     }
 
     console.log('===== JELLYFIN NOVA – CSS BUILD =====');
@@ -170,24 +189,24 @@ async function main() {
     }
 
     try {
-        await mkdir(outputRoot, { recursive: false });
-        await writeFile(join(outputRoot, 'nova.css'), css, 'utf8');
+        await mkdir(stagingRoot, { recursive: false });
+        await writeFile(join(stagingRoot, 'nova.css'), css, 'utf8');
 
         for (const [source, destination] of fontFiles) {
-            const target = resolve(outputRoot, destination);
+            const target = resolve(stagingRoot, destination);
 
             await mkdir(dirname(target), { recursive: true });
             await copyFile(source, target);
         }
 
-        const pluginRoot = join(outputRoot, 'plugins');
+        const pluginRoot = join(stagingRoot, 'plugins');
         await mkdir(pluginRoot);
 
         for (const [name, content] of plugins) {
             await writeFile(join(pluginRoot, name), content, 'utf8');
         }
 
-        const spotlightRoot = join(outputRoot, 'spotlight');
+        const spotlightRoot = join(stagingRoot, 'spotlight');
         await mkdir(spotlightRoot);
 
         for (const name of spotlightFiles) {
@@ -196,9 +215,49 @@ async function main() {
                 join(spotlightRoot, name)
             );
         }
+
+        const assetsRoot = join(stagingRoot, 'assets');
+        await mkdir(assetsRoot);
+
+        for (const name of assetFiles) {
+            await copyFile(
+                resolve(sourceRoot, 'assets', name),
+                join(assetsRoot, name)
+            );
+        }
+
+        const loginRoot = join(stagingRoot, 'login');
+        await mkdir(loginRoot);
+
+        for (const name of loginFiles) {
+            await copyFile(
+                resolve(sourceRoot, 'login', name),
+                join(loginRoot, name)
+            );
+        }
     } catch (error) {
-        await rm(outputRoot, { recursive: true, force: true });
+        await rm(stagingRoot, { recursive: true, force: true });
         throw error;
+    }
+
+    let previousBuildMoved = false;
+
+    try {
+        if (existsSync(outputRoot)) {
+            await rename(outputRoot, backupRoot);
+            previousBuildMoved = true;
+        }
+
+        await rename(stagingRoot, outputRoot);
+    } catch (error) {
+        if (previousBuildMoved && !existsSync(outputRoot)) {
+            await rename(backupRoot, outputRoot);
+        }
+        throw error;
+    }
+
+    if (previousBuildMoved) {
+        await rm(backupRoot, { recursive: true, force: true });
     }
 
     console.log(`CSS-Module: ${importedFiles.size}`);

@@ -297,7 +297,7 @@ install_nova_docker_init_hook() {
         fi
     fi
 
-    local expected_sha256="4a84c26e3f2cb0ed01871fb7ee7130c5d42740a60cb7a0e4ce3bdc0a2518a606"
+    local expected_sha256="e110217364f2dc833056177814bd2236534609cc7e4284c4ad550b65a24da14f"
     local actual_sha256
 
     if ! actual_sha256="$(python3 - "$hook_file" <<'PYHASH'
@@ -1137,6 +1137,8 @@ with tarfile.open(archive_path, "r:gz") as archive:
         "spotlight/spotlight-loader.js",
         "spotlight/spotlight.html",
         "spotlight/spotlight.css",
+        "assets/jellyfin-logo.png",
+        "login/login-loader.js",
         "plugins/nova-je.css",
         "plugins/nova-lite.css",
         "plugins/nova-mbe.css",
@@ -1147,7 +1149,7 @@ with tarfile.open(archive_path, "r:gz") as archive:
         if name.startswith("fonts/") and name.endswith(".woff2")
     ]
 
-    if len(files) != 30 or len(fonts) != 23 or not required.issubset(names):
+    if len(files) != 32 or len(fonts) != 23 or not required.issubset(names):
         raise SystemExit("Incomplete Nova package")
 
     with tempfile.TemporaryDirectory(
@@ -1246,11 +1248,13 @@ metadata = os.stat(path)
 with open(path, "r", encoding="utf-8") as handle:
     html = handle.read()
 html = re.sub(r"<script[^>]*\bdata-nova-spotlight\b[^>]*></script>", "", html, flags=re.I)
+html = re.sub(r"<script[^>]*\bdata-nova-login\b[^>]*></script>", "", html, flags=re.I)
 if action == "install":
     tag = "<script src=\"nova/spotlight/spotlight-loader.js\" data-nova-spotlight></script>"
+    login_tag = "<script src=\"nova/login/login-loader.js\" data-nova-login></script>"
     if "</body>" not in html.lower():
         raise SystemExit("index.html has no closing body tag")
-    html = re.sub(r"</body>", tag + "</body>", html, count=1, flags=re.I)
+    html = re.sub(r"</body>", tag + login_tag + "</body>", html, count=1, flags=re.I)
 fd, temp_path = tempfile.mkstemp(dir=os.path.dirname(path), prefix=".nova-index-", text=True)
 try:
     with os.fdopen(fd, "w", encoding="utf-8") as handle:

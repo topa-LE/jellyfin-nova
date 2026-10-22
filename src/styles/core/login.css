@@ -14,15 +14,81 @@
 
 #loginPage .readOnlyContent,
 #loginPage form {
-    max-width: 22em;
+    width: min(580px, calc(100vw - 32px)) !important;
+    max-width: 580px !important;
+    box-sizing: border-box !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 #loginPage h1 {
     display: none;
 }
 
+#loginPage {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
 #loginPage .padded-left.padded-right.padded-bottom-page {
-    margin-top: 8em;
+    margin-top: 0 !important;
+    padding-top: 50px !important;
+    padding-bottom: 0 !important;
+}
+
+#nova-login-final-logo {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 260px !important;
+    max-width: calc(100vw - 40px) !important;
+    margin: 0 auto 30px !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
+
+#nova-login-final-logo img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+#loginPage .manualLoginForm {
+    margin-top: 0 !important;
+    margin-bottom: 18px !important;
+}
+
+#loginPage .btnForgotPassword {
+    width: min(580px, calc(100vw - 32px)) !important;
+    max-width: 580px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+#loginPage p {
+    margin-top: 26px !important;
+    margin-bottom: 0 !important;
+}
+
+body:has(#loginPage:not(.hide)) header,
+body:has(#loginPage:not(.hide)) .skinHeader,
+body:has(#loginPage:not(.hide)) .MuiAppBar-root {
+    display: none !important;
+}
+
+@media (max-height: 650px) {
+    #nova-login-final-logo {
+        margin-bottom: 22px !important;
+    }
+
+    #loginPage .manualLoginForm {
+        margin-bottom: 12px !important;
+    }
+
+    #loginPage p {
+        margin-top: 16px !important;
+    }
 }
 
 #loginPage .raised.cancel.block.btnForgotPassword.emby-button {

@@ -7,6 +7,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 INSTALLER="${SCRIPT_DIR}/nova-installer.sh"
+RAW_BASE="https://raw.githubusercontent.com/topa-LE/jellyfin-nova/main"
 
 RELEASE_URL="https://github.com/topa-LE/jellyfin-nova/releases/download/nova-latest/jellyfin-nova-package.tar.gz"
 CONTAINER="${NOVA_CONTAINER:-jellyfin}"
@@ -63,17 +64,45 @@ echo "===== 1. DOWNLOAD ====="
 curl -fL --retry 3 "$RELEASE_URL" -o "$ARCHIVE"
 
 echo
-echo "===== 2. PACKAGE VALIDATION ====="
-source "$INSTALLER"
+echo "===== 2. FETCH CURRENT INSTALLATION SCRIPTS ====="
+CURRENT_INSTALLER="${TEMP_DIR}/installer/nova-installer.sh"
+CURRENT_HOOK_DIR="${TEMP_DIR}/docker"
+mkdir -p "${TEMP_DIR}/installer"
+mkdir -p "$CURRENT_HOOK_DIR"
+
+curl -fsSL "${RAW_BASE}/scripts/installer/nova-installer.sh" -o "$CURRENT_INSTALLER"
+curl -fsSL "${RAW_BASE}/scripts/docker/nova-init.sh" -o "${CURRENT_HOOK_DIR}/nova-init.sh"
+
+bash -n "$CURRENT_INSTALLER"
+bash -n "${CURRENT_HOOK_DIR}/nova-init.sh"
+
+expected_hook_sha256="$(sed -n 's/^[[:space:]]*local expected_sha256="\\([0-9a-f]\\{64\\}\\)"/\\1/p' "$CURRENT_INSTALLER")"
+actual_hook_sha256="$(sha256sum "${CURRENT_HOOK_DIR}/nova-init.sh")"
+actual_hook_sha256="${actual_hook_sha256%% *}"
+
+if [[ -z "$expected_hook_sha256" || "$expected_hook_sha256" != "$actual_hook_sha256" ]]; then
+    echo "ERROR: Installer and startup hook checksums do not match."
+    exit 1
+fi
+
+echo "OK: Installer and startup hook checksums match."
+
+echo
+echo "===== 3. PACKAGE VALIDATION ====="
+source "$CURRENT_INSTALLER"
 
 validate_nova_package_before_docker "$ARCHIVE"
 
 echo
-echo "===== 3. INSTALL UPDATE ====="
+echo "===== 4. UPDATE PERSISTENT STARTUP HOOK ====="
+install_nova_docker_init_hook "$CONTAINER" "$TEMP_DIR/installer"
+
+echo
+echo "===== 5. INSTALL UPDATE ====="
 install_nova_docker_package "$CONTAINER" "$ARCHIVE" "$WEB_DIR"
 
 echo
-echo "===== 4. VERIFY INSTALLATION ====="
+echo "===== 6. VERIFY INSTALLATION ====="
 persistent_hash="$(docker exec "$CONTAINER" sha256sum /config/nova/nova.css)"
 active_hash="$(docker exec "$CONTAINER" sha256sum "${WEB_DIR}/nova/nova.css")"
 

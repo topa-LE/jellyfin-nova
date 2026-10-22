@@ -23,6 +23,16 @@ if [[ ! -f "${SOURCE_DIR}/spotlight/spotlight-loader.js" ]]; then
     exit 1
 fi
 
+if [[ ! -f "${SOURCE_DIR}/login/login-loader.js" ]]; then
+    log "ERROR: Persistent Login loader not found."
+    exit 1
+fi
+
+if [[ ! -f "${SOURCE_DIR}/assets/jellyfin-logo.png" ]]; then
+    log "ERROR: Persistent Jellyfin logo not found."
+    exit 1
+fi
+
 if [[ ! -f "$INDEX_FILE" ]]; then
     log "ERROR: Jellyfin index.html not found."
     exit 1
@@ -100,6 +110,7 @@ if [[ -n "$PREVIOUS_DIR" && -d "$PREVIOUS_DIR" ]]; then
 fi
 
 LOADER_TAG='<script src="nova/spotlight/spotlight-loader.js" data-nova-spotlight></script>'
+LOGIN_TAG='<script src="nova/login/login-loader.js" data-nova-login></script>'
 
 if ! grep -Fq "$LOADER_TAG" "$INDEX_FILE"; then
     if ! grep -Fqi '</body>' "$INDEX_FILE"; then
@@ -108,6 +119,15 @@ if ! grep -Fq "$LOADER_TAG" "$INDEX_FILE"; then
     fi
 
     sed -i "s|</body>|${LOADER_TAG}</body>|I" "$INDEX_FILE"
+fi
+
+if ! grep -Fq "$LOGIN_TAG" "$INDEX_FILE"; then
+    if ! grep -Fqi '</body>' "$INDEX_FILE"; then
+        log "ERROR: Jellyfin index.html has no closing body tag."
+        exit 1
+    fi
+
+    sed -i "s|</body>|${LOGIN_TAG}</body>|I" "$INDEX_FILE"
 fi
 
 log "Nova restored successfully."

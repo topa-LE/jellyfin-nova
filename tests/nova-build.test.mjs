@@ -77,6 +77,34 @@ test('Nova distribution contains no external CSS resources', () => {
 });
 
 
+test('Nova Login resources match their sources', async () => {
+    for (const [sourcePath, outputPath] of [
+        ['src/assets/jellyfin-logo.png', 'dist/assets/jellyfin-logo.png'],
+        ['src/login/login-loader.js', 'dist/login/login-loader.js']
+    ]) {
+        const original = await readFile(new URL(sourcePath, root));
+        const built = await readFile(new URL(outputPath, root));
+
+        assert.ok(original.length > 0, `Empty source: ${sourcePath}`);
+        assert.deepEqual(built, original, outputPath);
+    }
+});
+
+test('Nova Login loader uses the bundled logo and correct login selectors', async () => {
+    const loader = await readFile(
+        new URL('dist/login/login-loader.js', root),
+        'utf8'
+    );
+
+    assert.match(loader, /nova-login-final-logo/);
+    assert.match(loader, /#loginPage/);
+    assert.match(loader, /\.manualLoginForm/);
+    assert.match(loader, /assets\/jellyfin-logo\.png/);
+    assert.match(loader, /MutationObserver/);
+    assert.match(loader, /document\.currentScript/);
+    assert.doesNotMatch(loader, /banner-light\.[a-f0-9]+\.png/i);
+});
+
 test('Nova Spotlight distribution files match their sources', async () => {
     const { readFile } = await import('node:fs/promises');
     const { resolve } = await import('node:path');
