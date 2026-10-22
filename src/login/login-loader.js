@@ -13,6 +13,9 @@
     var LOGO_ID = "nova-login-final-logo";
     var LOGIN_SELECTOR = "#loginPage";
     var FORM_SELECTOR = ".manualLoginForm";
+    var RESET_SELECTOR = "#forgotPasswordPage";
+    var RESET_FORM_SELECTOR = ".forgotPasswordForm";
+    var RESET_LOGO_ID = "nova-reset-logo";
     var LOGO_PATH = "assets/jellyfin-logo.png";
 
     var logoUrl = "nova/" + LOGO_PATH;
@@ -77,6 +80,48 @@
         login.insertAdjacentElement("afterend", forgot);
     }
 
+    function installResetPage() {
+        var page = document.querySelector(RESET_SELECTOR);
+
+        if (!page) {
+            return;
+        }
+
+        var form = page.querySelector(RESET_FORM_SELECTOR);
+
+        if (!form || !form.parentNode) {
+            return;
+        }
+
+        var logo = document.getElementById(RESET_LOGO_ID);
+
+        if (!logo) {
+            logo = document.createElement("a");
+            logo.id = RESET_LOGO_ID;
+            logo.href = "#/";
+            logo.setAttribute("aria-label", "Jellyfin Startseite");
+
+            var image = document.createElement("img");
+            image.src = logoUrl;
+            image.alt = "Jellyfin";
+
+            logo.appendChild(image);
+        }
+
+        if (logo.parentNode !== form.parentNode ||
+            logo.nextElementSibling !== form) {
+            form.parentNode.insertBefore(logo, form);
+        }
+
+        var submit = page.querySelector("#btnSubmit");
+        var cancel = page.querySelector("#btnCancel");
+
+        if (submit && cancel &&
+            submit.nextElementSibling !== cancel) {
+            submit.insertAdjacentElement("afterend", cancel);
+        }
+    }
+
     function installLogin() {
         var page = document.querySelector(LOGIN_SELECTOR);
 
@@ -96,10 +141,12 @@
 
     function boot() {
         installLogin();
+        installResetPage();
 
         if (typeof MutationObserver === "function") {
             var observer = new MutationObserver(function () {
                 installLogin();
+                installResetPage();
             });
 
             observer.observe(document.body, {

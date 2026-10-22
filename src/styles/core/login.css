@@ -109,6 +109,116 @@ body:has(#loginPage:not(.hide)) .MuiAppBar-root {
 }
 
 /* ==========================================================
+   NOVA PASSWORD RESET PAGE
+   ========================================================== */
+
+body:has(#forgotPasswordPage:not(.hide)) header,
+body:has(#forgotPasswordPage:not(.hide)) .skinHeader,
+body:has(#forgotPasswordPage:not(.hide)) .MuiAppBar-root {
+    display: none !important;
+}
+
+#forgotPasswordPage {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+#nova-reset-logo {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 260px !important;
+    max-width: calc(100vw - 40px) !important;
+    margin: 60px auto 30px !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+}
+
+#nova-reset-logo:focus,
+#nova-reset-logo:focus-visible,
+#nova-reset-logo:active {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#nova-reset-logo img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+#forgotPasswordPage .forgotPasswordForm {
+    width: min(580px, calc(100vw - 32px)) !important;
+    max-width: 580px !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+    padding: 24px 12px 19px !important;
+    border: 1px solid #121820 !important;
+    border-radius: 6px !important;
+    background: linear-gradient(
+        180deg,
+        #292e35 0%,
+        #171d23 100%
+    ) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+#forgotPasswordPage .forgotPasswordForm h1 {
+    font-size: 24px !important;
+    margin: 0 0 24px !important;
+    text-align: center !important;
+}
+
+#forgotPasswordPage .forgotPasswordForm .emby-input {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border: 1px solid #405158 !important;
+    border-radius: 6px !important;
+    background: #11171c !important;
+}
+
+#forgotPasswordPage .forgotPasswordForm .emby-input:focus,
+#forgotPasswordPage .forgotPasswordForm .emby-input:focus-visible {
+    border-color: #405158 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 1px #405158 !important;
+}
+
+#forgotPasswordPage #btnSubmit,
+#forgotPasswordPage #btnCancel {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    margin: 12px 0 0 !important;
+    border-radius: 6px !important;
+    background: linear-gradient(
+        180deg,
+        #30363e 0%,
+        #1b2229 100%
+    ) !important;
+    border: 1px solid #111820 !important;
+    color: #d6dde3 !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    transition: color 180ms ease, border-color 180ms ease !important;
+}
+
+#forgotPasswordPage #btnSubmit:hover,
+#forgotPasswordPage #btnCancel:hover {
+    background: linear-gradient(
+        180deg,
+        #39434d 0%,
+        #252d35 100%
+    ) !important;
+    color: #dc9b66 !important;
+}
+
+/* ==========================================================
    LOGIN BOX – SHARED GEOMETRY
    ========================================================== */
 
