@@ -375,7 +375,8 @@ html[data-theme="dark"] .MuiPopover-paper.MuiMenu-paper {
     box-shadow: none;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
-    transform: translateY(10px);
+    margin-top: 10px;
+    transform: none;
 }
 
 html[data-theme="dark"] .MuiPopover-paper.MuiMenu-paper .MuiListItemText-primary {
