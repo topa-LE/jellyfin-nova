@@ -34,6 +34,10 @@ const loginFiles = [
     'login-loader.js'
 ];
 
+const navigationFiles = [
+    'home-loader.js'
+];
+
 const optionalModules = [
     'nova-je.css',
     'nova-lite.css',
@@ -223,6 +227,16 @@ async function main() {
             await copyFile(
                 resolve(sourceRoot, 'assets', name),
                 join(assetsRoot, name)
+            );
+        }
+
+        const navigationRoot = join(stagingRoot, 'navigation');
+        await mkdir(navigationRoot);
+
+        for (const name of navigationFiles) {
+            await copyFile(
+                resolve(sourceRoot, 'navigation', name),
+                join(navigationRoot, name)
             );
         }
 

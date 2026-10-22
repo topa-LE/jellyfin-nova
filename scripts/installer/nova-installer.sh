@@ -1139,6 +1139,7 @@ with tarfile.open(archive_path, "r:gz") as archive:
         "spotlight/spotlight.css",
         "assets/jellyfin-logo.png",
         "login/login-loader.js",
+        "navigation/home-loader.js",
         "plugins/nova-je.css",
         "plugins/nova-lite.css",
         "plugins/nova-mbe.css",
@@ -1149,7 +1150,7 @@ with tarfile.open(archive_path, "r:gz") as archive:
         if name.startswith("fonts/") and name.endswith(".woff2")
     ]
 
-    if len(files) != 32 or len(fonts) != 23 or not required.issubset(names):
+    if len(files) != 33 or len(fonts) != 23 or not required.issubset(names):
         raise SystemExit("Incomplete Nova package")
 
     with tempfile.TemporaryDirectory(
@@ -1249,12 +1250,14 @@ with open(path, "r", encoding="utf-8") as handle:
     html = handle.read()
 html = re.sub(r"<script[^>]*\bdata-nova-spotlight\b[^>]*></script>", "", html, flags=re.I)
 html = re.sub(r"<script[^>]*\bdata-nova-login\b[^>]*></script>", "", html, flags=re.I)
+html = re.sub(r"<script[^>]*\bdata-nova-home\b[^>]*></script>", "", html, flags=re.I)
 if action == "install":
     tag = "<script src=\"nova/spotlight/spotlight-loader.js\" data-nova-spotlight></script>"
     login_tag = "<script src=\"nova/login/login-loader.js\" data-nova-login></script>"
+    home_tag = "<script src=\"nova/navigation/home-loader.js\" data-nova-home></script>"
     if "</body>" not in html.lower():
         raise SystemExit("index.html has no closing body tag")
-    html = re.sub(r"</body>", tag + login_tag + "</body>", html, count=1, flags=re.I)
+    html = re.sub(r"</body>", tag + login_tag + home_tag + "</body>", html, count=1, flags=re.I)
 fd, temp_path = tempfile.mkstemp(dir=os.path.dirname(path), prefix=".nova-index-", text=True)
 try:
     with os.fdopen(fd, "w", encoding="utf-8") as handle:
