@@ -37,7 +37,7 @@ body {
 }
 
 :root {
-    scrollbar-color: rgba(var(--nova-accent-rgb), 0.8) #0000 !important;
+    scrollbar-color: var(--nova-scrollbar-thumb, rgba(var(--nova-accent-rgb), 0.8)) transparent !important;
 }
 
 ::-webkit-scrollbar-track-piece {
@@ -49,7 +49,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(var(--nova-accent-rgb), 0.8) !important;
+    background: var(--nova-scrollbar-thumb, rgba(var(--nova-accent-rgb), 0.8)) !important;
     border-radius: var(--nova-radius);
 }
 

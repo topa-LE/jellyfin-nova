@@ -106,7 +106,6 @@ header.MuiAppBar-root>.MuiToolbar-root>.MuiStack-root:last-child .MuiButtonGroup
 
 /*Counter Chip*/
 header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.MuiBox-root>.MuiChip-root {
-    font-family: "Google Sans", sans-serif !important;
     font-size: medium;
     font-weight: 500;
     padding: 0.75rem 0;
@@ -136,7 +135,7 @@ html[data-theme="dark"] .MuiBox-root .tabContent.pageTabContent.is-active.nova-s
 }
 
 html[data-theme="dark"] header.MuiAppBar-root {
-    color: rgb(var(--nova-accent-rgb));
+    color: var(--nova-header-text, rgb(var(--nova-accent-rgb)));
     background-color: transparent !important;
     background: transparent !important;
     background-image: none !important;
@@ -204,6 +203,7 @@ html[data-theme="dark"] header.MuiAppBar-root .MuiToolbar-root:first-of-type .Mu
 
 html[data-theme="dark"] header.MuiAppBar-root .MuiButtonBase-root.MuiIconButton-root {
     border-radius: var(--nova-radius) !important;
+    color: var(--nova-header-text, rgba(var(--nova-accent-rgb), 0.78));
     background: transparent !important;
     -webkit-backdrop-filter: blur(var(--nova-glass-blur)) !important;
     backdrop-filter: blur(var(--nova-glass-blur)) !important;
@@ -228,13 +228,9 @@ html[data-theme="dark"] .MuiToolbar-root {
     min-height: 64px;
 }
 
-html[data-theme="dark"] .MuiTypography-root {
-    font-family: "Google Sans", sans-serif !important;
-}
-
 html[data-theme="dark"] .MuiToolbar-root .MuiButton-root,
 html[data-theme="dark"] .MuiToolbar-root .MuiIconButton-root {
-    color: rgba(var(--nova-accent-rgb), 0.78);
+    color: var(--nova-header-text, rgba(var(--nova-accent-rgb), 0.78));
     border-radius: var(--nova-radius);
     transition: background-color 0.25s var(--nova-ease),
         color 0.25s var(--nova-ease),
@@ -244,6 +240,11 @@ html[data-theme="dark"] .MuiToolbar-root .MuiIconButton-root {
 html[data-theme="dark"] .MuiToolbar-root .MuiButton-root {
     min-width: auto;
     padding: 0.56rem 1rem;
+    font-size: calc(1rem + 3px);
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
     font-family: inherit;
     font-weight: 600;
     line-height: 1.25;
@@ -276,8 +277,9 @@ html[data-theme="dark"] .MuiToolbar-root .MuiButtonGroup-root {
 
 html[data-theme="dark"] .MuiToolbar-root .MuiButton-root:hover,
 html[data-theme="dark"] .MuiToolbar-root .MuiIconButton-root:hover {
-    color: rgb(var(--nova-accent-rgb));
-    background-color: rgba(var(--nova-accent-rgb), 0.12);
+    color: var(--nova-header-hover, rgb(var(--nova-accent-rgb)));
+    background-color: var(--nova-header-hover-background, rgba(var(--nova-accent-rgb), 0.12));
+    box-shadow: none;
 }
 
 html[data-theme="dark"] .MuiToolbar-root .MuiButton-root.MuiButton-colorPrimary {
@@ -359,9 +361,32 @@ html[data-theme="dark"] .MuiDrawer-paper .MuiListSubheader-root {
     font-size: medium;
 }
 
+/* Avatar menu appearance and spacing. */
 html[data-theme="dark"] .MuiMenu-paper {
     border-radius: 24px;
     padding: 0 8px;
+}
+
+html[data-theme="dark"] .MuiPopover-paper.MuiMenu-paper {
+    color: var(--nova-avatar-menu-text, rgb(var(--nova-accent-rgb)));
+    background-color: var(--nova-avatar-menu-background, rgba(var(--nova-glass-tint), 0.72));
+    border: 1px solid var(--nova-avatar-menu-border, rgba(var(--nova-accent-rgb), 0.16));
+    border-radius: 6px;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    transform: translateY(10px);
+}
+
+html[data-theme="dark"] .MuiPopover-paper.MuiMenu-paper .MuiListItemText-primary {
+    font-size: 1.0625rem;
+}
+
+html[data-theme="dark"] .MuiPopover-paper.MuiMenu-paper .MuiMenuItem-root,
+html[data-theme="dark"] .MuiPopover-paper.MuiMenu-paper .MuiListItemText-primary,
+html[data-theme="dark"] .MuiPopover-paper.MuiMenu-paper .MuiListItemIcon-root,
+html[data-theme="dark"] .MuiPopover-paper.MuiMenu-paper .MuiSvgIcon-root {
+    color: var(--nova-avatar-menu-text, inherit);
 }
 
 html[data-theme="dark"] .MuiMenu-paper .MuiButtonBase-root {
@@ -382,16 +407,25 @@ html[data-theme="dark"] .MuiListItemButton-root {
         color 0.25s var(--nova-ease);
 }
 
-html[data-theme="dark"] .MuiListItemButton-root:hover,
-html[data-theme="dark"] .MuiMenu-paper .MuiButtonBase-root:hover {
+html[data-theme="dark"] .MuiListItemButton-root:hover {
     background: rgb(var(--nova-accent-rgb)) !important;
     color: #121212;
 }
 
+/* Avatar menu hover changes text and icons without a background highlight. */
+html[data-theme="dark"] .MuiPopover-paper.MuiMenu-paper .MuiMenuItem-root:hover {
+    background: transparent !important;
+    color: var(--nova-avatar-menu-hover, inherit);
+}
+
+html[data-theme="dark"] .MuiPopover-paper.MuiMenu-paper .MuiMenuItem-root:hover .MuiListItemText-primary,
+html[data-theme="dark"] .MuiPopover-paper.MuiMenu-paper .MuiMenuItem-root:hover .MuiListItemIcon-root,
+html[data-theme="dark"] .MuiPopover-paper.MuiMenu-paper .MuiMenuItem-root:hover .MuiSvgIcon-root {
+    color: var(--nova-avatar-menu-hover, inherit) !important;
+}
+
 html[data-theme="dark"] .MuiListItemButton-root:hover .MuiSvgIcon-root,
-html[data-theme="dark"] .MuiListItemButton-root.Mui-selected .MuiSvgIcon-root,
-html[data-theme="dark"] .MuiMenu-paper .MuiButtonBase-root:hover .MuiSvgIcon-root,
-html[data-theme="dark"] .MuiMenu-paper .MuiButtonBase-root:hover .MuiSvgIcon-root {
+html[data-theme="dark"] .MuiListItemButton-root.Mui-selected .MuiSvgIcon-root {
     color: #121212 !important;
 }
 
