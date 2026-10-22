@@ -63,7 +63,7 @@
         }
 
         if (
-            forgot.previousElementSibling === login &&
+            forgot.previousElementSibling === form &&
             forgot.classList.contains("nova-forgot-inside-login")
         ) {
             return;
@@ -77,7 +77,7 @@
         forgot.removeAttribute("style");
         forgot.type = "button";
 
-        login.insertAdjacentElement("afterend", forgot);
+        form.insertAdjacentElement("afterend", forgot);
     }
 
     function installResetPage() {
