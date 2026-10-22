@@ -66,14 +66,17 @@ curl -fL --retry 3 "$RELEASE_URL" -o "$ARCHIVE"
 echo
 echo "===== 2. FETCH CURRENT INSTALLATION SCRIPTS ====="
 CURRENT_INSTALLER="${TEMP_DIR}/installer/nova-installer.sh"
+CURRENT_UPDATER="${TEMP_DIR}/installer/nova-updater.sh"
 CURRENT_HOOK_DIR="${TEMP_DIR}/docker"
 mkdir -p "${TEMP_DIR}/installer"
 mkdir -p "$CURRENT_HOOK_DIR"
 
 curl -fsSL "${RAW_BASE}/scripts/installer/nova-installer.sh" -o "$CURRENT_INSTALLER"
+curl -fsSL "${RAW_BASE}/scripts/installer/nova-updater.sh" -o "$CURRENT_UPDATER"
 curl -fsSL "${RAW_BASE}/scripts/docker/nova-init.sh" -o "${CURRENT_HOOK_DIR}/nova-init.sh"
 
 bash -n "$CURRENT_INSTALLER"
+bash -n "$CURRENT_UPDATER"
 bash -n "${CURRENT_HOOK_DIR}/nova-init.sh"
 
 expected_hook_sha256="$(sed -n 's/^[[:space:]]*local expected_sha256="\([0-9a-f]\{64\}\)"/\1/p' "$CURRENT_INSTALLER")"
@@ -122,5 +125,85 @@ echo "CSS SHA256: $active_hash"
 echo "Persistent and active Nova CSS match."
 
 echo
+echo
+echo "===== 8. UPDATE HOST INSTALLATION SCRIPTS ====="
+
+SCRIPT_BACKUP_DIR="${TEMP_DIR}/script-backups"
+mkdir -p "$SCRIPT_BACKUP_DIR"
+
+UPDATER_TARGET="${SCRIPT_DIR}/nova-updater.sh"
+INSTALLER_STAGE=""
+UPDATER_STAGE=""
+
+cleanup_script_stages() {
+    if [[ -n "$INSTALLER_STAGE" ]]; then
+        rm -f -- "$INSTALLER_STAGE"
+    fi
+    if [[ -n "$UPDATER_STAGE" ]]; then
+        rm -f -- "$UPDATER_STAGE"
+    fi
+}
+
+restore_nova_scripts() {
+    local failed=0
+
+    if ! cp -p -- "$SCRIPT_BACKUP_DIR/nova-installer.sh" "$INSTALLER"; then
+        echo "CRITICAL: Nova installer rollback failed." >&2
+        failed=1
+    fi
+
+    if ! cp -p -- "$SCRIPT_BACKUP_DIR/nova-updater.sh" "$UPDATER_TARGET"; then
+        echo "CRITICAL: Nova updater rollback failed." >&2
+        failed=1
+    fi
+
+    if ! cmp -s "$SCRIPT_BACKUP_DIR/nova-installer.sh" "$INSTALLER"; then
+        echo "CRITICAL: Nova installer rollback verification failed." >&2
+        failed=1
+    fi
+
+    if ! cmp -s "$SCRIPT_BACKUP_DIR/nova-updater.sh" "$UPDATER_TARGET"; then
+        echo "CRITICAL: Nova updater rollback verification failed." >&2
+        failed=1
+    fi
+
+    cleanup_script_stages
+    return "$failed"
+}
+
+cp -p -- "$INSTALLER" "$SCRIPT_BACKUP_DIR/nova-installer.sh"
+cp -p -- "$UPDATER_TARGET" "$SCRIPT_BACKUP_DIR/nova-updater.sh"
+
+INSTALLER_STAGE="$(mktemp "${SCRIPT_DIR}/.nova-installer.XXXXXXXX")"
+UPDATER_STAGE="$(mktemp "${SCRIPT_DIR}/.nova-updater.XXXXXXXX")"
+
+if ! install -m 755 "$CURRENT_INSTALLER" "$INSTALLER_STAGE" ||
+   ! install -m 755 "$CURRENT_UPDATER" "$UPDATER_STAGE" ||
+   ! cmp -s "$CURRENT_INSTALLER" "$INSTALLER_STAGE" ||
+   ! cmp -s "$CURRENT_UPDATER" "$UPDATER_STAGE" ||
+   ! bash -n "$INSTALLER_STAGE" ||
+   ! bash -n "$UPDATER_STAGE"; then
+    cleanup_script_stages
+    echo "ERROR: Nova script staging failed." >&2
+    exit 1
+fi
+
+if ! mv -f -- "$INSTALLER_STAGE" "$INSTALLER" ||
+   ! mv -f -- "$UPDATER_STAGE" "$UPDATER_TARGET" ||
+   ! cmp -s "$CURRENT_INSTALLER" "$INSTALLER" ||
+   ! cmp -s "$CURRENT_UPDATER" "$UPDATER_TARGET"; then
+    echo "ERROR: Nova script update failed; restoring previous versions." >&2
+    if ! restore_nova_scripts; then
+        echo "CRITICAL: Manual recovery of Nova host scripts required." >&2
+    fi
+    exit 1
+fi
+
+INSTALLER_STAGE=""
+UPDATER_STAGE=""
+
+echo "OK: Host installer and updater updated and verified."
+echo
+
 echo "Jellyfin Nova update completed."
 echo "Refresh the browser with Ctrl+Shift+R."
