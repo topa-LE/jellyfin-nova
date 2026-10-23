@@ -13,8 +13,7 @@
 
 ![Themes](https://img.shields.io/badge/Themes-3_Variants-8b5cf6?style=flat-square) ![Spotlight](https://img.shields.io/badge/Spotlight-Integrated-3b82f6?style=flat-square) ![Docker](https://img.shields.io/badge/Docker-Persistent-0ea5e9?style=flat-square) ![Fonts](https://img.shields.io/badge/Fonts-Local-22c55e?style=flat-square)
 
-> [!NOTE]
-> **Development Preview** — Jellyfin Nova is under active development.
+<img src="screenshots/jellyfin-nova-ai-generated-banner.jpg" alt="Jellyfin Nova AI-generated promotional banner" width="100%">
 
 </div>
 
