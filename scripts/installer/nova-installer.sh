@@ -661,30 +661,51 @@ remove_nova_docker_package() {
     manifest="$(mktemp)" || return 1
 
     if ! python3 - "$archive" > "$manifest" <<'NOVA_DOCKER_MANIFEST'
+import json
 import pathlib
 import sys
 import tarfile
 
-with tarfile.open(sys.argv[1], "r:gz") as tar:
-    members = tar.getmembers()
-    files = [member for member in members if member.isfile()]
-    names = [member.name.removeprefix("./") for member in files]
+with tarfile.open(sys.argv[1], "r:gz") as archive:
+    names = archive.getnames()
+    manifest_name = (
+        "./nova-manifest.json"
+        if "./nova-manifest.json" in names
+        else "nova-manifest.json"
+    )
 
-    if len(names) != 30 or len(set(names)) != 30:
-        raise SystemExit("Unexpected Nova package manifest")
+    with archive.extractfile(manifest_name) as stream:
+        manifest = json.load(stream)
 
-    if any(
-        not name
-        or pathlib.PurePosixPath(name).is_absolute()
-        or ".." in pathlib.PurePosixPath(name).parts
-        for name in names
+    if (
+        not isinstance(manifest, dict)
+        or manifest.get("format") != "jellyfin-nova-package"
+        or manifest.get("version") != 1
+        or not isinstance(manifest.get("files"), list)
     ):
-        raise SystemExit("Unsafe Nova package path")
+        raise SystemExit("Invalid Nova package manifest")
 
-    if any(not (member.isfile() or member.isdir()) for member in members):
-        raise SystemExit("Unsupported Nova package member")
+    paths = [entry["path"] for entry in manifest["files"]]
+    paths.append("nova-manifest.json")
 
-    for name in names:
+    if len(paths) != len(set(paths)):
+        raise SystemExit("Duplicate Nova manifest path")
+
+    for name in paths:
+        relative = pathlib.PurePosixPath(name)
+
+        if (
+            not name
+            or relative.is_absolute()
+            or ".." in relative.parts
+            or any(part in ("", ".", "..") for part in name.split("/"))
+            or chr(92) in name
+            or "\\n" in name
+            or "\\r" in name
+        ):
+            raise SystemExit("Unsafe Nova manifest path")
+
+    for name in paths:
         print(name)
 NOVA_DOCKER_MANIFEST
     then
@@ -750,30 +771,53 @@ remove_nova_docker_persistent_package() {
     manifest="$(mktemp)" || return 1
 
     if ! python3 - "$archive" > "$manifest" <<'NOVA_PERSISTENT_MANIFEST'
+import json
 import pathlib
 import sys
 import tarfile
 
-with tarfile.open(sys.argv[1], "r:gz") as tar:
-    members = tar.getmembers()
-    files = [member for member in members if member.isfile()]
-    names = [member.name.removeprefix("./") for member in files]
+with tarfile.open(sys.argv[1], "r:gz") as archive:
+    names = archive.getnames()
+    manifest_name = (
+        "./nova-manifest.json"
+        if "./nova-manifest.json" in names
+        else "nova-manifest.json"
+    )
 
-    if len(names) != 30 or len(set(names)) != 30:
-        raise SystemExit("Unexpected Nova package manifest")
+    with archive.extractfile(manifest_name) as stream:
+        manifest = json.load(stream)
 
-    if any(
-        not name
-        or pathlib.PurePosixPath(name).is_absolute()
-        or ".." in pathlib.PurePosixPath(name).parts
-        for name in names
+    if (
+        not isinstance(manifest, dict)
+        or manifest.get("format") != "jellyfin-nova-package"
+        or type(manifest.get("version")) is not int
+        or manifest["version"] != 1
+        or not isinstance(manifest.get("files"), list)
     ):
-        raise SystemExit("Unsafe Nova package path")
+        raise SystemExit("Invalid Nova package manifest")
 
-    if any(not (member.isfile() or member.isdir()) for member in members):
-        raise SystemExit("Unsupported Nova package member")
+    paths = [entry["path"] for entry in manifest["files"]]
+    paths.append("nova-manifest.json")
 
-    for name in names:
+    if len(paths) != len(set(paths)):
+        raise SystemExit("Duplicate Nova manifest path")
+
+    for name in paths:
+        if not isinstance(name, str) or not name:
+            raise SystemExit("Invalid Nova manifest path")
+
+        relative = pathlib.PurePosixPath(name)
+
+        if (
+            relative.is_absolute()
+            or any(part in ("", ".", "..") for part in name.split("/"))
+            or chr(92) in name
+            or "\\n" in name
+            or "\\r" in name
+        ):
+            raise SystemExit("Unsafe Nova manifest path")
+
+    for name in paths:
         print(name)
 NOVA_PERSISTENT_MANIFEST
     then
@@ -1093,6 +1137,8 @@ install_nova_package() {
     [[ -d "$web_dir" ]] || return 1
 
     python3 - "$archive" "$nova_dir" <<'PYTHON_NOVA_PACKAGE'
+import hashlib
+import json
 import pathlib
 import shutil
 import sys
@@ -1154,8 +1200,86 @@ with tarfile.open(archive_path, "r:gz") as archive:
         if name.startswith("fonts/") and name.endswith(".woff2")
     ]
 
-    if len(files) != 33 or len(fonts) != 23 or not required.issubset(names):
-        raise SystemExit("Incomplete Nova package")
+    manifest_name = "nova-manifest.json"
+
+    if manifest_name not in names:
+        raise SystemExit("Nova package manifest missing")
+
+    manifest_member = next(
+        member for member, relative in files
+        if relative.as_posix() == manifest_name
+    )
+
+    with archive.extractfile(manifest_member) as stream:
+        if stream is None:
+            raise SystemExit("Unreadable Nova package manifest")
+        manifest = json.load(stream)
+
+    if (
+        not isinstance(manifest, dict)
+        or manifest.get("format") != "jellyfin-nova-package"
+        or manifest.get("version") != 1
+        or not isinstance(manifest.get("files"), list)
+    ):
+        raise SystemExit("Invalid Nova package manifest")
+
+    expected = {}
+
+    for entry in manifest["files"]:
+        if not isinstance(entry, dict):
+            raise SystemExit("Invalid Nova manifest entry")
+
+        name = entry.get("path")
+        size = entry.get("size")
+        digest = entry.get("sha256")
+
+        if (
+            not isinstance(name, str)
+            or not name
+            or pathlib.PurePosixPath(name).is_absolute()
+            or any(part in ("", ".", "..") for part in name.split("/"))
+            or chr(92) in name
+            or "\\n" in name
+            or "\\r" in name
+            or name == manifest_name
+            or name in expected
+            or type(size) is not int
+            or size < 0
+            or not isinstance(digest, str)
+            or len(digest) != 64
+            or any(char not in "0123456789abcdef" for char in digest)
+        ):
+            raise SystemExit("Unsafe or invalid Nova manifest entry")
+
+        expected[name] = (size, digest)
+
+    if set(expected) != names - {manifest_name}:
+        raise SystemExit("Nova manifest file list mismatch")
+
+    if not required.issubset(expected):
+        raise SystemExit("Required Nova package files missing")
+
+    for member, relative in files:
+        name = relative.as_posix()
+
+        if name == manifest_name:
+            continue
+
+        expected_size, expected_digest = expected[name]
+
+        if member.size != expected_size:
+            raise SystemExit(f"Nova file size mismatch: {name}")
+
+        with archive.extractfile(member) as stream:
+            if stream is None:
+                raise SystemExit(f"Unreadable Nova package file: {name}")
+
+            digest = hashlib.file_digest(stream, "sha256").hexdigest()
+
+        if digest != expected_digest:
+            raise SystemExit(f"Nova SHA256 mismatch: {name}")
+
+    print(f"OK: Nova manifest verified ({len(expected)} files)")
 
     with tempfile.TemporaryDirectory(
         prefix=".nova-stage-",
@@ -1697,25 +1821,16 @@ uninstall_nova() {
         fi
     fi
 
-    python3 - "$nova_package" <<'NOVA_PREFLIGHT' || exit_error "Invalid Nova package archive."
-import pathlib, sys, tarfile
+    # Validate the complete package using the existing manifest-aware installer.
+    local nova_preflight_dir
+    nova_preflight_dir="$(mktemp -d)" || exit_error "Could not create Nova validation directory."
 
-archive = pathlib.Path(sys.argv[1])
-with tarfile.open(archive, "r:gz") as tar:
-    members = tar.getmembers()
-    files = [m for m in members if m.isfile()]
-    names = [m.name.removeprefix("./") for m in files]
-    if len(names) != 30 or len(set(names)) != 30:
-        raise SystemExit("Unexpected Nova package manifest")
-    if any(
-        pathlib.PurePosixPath(name).is_absolute()
-        or ".." in pathlib.PurePosixPath(name).parts
-        for name in names
-    ):
-        raise SystemExit("Unsafe Nova package path")
-    if any(not (m.isfile() or m.isdir()) for m in members):
-        raise SystemExit("Unsupported Nova package member")
-NOVA_PREFLIGHT
+    if ! install_nova_package "$nova_package" "$nova_preflight_dir"; then
+        rm -rf -- "$nova_preflight_dir"
+        exit_error "Invalid Nova package archive."
+    fi
+
+    rm -rf -- "$nova_preflight_dir"
 
     # Remove Nova CSS
     step "Removing Nova CSS..."
@@ -1784,34 +1899,75 @@ NOVA_PREFLIGHT
         fi
     else
         python3 - "$nova_package" "$web_dir" <<'NOVA_CLEANUP' || exit_error "Nova package cleanup failed."
-import pathlib, sys, tarfile
+import json
+import pathlib
+import sys
+import tarfile
 
-archive = pathlib.Path(sys.argv[1])
+archive_path = pathlib.Path(sys.argv[1])
 root = pathlib.Path(sys.argv[2]) / "nova"
 
 if root.is_symlink():
     raise SystemExit("Refusing Nova symlink")
 
+if root.exists() and not root.is_dir():
+    raise SystemExit("Nova target is not a directory")
+
+with tarfile.open(archive_path, "r:gz") as archive:
+    member = archive.getmember("./nova-manifest.json") if "./nova-manifest.json" in archive.getnames() else archive.getmember("nova-manifest.json")
+
+    with archive.extractfile(member) as stream:
+        manifest = json.load(stream)
+
+names = [entry["path"] for entry in manifest["files"]]
+names.append("nova-manifest.json")
+
+if len(names) != len(set(names)):
+    raise SystemExit("Duplicate Nova manifest path")
+
+paths = []
+
+for name in names:
+    relative = pathlib.PurePosixPath(name)
+
+    if (
+        not name
+        or relative.is_absolute()
+        or ".." in relative.parts
+        or any(part in ("", ".", "..") for part in name.split("/"))
+        or chr(92) in name
+        or "\n" in name
+        or "\r" in name
+    ):
+        raise SystemExit("Unsafe Nova manifest path")
+
+    target = root.joinpath(*relative.parts)
+
+    if any(
+        parent.is_symlink()
+        for parent in target.parents
+        if parent == root or root in parent.parents
+    ):
+        raise SystemExit("Unsafe symlink parent")
+
+    paths.append(target)
+
 if root.is_dir():
-    with tarfile.open(archive, "r:gz") as tar:
-        names = [m.name for m in tar if m.isfile()]
-    if len(names) != 30 or len(set(names)) != 30:
-        raise SystemExit("Unexpected package manifest")
-    paths = []
-    for name in names:
-        rel = pathlib.PurePosixPath(name)
-        if rel.is_absolute() or ".." in rel.parts:
-            raise SystemExit("Unsafe package path")
-        path = root.joinpath(*rel.parts)
-        if any(parent.is_symlink() for parent in path.parents if parent != root):
-            raise SystemExit("Unsafe symlink parent")
-        paths.append(path)
-    for path in paths:
-        if path.is_file() or path.is_symlink():
-            path.unlink()
+    for target in paths:
+        if target.is_file() or target.is_symlink():
+            target.unlink()
+
+    directories = {
+        parent
+        for target in paths
+        for parent in target.parents
+        if parent == root or root in parent.parents
+    }
+
     for directory in sorted(
-        {parent for path in paths for parent in path.parents if parent == root or root in parent.parents},
-        key=lambda x: len(x.parts), reverse=True
+        directories,
+        key=lambda item: len(item.parts),
+        reverse=True,
     ):
         if directory.is_dir() and not directory.is_symlink():
             try:

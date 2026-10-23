@@ -12,9 +12,10 @@
  * Does not modify source files.
  */
 
-import { readFile, writeFile, mkdir, copyFile, rm, rename, lstat } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, copyFile, rm, rename, lstat, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { resolve, dirname, relative, join, sep } from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -139,6 +140,66 @@ async function buildCss(path) {
     return [...importedModules, css].join('\n');
 }
 
+async function createPackageManifest(directory) {
+    const files = [];
+
+    async function visit(current) {
+        const entries = await readdir(current, { withFileTypes: true });
+
+        for (const entry of entries) {
+            const absolute = join(current, entry.name);
+
+            if (entry.isSymbolicLink()) {
+                fail(`Symlink in Nova package: ${absolute}`);
+            }
+
+            if (entry.isDirectory()) {
+                await visit(absolute);
+                continue;
+            }
+
+            if (!entry.isFile()) {
+                fail(`Unsupported Nova package entry: ${absolute}`);
+            }
+
+            const name = relative(directory, absolute).split(sep).join('/');
+
+            if (name === 'nova-manifest.json') {
+                fail('Reserved Nova manifest filename already exists.');
+            }
+
+            const content = await readFile(absolute);
+
+            files.push({
+                path: name,
+                size: content.length,
+                sha256: createHash('sha256').update(content).digest('hex')
+            });
+        }
+    }
+
+    await visit(directory);
+    files.sort((a, b) => a.path.localeCompare(b.path, 'en'));
+
+    if (!files.some(file => file.path === 'nova.css')) {
+        fail('Nova package is missing its main stylesheet.');
+    }
+
+    const manifest = {
+        format: 'jellyfin-nova-package',
+        version: 1,
+        files
+    };
+
+    await writeFile(
+        join(directory, 'nova-manifest.json'),
+        JSON.stringify(manifest, null, 2) + '\n',
+        'utf8'
+    );
+
+    console.log(`Package manifest: ${files.length} files`);
+}
+
 async function main() {
     for (const path of [stagingRoot, backupRoot]) {
         if (existsSync(path)) {
@@ -253,6 +314,7 @@ async function main() {
                 join(loginRoot, name)
             );
         }
+        await createPackageManifest(stagingRoot);
     } catch (error) {
         await rm(stagingRoot, { recursive: true, force: true });
         throw error;
