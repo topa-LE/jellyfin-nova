@@ -62,11 +62,12 @@ jobs:
           if gh release view nova-latest >/dev/null 2>&1; then
             gh release upload nova-latest \
               jellyfin-nova-package.tar.gz nova-commit.txt --clobber
+            gh release edit nova-latest --prerelease=false --latest
           else
             gh release create nova-latest \
               jellyfin-nova-package.tar.gz nova-commit.txt \
               --target "$GITHUB_SHA" \
-              --title "Jellyfin Nova - Latest Development Build" \
+              --title "Jellyfin Nova - Latest Build" \
               --notes "Automatically generated from the latest successful main build." \
-              --prerelease
+              --latest
           fi
