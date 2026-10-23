@@ -524,6 +524,25 @@ div[data-role="controlgroup"] a[data-role="button"] {
     color: rgba(255, 255, 255, 0.9) !important;
 }
 
+/* Nova Dark – graphite settings save button. */
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"])
+.homeScreenSettingsContainer .button-submit {
+    background: linear-gradient(
+        180deg,
+        #50616c 0%,
+        #43545e 25%,
+        #33424b 50%,
+        #25313a 75%,
+        #19232b 100%
+    ) !important;
+    border: 2px solid #050607 !important;
+    border-radius: 8px !important;
+    box-shadow:
+        0 5px 16px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.45) !important;
+}
+
 /* Form Inputs */
 #homeScreenPreferencesPage,
 #languagePreferencesPage {
@@ -536,6 +555,7 @@ div[data-role="controlgroup"] a[data-role="button"] {
     & .button-submit {
         width: 97%;
         align-self: center !important;
+        border-radius: 8px !important;
     }
 }
 
@@ -555,6 +575,18 @@ div[data-role="controlgroup"] a[data-role="button"] {
 
 .emby-select {
     padding: .35em 1.9em .35em .35em;
+}
+
+/* Nova Dark – graphite settings dropdowns. */
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"])
+.homeScreenSettingsContainer .emby-select {
+    background: linear-gradient(
+        160deg,
+        #34434b 0%,
+        #202b32 100%
+    ) !important;
+    border: 1px solid #080b0f !important;
+    border-radius: 10px !important;
 }
 
 .selectArrow {
@@ -647,11 +679,13 @@ input[type="checkbox"]:focus+.checkboxOutline {
 .homeScreenSettingsContainer .perLibrarySettings,
 .homeScreenSettingsContainer .verticalSection-extrabottompadding,
 .settingsContainer .MuiStack-root .MuiStack-root {
-    padding: 16px;
-    background-color: rgba(var(--nova-glass-tint), 0.69);
-    border-radius: 32px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border: solid 1px rgba(245, 245, 247, 0.2) !important;
+    padding: 24px;
+    background: var(--nova-settings-glass-background, rgba(var(--nova-glass-tint), 0.69)) !important;
+    border-radius: 8px !important;
+    box-shadow: var(--nova-settings-glass-shadow, 0 4px 30px rgba(0, 0, 0, 0.1)) !important;
+    border: 1px solid var(--nova-settings-glass-border, rgba(245, 245, 247, 0.2)) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .settingsContainer .MuiStack-root .MuiStack-root .MuiStack-root {

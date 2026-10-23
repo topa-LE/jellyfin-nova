@@ -29,6 +29,20 @@
     --nova-text-muted: #a7aaae;
     --nova-border: #3c4148;
 
+    /* Graphite Glass – shared settings containers. */
+    --nova-settings-glass-border: #181818;
+    --nova-settings-glass-background: linear-gradient(
+        150deg,
+        rgba(39, 52, 59, 0.80) 0%,
+        rgba(32, 43, 50, 0.80) 30%,
+        rgba(25, 34, 41, 0.80) 65%,
+        rgba(17, 25, 31, 0.80) 100%
+    );
+    --nova-settings-glass-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.55),
+        0 8px 22px rgba(0, 0, 0, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+
     /* Header and avatar menu palette. */
     --nova-header-text: #d6dde3;
     --nova-header-hover: #efb783;
