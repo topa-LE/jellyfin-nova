@@ -18,7 +18,7 @@ const cssUrl = new URL('dist/nova.css', root);
 const css = await readFile(cssUrl, 'utf8');
 
 test('Nova distribution contains the complete CSS', () => {
-    assert.match(css, /--nova-accent:\s*#dc9b66/);
+    assert.match(css, /--nova-accent:\s*#f7c59c/);
     assert.match(css, /--nova-font-family:/);
     assert.match(css, /@font-face/);
     assert.doesNotMatch(css, /@import\b/i);

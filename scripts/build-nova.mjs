@@ -40,7 +40,8 @@ const loginFiles = [
 ];
 
 const navigationFiles = [
-    'home-loader.js'
+    'home-loader.js',
+    'switcher-loader.js'
 ];
 
 const optionalModules = [

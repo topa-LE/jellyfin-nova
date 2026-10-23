@@ -19,6 +19,7 @@
 @import url("./core/base.css");
 @import url("./core/typography.css");
 @import url("./core/layout.css");
+@import url("./core/switchers.css");
 @import url("./core/components.css");
 @import url("./core/corners.css");
 @import url("./core/player.css");

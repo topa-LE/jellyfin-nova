@@ -1190,6 +1190,7 @@ with tarfile.open(archive_path, "r:gz") as archive:
         "assets/jellyfin-logo.png",
         "login/login-loader.js",
         "navigation/home-loader.js",
+        "navigation/switcher-loader.js",
         "plugins/nova-je.css",
         "plugins/nova-lite.css",
         "plugins/nova-mbe.css",
@@ -1379,13 +1380,15 @@ with open(path, "r", encoding="utf-8") as handle:
 html = re.sub(r"<script[^>]*\bdata-nova-spotlight\b[^>]*></script>", "", html, flags=re.I)
 html = re.sub(r"<script[^>]*\bdata-nova-login\b[^>]*></script>", "", html, flags=re.I)
 html = re.sub(r"<script[^>]*\bdata-nova-home\b[^>]*></script>", "", html, flags=re.I)
+html = re.sub(r"<script[^>]*\bdata-nova-switcher\b[^>]*></script>", "", html, flags=re.I)
 if action == "install":
     tag = "<script src=\"nova/spotlight/spotlight-loader.js\" data-nova-spotlight></script>"
     login_tag = "<script src=\"nova/login/login-loader.js\" data-nova-login></script>"
     home_tag = "<script src=\"nova/navigation/home-loader.js\" data-nova-home></script>"
+    switcher_tag = "<script src=\"nova/navigation/switcher-loader.js\" data-nova-switcher></script>"
     if "</body>" not in html.lower():
         raise SystemExit("index.html has no closing body tag")
-    html = re.sub(r"</body>", tag + login_tag + home_tag + "</body>", html, count=1, flags=re.I)
+    html = re.sub(r"</body>", tag + login_tag + home_tag + switcher_tag + "</body>", html, count=1, flags=re.I)
 fd, temp_path = tempfile.mkstemp(dir=os.path.dirname(path), prefix=".nova-index-", text=True)
 try:
     with os.fdopen(fd, "w", encoding="utf-8") as handle:

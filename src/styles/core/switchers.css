@@ -1,0 +1,112 @@
+/* ============================================================
+ * Created with ♥ by topa-LE
+ * ============================================================ */
+
+/*
+ * Jellyfin Nova – Theme and font switchers
+ *
+ * Shared Graphite Glass appearance for all Nova themes.
+ */
+
+html[data-theme="dark"] header.MuiAppBar-root .nova-switcher {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    padding: 8px;
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: #ffffff !important;
+    box-shadow: none;
+    cursor: pointer;
+    vertical-align: middle;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+html[data-theme="dark"] header.MuiAppBar-root .nova-switcher:hover,
+html[data-theme="dark"] header.MuiAppBar-root .nova-switcher:focus-visible {
+    color: rgb(247 197 156 / 78%) !important;
+}
+
+html[data-theme="dark"] header.MuiAppBar-root .nova-switcher svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+html[data-theme="dark"] header.MuiAppBar-root .nova-font-switcher span {
+    font-family: "Titillium Web", sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.nova-switcher-menu {
+    position: fixed;
+    z-index: 99999;
+    box-sizing: border-box;
+    width: 150px;
+    min-width: 150px;
+    padding: 6px;
+    border: 1px solid #181818;
+    border-radius: 8px;
+    background: rgba(25, 33, 37, 0.65);
+    color: #d6dde3;
+    -webkit-backdrop-filter: blur(18px) saturate(125%);
+    backdrop-filter: blur(18px) saturate(125%);
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.38),
+        0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+#nova-font-menu {
+    width: 190px;
+    min-width: 190px;
+}
+
+.nova-switcher-menu[hidden] {
+    display: none !important;
+}
+
+.nova-switcher-menu button {
+    display: block;
+    width: 100%;
+    padding: 9px 10px;
+    margin: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.nova-switcher-menu button:hover,
+.nova-switcher-menu button:focus-visible {
+    background: #f7c59c;
+    color: #121212;
+}
+
+.nova-switcher-menu button[aria-checked="true"] {
+    color: #f7c59c;
+    font-weight: 700;
+}
+
+.nova-switcher-menu button[aria-checked="true"]:hover,
+.nova-switcher-menu button[aria-checked="true"]:focus-visible {
+    color: #121212;
+}
