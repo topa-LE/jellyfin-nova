@@ -35,8 +35,8 @@
 
 :root {
     --nova-font-family: "Titillium Web", system-ui, sans-serif;
-    --nova-accent: #dc9b66;
-    --nova-accent-rgb: 220, 155, 102;
+    --nova-accent: #f7c59c;
+    --nova-accent-rgb: 247, 197, 156;
 
     --nova-radius: 12px;
 
