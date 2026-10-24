@@ -63,8 +63,8 @@ html[data-theme="dark"] header.MuiAppBar-root .nova-font-switcher span {
     position: fixed;
     z-index: 99999;
     box-sizing: border-box;
-    width: 150px;
-    min-width: 150px;
+    width: 120px;
+    min-width: 120px;
     padding: 6px;
     border: 1px solid #181818;
     border-radius: 8px;
@@ -78,8 +78,8 @@ html[data-theme="dark"] header.MuiAppBar-root .nova-font-switcher span {
 }
 
 #nova-font-menu {
-    width: 190px;
-    min-width: 190px;
+    width: 165px;
+    min-width: 165px;
 }
 
 .nova-switcher-menu[hidden] {

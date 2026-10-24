@@ -192,7 +192,7 @@
         entry.updateSelection();
 
         const rect = button.getBoundingClientRect();
-        const menuWidth = entry.menu.id === "nova-font-menu" ? 190 : 150;
+        const menuWidth = entry.menu.id === "nova-font-menu" ? 165 : 120;
 
         entry.menu.style.top = `${rect.bottom + 8}px`;
         entry.menu.style.left =
@@ -213,12 +213,12 @@
 
         const container = syncButton.parentElement;
 
-        if (themeButton.parentElement !== container) {
-            container.append(themeButton);
-        }
-
-        if (fontButton.parentElement !== container) {
-            container.append(fontButton);
+        if (themeButton.parentElement !== container ||
+            fontButton.parentElement !== container ||
+            themeButton.nextElementSibling !== fontButton ||
+            fontButton.nextElementSibling !== syncButton) {
+            container.insertBefore(themeButton, syncButton);
+            container.insertBefore(fontButton, syncButton);
         }
     }
 
