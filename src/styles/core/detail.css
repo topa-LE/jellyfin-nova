@@ -27,6 +27,15 @@ html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]):has(.itemDetail
 
 
 
+/* Show only the primary movie title in the detail ribbon.
+ * Jellyfin may also render an originalTitle element, which otherwise
+ * duplicates the heading and expands the compact information ribbon.
+ * Movie metadata remains unchanged.
+ */
+#itemDetailPage .detailRibbon .nameContainer .itemName.originalTitle {
+    display: none !important;
+}
+
 /* Movie detail ribbon: title, metadata and frosted age-rating badge. */
 #itemDetailPage .detailRibbon .itemName {
     font-size: 31px !important;
