@@ -16,6 +16,7 @@
 html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .itemDetailPage .detailPageWrapperContainer {
     background-color: transparent !important;
     background-image: none !important;
+    margin-top: -70px !important;
 }
 
 html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]):has(.itemDetailPage:not(.hide)) .backdropImage.displayingBackdropImage {

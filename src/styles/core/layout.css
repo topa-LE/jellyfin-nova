@@ -683,10 +683,16 @@ html.nova-spotlight-visible[data-theme="dark"] .MuiAppBar-root+div[aria-hidden="
     position: static;
     margin-left: 32.5%;
     display: block;
-    filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.75));
-    -webkit-filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.75));
+    width: 600px !important;
+    max-width: 60vw !important;
+    height: 180px !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: left center !important;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.9)) !important;
+    -webkit-filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.9)) !important;
+    transform: translateY(-80px) !important;
     flex-shrink: 0;
-    background-position: 0 50%;
     margin-bottom: 2vh;
 }
 
