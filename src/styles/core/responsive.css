@@ -176,24 +176,10 @@
     padding: 4px !important;
 }
 
-/* Desktop layout & TV*/
+/* Desktop and TV: spacing for the circular movie play control. */
 .layout-desktop #itemDetailPage .btnPlay,
 .layout-tv #itemDetailPage .btnPlay {
     margin-right: 12px !important;
-    padding: .4em 1.4em .4em 1em !important;
-}
-
-.layout-desktop #itemDetailPage .btnPlay .detailButton-content::after,
-.layout-tv #itemDetailPage .btnPlay .detailButton-content::after {
-    content: "Play";
-    margin-left: 0.45em;
-    font-weight: 700;
-    font-size: 0.9em;
-}
-
-.layout-desktop #itemDetailPage:has(.btnReplay:not(.hide)) .btnPlay .detailButton-content::after,
-.layout-tv #itemDetailPage:has(.btnReplay:not(.hide)) .btnPlay .detailButton-content::after {
-    content: "Resume";
 }
 
 .layout-tv .detailImageContainer .card,
