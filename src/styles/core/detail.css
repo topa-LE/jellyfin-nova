@@ -12,6 +12,20 @@
 
 /* 10. ITEM DETAIL PAGE */
 
+/* Nova Dark movie details: sharp, subtle fanart over the global gradient. */
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) .itemDetailPage .detailPageWrapperContainer {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]):has(.itemDetailPage:not(.hide)) .backdropImage.displayingBackdropImage {
+    -webkit-filter: none !important;
+    filter: none !important;
+    opacity: 0.25 !important;
+}
+
+
+
 .mainDetailButtons {
     font-size: 120%;
 }
