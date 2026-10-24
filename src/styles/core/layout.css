@@ -194,8 +194,27 @@ html[data-theme="dark"] header.MuiAppBar-root .MuiStack-root:first-of-type {
     backdrop-filter: none !important;
 }
 
-html[data-theme="dark"] header.MuiAppBar-root .MuiToolbar-root:first-of-type .MuiButtonBase-root {
-    border-radius: 50px;
+html[data-theme="dark"] header.MuiAppBar-root
+.MuiToolbar-root .MuiStack-root a.MuiButton-root {
+    border: 1px solid transparent !important;
+    border-radius: 7px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+html[data-theme="dark"] header.MuiAppBar-root
+.MuiToolbar-root .MuiStack-root
+a.MuiButton-root.MuiButton-colorPrimary:not([href="#/"]) {
+    border: 1px solid #242424 !important;
+    border-radius: 7px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 3px 10px rgba(0, 0, 0, 0.18) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(115%) !important;
+    backdrop-filter: blur(18px) saturate(115%) !important;
 }
 
 html[data-theme="dark"] header.MuiAppBar-root .MuiButtonBase-root.MuiIconButton-root {
