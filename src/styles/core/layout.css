@@ -108,6 +108,12 @@ header.MuiAppBar-root>.MuiToolbar-root>.MuiStack-root:last-child .MuiButtonGroup
     padding: 5px !important;
 }
 
+/* Center movie counter and reset button vertically */
+html[data-theme="dark"] header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.MuiBox-root:has(> .MuiChip-root) {
+    display: flex !important;
+    align-items: center !important;
+}
+
 /* Filter count chip - Nova 3D glass */
 html[data-theme="dark"] header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.MuiBox-root>.MuiChip-root {
     box-sizing: border-box;
