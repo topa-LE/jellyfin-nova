@@ -1,0 +1,72 @@
+name: Update Bug Fixes Badge
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/fixes/*.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Count bug fix documentation files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          directory = Path("docs/fixes")
+          files = sorted(
+              path for path in directory.glob("*.md")
+              if path.is_file()
+          )
+
+          badge = {
+              "schemaVersion": 1,
+              "label": "Bug Fixes",
+              "message": str(len(files)),
+              "color": "22c55e"
+          }
+
+          output = Path(".github/badges/bug-fixes.json")
+          output.parent.mkdir(parents=True, exist_ok=True)
+          output.write_text(
+              json.dumps(badge, indent=2) + "\n",
+              encoding="utf-8"
+          )
+
+          print(f"Bug Fixes: {len(files)}")
+          for path in files:
+              print(f"  {path}")
+          PY
+
+      - name: Commit badge count if changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- .github/badges/bug-fixes.json
+
+          if git diff --cached --quiet; then
+            echo "Badge count is already current."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git commit -m "docs: update automatic bug fixes badge count"
+          git push
