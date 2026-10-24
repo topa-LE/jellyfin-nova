@@ -76,18 +76,14 @@ The screenshots above illustrate the original presentation problem and the corre
 ## Fix Reference
 
 <table width="837" style="width:837px;table-layout:fixed;">
-  <colgroup>
-    <col width="261" style="width:261px;">
-    <col width="576" style="width:576px;">
-  </colgroup>
-  <tr><th align="left">Item</th><th align="left">Details</th></tr>
-  <tr><td>Project</td><td>Jellyfin Nova</td></tr>
-  <tr><td>Category</td><td>Theme presentation bug</td></tr>
-  <tr><td>Component</td><td>Movie detail page / information ribbon</td></tr>
-  <tr><td>Status</td><td>Fixed in source</td></tr>
-  <tr><td>Source file</td><td><code>src/styles/core/detail.css</code></td></tr>
-  <tr><td>Fix commit</td><td><a href="https://github.com/topa-LE/jellyfin-nova/commit/136b002">136b002</a></td></tr>
-  <tr><td>Commit message</td><td><code>fix: hide duplicate original movie titles in detail ribbon</code></td></tr>
+<tr><th width="261" style="width:261px;" align="left">Item</th><th width="576" style="width:576px;" align="left">Details</th></tr>
+<tr><td width="261" style="width:261px;" align="left">Project</td><td width="576" style="width:576px;" align="left">Jellyfin Nova</td></tr>
+<tr><td width="261" style="width:261px;" align="left">Category</td><td width="576" style="width:576px;" align="left">Theme presentation bug</td></tr>
+<tr><td width="261" style="width:261px;" align="left">Component</td><td width="576" style="width:576px;" align="left">Movie detail page / information ribbon</td></tr>
+<tr><td width="261" style="width:261px;" align="left">Status</td><td width="576" style="width:576px;" align="left">Fixed in source</td></tr>
+<tr><td width="261" style="width:261px;" align="left">Source file</td><td width="576" style="width:576px;" align="left"><code>src/styles/core/detail.css</code></td></tr>
+<tr><td width="261" style="width:261px;" align="left">Fix commit</td><td width="576" style="width:576px;" align="left"><a href="https://github.com/topa-LE/jellyfin-nova/commit/136b002">136b002</a></td></tr>
+<tr><td width="261" style="width:261px;" align="left">Commit message</td><td width="576" style="width:576px;" align="left"><code>fix: hide duplicate original movie titles in detail ribbon</code></td></tr>
 </table>
 
 ## Important Distinction
