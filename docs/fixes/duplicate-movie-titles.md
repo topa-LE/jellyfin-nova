@@ -16,7 +16,7 @@ This resulted in two visible headings, unnecessary vertical spacing, and a disru
 
 ### Before — Duplicate Movie Titles
 
-<img src="images/duplicate-movie-title-before.png" width="837" alt="Original theme behavior showing duplicate movie titles in the detail ribbon">
+<img src="images/duplicate-movie-title-before.png" width="1012" alt="Original theme behavior showing duplicate movie titles in the detail ribbon">
 
 **Observed behavior:** The primary movie title and the additional original title appear together in the information ribbon. The second heading increases the height of the title area and pushes the movie information downward.
 
@@ -35,7 +35,7 @@ Jellyfin Nova now hides only that additional element within the movie detail rib
 
 ### After — Corrected Movie Detail Ribbon
 
-<img src="images/duplicate-movie-title-after.png" width="837" alt="Jellyfin Nova showing a single movie title and corrected detail ribbon layout">
+<img src="images/duplicate-movie-title-after.png" width="1012" alt="Jellyfin Nova showing a single movie title and corrected detail ribbon layout">
 
 **Corrected behavior:** Only the primary movie title is visible. The information ribbon retains its intended compact layout, with movie metadata and playback controls positioned correctly.
 
@@ -75,15 +75,15 @@ The screenshots above illustrate the original presentation problem and the corre
 
 ## Fix Reference
 
-<table width="837" style="width:837px;table-layout:fixed;">
-<tr><th width="261" style="width:261px;" align="left">Item</th><th width="576" style="width:576px;" align="left">Details</th></tr>
-<tr><td width="261" style="width:261px;" align="left">Project</td><td width="576" style="width:576px;" align="left">Jellyfin Nova</td></tr>
-<tr><td width="261" style="width:261px;" align="left">Category</td><td width="576" style="width:576px;" align="left">Theme presentation bug</td></tr>
-<tr><td width="261" style="width:261px;" align="left">Component</td><td width="576" style="width:576px;" align="left">Movie detail page / information ribbon</td></tr>
-<tr><td width="261" style="width:261px;" align="left">Status</td><td width="576" style="width:576px;" align="left">Fixed in source</td></tr>
-<tr><td width="261" style="width:261px;" align="left">Source file</td><td width="576" style="width:576px;" align="left"><code>src/styles/core/detail.css</code></td></tr>
-<tr><td width="261" style="width:261px;" align="left">Fix commit</td><td width="576" style="width:576px;" align="left"><a href="https://github.com/topa-LE/jellyfin-nova/commit/136b002">136b002</a></td></tr>
-<tr><td width="261" style="width:261px;" align="left">Commit message</td><td width="576" style="width:576px;" align="left"><code>fix: hide duplicate original movie titles in detail ribbon</code></td></tr>
+<table width="1012" style="width:1012px;table-layout:fixed;">
+<tr><th width="261" style="width:261px;" align="left">Item</th><th width="751" style="width:751px;" align="left">Details</th></tr>
+<tr><td width="261" style="width:261px;" align="left">Project</td><td width="751" style="width:751px;" align="left">Jellyfin Nova</td></tr>
+<tr><td width="261" style="width:261px;" align="left">Category</td><td width="751" style="width:751px;" align="left">Theme presentation bug</td></tr>
+<tr><td width="261" style="width:261px;" align="left">Component</td><td width="751" style="width:751px;" align="left">Movie detail page / information ribbon</td></tr>
+<tr><td width="261" style="width:261px;" align="left">Status</td><td width="751" style="width:751px;" align="left">Fixed in source</td></tr>
+<tr><td width="261" style="width:261px;" align="left">Source file</td><td width="751" style="width:751px;" align="left"><code>src/styles/core/detail.css</code></td></tr>
+<tr><td width="261" style="width:261px;" align="left">Fix commit</td><td width="751" style="width:751px;" align="left"><a href="https://github.com/topa-LE/jellyfin-nova/commit/136b002">136b002</a></td></tr>
+<tr><td width="261" style="width:261px;" align="left">Commit message</td><td width="751" style="width:751px;" align="left"><code>fix: hide duplicate original movie titles in detail ribbon</code></td></tr>
 </table>
 
 ## Important Distinction
