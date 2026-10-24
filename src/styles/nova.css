@@ -39,7 +39,7 @@
     --nova-accent: #f7c59c;
     --nova-accent-rgb: 247, 197, 156;
 
-    --nova-radius: 12px;
+    --nova-radius: 7px;
 
     --nova-ease: cubic-bezier(0.16, 1, 0.3, 1);
     --nova-ease-snappy: cubic-bezier(0.4, 0, 0.2, 1);
