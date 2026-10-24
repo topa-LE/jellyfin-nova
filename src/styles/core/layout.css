@@ -108,7 +108,7 @@ header.MuiAppBar-root>.MuiToolbar-root>.MuiStack-root:last-child .MuiButtonGroup
     padding: 5px !important;
 }
 
-/* Filter count chip */
+/* Filter count chip - Nova 3D glass */
 html[data-theme="dark"] header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.MuiBox-root>.MuiChip-root {
     box-sizing: border-box;
     display: inline-flex;
@@ -121,28 +121,32 @@ html[data-theme="dark"] header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.Mui
     min-height: 42px;
     padding: 0;
     margin: 0;
-    border: 1px solid #f7c59c;
+    border: 2px solid #121212 !important;
     border-radius: 50% !important;
-    background: rgba(32, 40, 45, 0.94) !important;
-    color: #f7c59c;
+    background: radial-gradient(
+        circle at 35% 25%,
+        #364047 0%,
+        #252d32 48%,
+        #171d21 100%
+    ) !important;
+    color: #f7c59c !important;
     font-family: inherit;
     font-size: 17px;
     font-weight: 600;
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.14),
-        0 3px 12px rgba(0, 0, 0, 0.28);
+        inset 0 2px 3px rgba(255, 255, 255, 0.13),
+        inset 0 -3px 5px rgba(0, 0, 0, 0.38),
+        0 3px 9px rgba(0, 0, 0, 0.32) !important;
     transition: background-color 0.25s var(--nova-ease), color 0.25s var(--nova-ease);
 }
 
 html[data-theme="dark"] header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.MuiBox-root>.MuiChip-root .MuiChip-label {
-    padding: 0;
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: 1;
+    padding: 0 !important;
+    color: #f7c59c !important;
+    font-family: inherit !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
 }
 
 /* Movie filter heading inherits the selected Nova font */
