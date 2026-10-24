@@ -6,10 +6,10 @@
 
 ### ✨ A modern visual experience for Jellyfin
 
-[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/topa-LE/jellyfin-nova?style=for-the-badge)](https://github.com/topa-LE/jellyfin-nova/releases/latest)
-[![Usage](https://img.shields.io/jsdelivr/gh/hm/topa-LE/jellyfin-nova?style=for-the-badge&label=Usage&logo=none)](https://www.jsdelivr.com/package/gh/topa-LE/jellyfin-nova)
-[![Downloads](https://img.shields.io/github/downloads/topa-LE/jellyfin-nova/total?style=for-the-badge)](https://github.com/topa-LE/jellyfin-nova/releases/latest)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/topa-LE/jellyfin-nova?style=flat)](https://github.com/topa-LE/jellyfin-nova/releases/latest)
+[![Usage](https://img.shields.io/jsdelivr/gh/hm/topa-LE/jellyfin-nova?style=flat&label=Usage&logo=none)](https://www.jsdelivr.com/package/gh/topa-LE/jellyfin-nova)
+[![Downloads](https://img.shields.io/github/downloads/topa-LE/jellyfin-nova/total?style=flat)](https://github.com/topa-LE/jellyfin-nova/releases/latest)
 
 [![Themes](https://img.shields.io/badge/Themes-3_Variants-8b5cf6?style=flat)](#-features) [![Spotlight](https://img.shields.io/badge/Spotlight-Integrated-3b82f6?style=flat)](#-features) [![Docker](https://img.shields.io/badge/Docker-Persistent-0ea5e9?style=flat)](#-docker-persistence) [![Fonts](https://img.shields.io/badge/Fonts-Local-22c55e?style=flat)](#-features) [![Bug Fixes](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Ftopa-LE%2Fjellyfin-nova%2Fmain%2F.github%2Fbadges%2Fbug-fixes.json)](https://github.com/topa-LE/jellyfin-nova/tree/main/docs/fixes)
 
