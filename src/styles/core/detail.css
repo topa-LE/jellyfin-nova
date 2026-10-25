@@ -332,10 +332,14 @@ html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]):has(.itemDetail
 #itemDetailPage .itemTags > .nova-tags-label {
     flex: 0 0 100% !important;
     color: #c2cbd0 !important;
-    font-size: 13px !important;
-    font-weight: 500 !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
     letter-spacing: 0 !important;
-    margin-bottom: 3px !important;
+    text-decoration: underline !important;
+    text-underline-offset: 4px !important;
+    text-decoration-thickness: 1px !important;
+    margin-bottom: 5px !important;
 }
 
 /* NOVA MOVIE EXTERNAL DATABASE BUTTONS
@@ -353,18 +357,20 @@ html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]):has(.itemDetail
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 104px !important;
-    height: 38px !important;
+    width: 96px !important;
+    height: 35px !important;
+    flex: 0 0 96px !important;
     padding: 0 !important;
     margin: 0 !important;
     border: 0 !important;
     border-radius: 8px !important;
     background-color: transparent !important;
     background-position: center !important;
-    background-size: contain !important;
+    background-size: 96px 35px !important;
     background-repeat: no-repeat !important;
     box-shadow: none !important;
     transform: none !important;
+    vertical-align: middle !important;
     transition: filter 180ms ease !important;
     overflow: hidden !important;
 }
