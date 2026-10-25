@@ -213,6 +213,87 @@ html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]):has(.itemDetail
     transform: scale(1.05);
 }
 
+/* NOVA MOVIE MEDIA PANEL
+   Compact frosted-glass track selections in the upper fanart area.
+   Automatically adapts to two or three available media tracks.
+*/
+@media (min-width: 1100px) {
+    #itemDetailPage .detailPagePrimaryContainer {
+        position: relative !important;
+    }
+
+    #itemDetailPage .detailSection {
+        position: static !important;
+    }
+
+    #itemDetailPage form.trackSelections {
+        position: absolute !important;
+        top: -324px !important;
+        right: 28px !important;
+        z-index: 12 !important;
+        width: 370px !important;
+        max-width: 370px !important;
+        margin: 0 !important;
+        padding: 14px !important;
+        box-sizing: border-box !important;
+        background: rgba(25, 33, 37, 0.28) !important;
+        border: 1px solid #181818 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.30) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(125%) !important;
+        backdrop-filter: blur(16px) saturate(125%) !important;
+    }
+
+    #itemDetailPage form.trackSelections::before {
+        content: "MEDIENDATEN" !important;
+        position: absolute !important;
+        bottom: calc(100% + 7px) !important;
+        left: 2px !important;
+        display: block !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        letter-spacing: 1.5px !important;
+        line-height: 1.3 !important;
+        color: #f1c59d !important;
+        text-transform: uppercase !important;
+        white-space: nowrap !important;
+        pointer-events: none !important;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65) !important;
+    }
+
+    #itemDetailPage form.trackSelections
+    .trackSelectionFieldContainer:not(.hide) {
+        display: grid !important;
+        grid-template-columns: 90px minmax(0, 1fr) !important;
+        align-items: center !important;
+        gap: 10px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin-bottom: 7px !important;
+    }
+
+    #itemDetailPage form.trackSelections
+    .trackSelectionFieldContainer:not(.hide) > select {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        background: rgba(214, 221, 227, 0.06) !important;
+        border: 1px solid rgba(214, 221, 227, 0.18) !important;
+        border-radius: 7px !important;
+    }
+
+    #itemDetailPage form.trackSelections
+    .trackSelectionFieldContainer:not(.hide) > label {
+        margin: 0 !important;
+    }
+
+    #itemDetailPage form.trackSelections
+    .trackSelectionFieldContainer:not(.hide):last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
 /* NOVA MOVIE TAGLINE WITH FILM REEL
    Original Nova artwork, bundled locally.
 */
