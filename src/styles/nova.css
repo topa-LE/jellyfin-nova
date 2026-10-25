@@ -25,6 +25,7 @@
 @import url("./core/player.css");
 @import url("./core/dashboard.css");
 @import url("./core/detail.css");
+@import url("./core/glass.css");
 @import url("./core/login.css");
 @import url("./core/cast.css");
 @import url("./core/responsive.css");
@@ -43,7 +44,4 @@
 
     --nova-ease: cubic-bezier(0.16, 1, 0.3, 1);
     --nova-ease-snappy: cubic-bezier(0.4, 0, 0.2, 1);
-
-    --nova-backdrop-blur: 23px;
-    --nova-glass-blur: 15px;
 }
