@@ -98,7 +98,8 @@ div[data-role="controlgroup"] a[data-role="button"]:last-child {
     border-radius: 24px !important;
 }
 
+/* Movie poster – approved 7px corner radius */
 .detailImageContainer .cardImageContainer,
 .detailImageContainer .card {
-    border-radius: 24px !important;
+    border-radius: 7px !important;
 }
