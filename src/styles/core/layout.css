@@ -684,9 +684,10 @@ html.nova-spotlight-visible[data-theme="dark"] .MuiAppBar-root+div[aria-hidden="
     background: rgba(0, 0, 0, .5) !important;
 }
 
+/* Custom movie logo – approved horizontal alignment */
 #itemDetailPage .detailLogo {
     position: static;
-    margin-left: 32.5%;
+    margin-left: 28.2%;
     display: block;
     width: 600px !important;
     max-width: 60vw !important;
