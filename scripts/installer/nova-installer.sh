@@ -301,7 +301,7 @@ install_nova_docker_init_hook() {
         fi
     fi
 
-    local expected_sha256="966ae5affe3c4a3f7ef498c7c548a03552c66b3ecb5de5560652dc092835233f"
+    local expected_sha256="64a90a60980147da276a18640ab295be2b55ee693cc7dddf98a8565823513411"
     local actual_sha256
 
     if ! actual_sha256="$(python3 - "$hook_file" <<'PYHASH'
@@ -1191,6 +1191,7 @@ with tarfile.open(archive_path, "r:gz") as archive:
         "login/login-loader.js",
         "navigation/home-loader.js",
         "navigation/switcher-loader.js",
+        "detail/detail-loader.js",
         "plugins/nova-je.css",
         "plugins/nova-lite.css",
         "plugins/nova-mbe.css",
@@ -1381,14 +1382,16 @@ html = re.sub(r"<script[^>]*\bdata-nova-spotlight\b[^>]*></script>", "", html, f
 html = re.sub(r"<script[^>]*\bdata-nova-login\b[^>]*></script>", "", html, flags=re.I)
 html = re.sub(r"<script[^>]*\bdata-nova-home\b[^>]*></script>", "", html, flags=re.I)
 html = re.sub(r"<script[^>]*\bdata-nova-switcher\b[^>]*></script>", "", html, flags=re.I)
+html = re.sub(r"<script[^>]*\bdata-nova-detail\b[^>]*></script>", "", html, flags=re.I)
 if action == "install":
     tag = "<script src=\"nova/spotlight/spotlight-loader.js\" data-nova-spotlight></script>"
     login_tag = "<script src=\"nova/login/login-loader.js\" data-nova-login></script>"
     home_tag = "<script src=\"nova/navigation/home-loader.js\" data-nova-home></script>"
     switcher_tag = "<script src=\"nova/navigation/switcher-loader.js\" data-nova-switcher></script>"
+    detail_tag = "<script src=\"nova/detail/detail-loader.js\" data-nova-detail></script>"
     if "</body>" not in html.lower():
         raise SystemExit("index.html has no closing body tag")
-    html = re.sub(r"</body>", tag + login_tag + home_tag + switcher_tag + "</body>", html, count=1, flags=re.I)
+    html = re.sub(r"</body>", tag + login_tag + home_tag + switcher_tag + detail_tag + "</body>", html, count=1, flags=re.I)
 fd, temp_path = tempfile.mkstemp(dir=os.path.dirname(path), prefix=".nova-index-", text=True)
 try:
     with os.fdopen(fd, "w", encoding="utf-8") as handle:

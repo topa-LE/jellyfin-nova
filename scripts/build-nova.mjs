@@ -44,6 +44,10 @@ const navigationFiles = [
     'switcher-loader.js'
 ];
 
+const detailFiles = [
+    'detail-loader.js'
+];
+
 const optionalModules = [
     'nova-je.css',
     'nova-lite.css',
@@ -342,6 +346,16 @@ async function main() {
             await copyFile(
                 resolve(sourceRoot, 'navigation', name),
                 join(navigationRoot, name)
+            );
+        }
+
+        const detailRoot = join(stagingRoot, 'detail');
+        await mkdir(detailRoot);
+
+        for (const name of detailFiles) {
+            await copyFile(
+                resolve(sourceRoot, 'detail', name),
+                join(detailRoot, name)
             );
         }
 

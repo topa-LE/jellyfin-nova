@@ -294,6 +294,50 @@ html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]):has(.itemDetail
     }
 }
 
+/* NOVA MOVIE TAGS GLASS
+   Individually clickable tags with subtle transparent glass styling.
+*/
+#itemDetailPage .itemTags {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+}
+
+#itemDetailPage .itemTags > a.button-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 5px 11px !important;
+    margin: 0 !important;
+    color: #d6dde3 !important;
+    background: rgba(25, 33, 37, 0.12) !important;
+    border: 1px solid rgba(214, 221, 227, 0.12) !important;
+    border-radius: 7px !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10) !important;
+    backdrop-filter: blur(12px) saturate(100%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(100%) !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    transition: background 180ms ease, border-color 180ms ease !important;
+}
+
+#itemDetailPage .itemTags > a.button-link:hover {
+    background: rgba(214, 221, 227, 0.10) !important;
+    border-color: rgba(214, 221, 227, 0.30) !important;
+    color: #e8edf0 !important;
+}
+
+#itemDetailPage .itemTags > .nova-tags-label {
+    flex: 0 0 100% !important;
+    color: #c2cbd0 !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    margin-bottom: 3px !important;
+}
+
 /* NOVA MOVIE TAGLINE WITH FILM REEL
    Original Nova artwork, bundled locally.
 */
