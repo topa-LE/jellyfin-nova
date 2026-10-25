@@ -338,6 +338,60 @@ html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]):has(.itemDetail
     margin-bottom: 3px !important;
 }
 
+/* NOVA MOVIE EXTERNAL DATABASE BUTTONS
+   Local Nova artwork for IMDb and TMDB.
+*/
+#itemDetailPage .itemExternalLinks {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin: 12px 0 !important;
+}
+
+#itemDetailPage .itemExternalLinks > a.nova-external-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 104px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    background-color: transparent !important;
+    background-position: center !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    box-shadow: none !important;
+    transform: none !important;
+    transition: filter 180ms ease !important;
+    overflow: hidden !important;
+}
+
+#itemDetailPage .itemExternalLinks > a.nova-external-imdb {
+    background-image: url("../../assets/icons/imdb-nova.webp") !important;
+}
+
+#itemDetailPage .itemExternalLinks > a.nova-external-tmdb {
+    background-image: url("../../assets/icons/tmdb-nova.webp") !important;
+}
+
+#itemDetailPage .itemExternalLinks > a.nova-external-button:hover {
+    transform: none !important;
+    filter: brightness(1.12) !important;
+}
+
+#itemDetailPage .itemExternalLinks .nova-external-button-label {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+}
+
 /* NOVA MOVIE TAGLINE WITH FILM REEL
    Original Nova artwork, bundled locally.
 */
