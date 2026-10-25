@@ -58,3 +58,79 @@ html[data-theme="dark"] header.MuiAppBar-root .nova-switcher {
     -webkit-backdrop-filter: blur(18px) saturate(125%) !important;
     backdrop-filter: blur(18px) saturate(125%) !important;
 }
+
+
+/* ============================================================
+ * JELLYFIN NOVA – MOVIE METADATA GLASS
+ * Regisseur, Autor, Studio, Genres
+ * Previously approved appearance
+ * ============================================================ */
+
+#itemDetailPage .detailsGroupItem {
+    display: grid !important;
+    grid-template-columns: 105px minmax(0, 1fr) !important;
+    column-gap: 12px !important;
+    align-items: baseline !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#itemDetailPage .detailsGroupItem .label {
+    color: #aebbc2 !important;
+    font-family: "Saira Condensed", sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    white-space: nowrap !important;
+}
+
+#itemDetailPage .detailsGroupItem .label::after {
+    content: ":";
+}
+
+#itemDetailPage .detailsGroupItem .focuscontainer-x {
+    color: #d6dde3 !important;
+    font-family: "Saira Condensed", sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    min-width: 0;
+}
+
+#itemDetailPage .detailsGroupItem .focuscontainer-x a {
+    color: inherit !important;
+    font: inherit !important;
+}
+
+#itemDetailPage .detailsGroupItem:first-child {
+    margin-top: 0 !important;
+}
+
+#itemDetailPage .detailsGroupItem:last-child {
+    margin-bottom: 0 !important;
+}
+
+#itemDetailPage .detailsGroupItem {
+    position: relative;
+}
+
+#itemDetailPage .detailsGroupItem:has(.label) {
+    width: max-content;
+    max-width: 100%;
+}
+
+
+#itemDetailPage .itemDetailsGroup {
+    display: inline-block !important;
+    width: max-content !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 12px !important;
+    background: rgba(25, 33, 37, 0.10) !important;
+    border: 1px solid #181818 !important;
+    border-radius: 7px !important;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.38),
+        0 2px 6px rgba(0, 0, 0, 0.25) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(125%) !important;
+    backdrop-filter: blur(8px) saturate(125%) !important;
+}
