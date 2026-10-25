@@ -119,6 +119,22 @@ async function buildCss(path) {
         const resource = resolve(dirname(absolutePath), reference);
         const fontRoot = resolve(sourceRoot, 'fonts');
 
+        const iconRoot = resolve(sourceRoot, 'assets/icons');
+
+        if (insideDirectory(resource, iconRoot)) {
+            if (!/\.(?:png|webp|svg)$/i.test(resource)) {
+                fail(`Nicht unterstuetztes Nova-Icon: ${resource}`);
+            }
+
+            if (!existsSync(resource)) {
+                fail(`Nova icon missing: ${resource}`);
+            }
+
+            const destination = relative(iconRoot, resource).split(sep).join('/');
+            css = css.replace(match[0], `url("assets/icons/${destination}")`);
+            continue;
+        }
+
         if (!insideDirectory(resource, fontRoot)) {
             fail(`Unerwarteter Ressourcenpfad: ${absolutePath}: ${reference}`);
         }
@@ -294,6 +310,29 @@ async function main() {
                 resolve(sourceRoot, 'assets', name),
                 join(assetsRoot, name)
             );
+        }
+
+        const iconsSource = resolve(sourceRoot, 'assets/icons');
+        const iconsTarget = join(assetsRoot, 'icons');
+
+        if (existsSync(iconsSource)) {
+            const iconEntries = await readdir(iconsSource, { withFileTypes: true });
+            await mkdir(iconsTarget);
+
+            for (const entry of iconEntries) {
+                if (!entry.isFile() || entry.isSymbolicLink()) {
+                    fail(`Invalid Nova icon entry: ${entry.name}`);
+                }
+
+                if (!/\.(?:png|webp|svg)$/i.test(entry.name)) {
+                    fail(`Unsupported Nova icon format: ${entry.name}`);
+                }
+
+                await copyFile(
+                    join(iconsSource, entry.name),
+                    join(iconsTarget, entry.name)
+                );
+            }
         }
 
         const navigationRoot = join(stagingRoot, 'navigation');

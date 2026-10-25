@@ -81,6 +81,13 @@ test('Nova distribution contains no external CSS resources', () => {
 });
 
 
+test('Nova icon resources match their sources', async () => {
+    const source = await readFile(new URL('src/assets/icons/film-reel.webp', root));
+    const output = await readFile(new URL('dist/assets/icons/film-reel.webp', root));
+
+    assert.deepEqual(output, source);
+});
+
 test('Nova Login resources match their sources', async () => {
     for (const [sourcePath, outputPath] of [
         ['src/assets/jellyfin-logo.png', 'dist/assets/jellyfin-logo.png'],

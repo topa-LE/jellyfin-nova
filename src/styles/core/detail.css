@@ -213,6 +213,28 @@ html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]):has(.itemDetail
     transform: scale(1.05);
 }
 
+/* NOVA MOVIE TAGLINE WITH FILM REEL
+   Original Nova artwork, bundled locally.
+*/
+#itemDetailPage h3.tagline {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    font-size: 21px !important;
+    font-weight: 500 !important;
+    line-height: 1.45 !important;
+    color: #f1c59d !important;
+}
+
+#itemDetailPage h3.tagline::before {
+    content: "" !important;
+    display: block !important;
+    flex: 0 0 36px !important;
+    width: 36px !important;
+    height: 34px !important;
+    background: url("../../assets/icons/film-reel.webp") center / contain no-repeat !important;
+}
+
 /* NOVA MOVIE OVERVIEW GLASS BOX
    Approved design: 16px, justified, 12px padding, 75% transparency.
    Based on the Nova Dark avatar menu appearance.
