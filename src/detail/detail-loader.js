@@ -101,13 +101,25 @@
         }
     }
 
+    function updateSimilarHeading() {
+        const heading = document.querySelector(
+            "#itemDetailPage #similarCollapsible > h2.sectionTitle"
+        );
+
+        if (heading && heading.textContent.trim() === "Ähnliches") {
+            heading.textContent = "Ähnliche Movies";
+        }
+    }
+
     function initialize() {
         updateTags();
         updateExternalLinks();
+        updateSimilarHeading();
 
         const observer = new MutationObserver(() => {
             updateTags();
             updateExternalLinks();
+            updateSimilarHeading();
         });
 
         observer.observe(document.body, {
