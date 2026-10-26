@@ -32,7 +32,7 @@
 
 .layout-desktop #castContent .personCard .cardBox,
 .layout-desktop #guestCastContent .personCard .cardBox {
-    background: rgba(25, 33, 37, 0.25) !important;
+    background: rgba(25, 33, 37, 0.45) !important;
     border: 1px solid #181818 !important;
     border-radius: 7px !important;
     box-shadow:
