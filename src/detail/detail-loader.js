@@ -111,20 +111,120 @@
         }
     }
 
+    const originalInfoPositions = new WeakMap();
+
+    function updateLogoAlignment() {
+        const desktop = window.innerWidth >= 1100;
+
+        for (const page of document.querySelectorAll("#itemDetailPage")) {
+            const logo = page.querySelector(".detailLogo");
+
+            if (!logo) {
+                continue;
+            }
+
+            if (!desktop) {
+                logo.style.removeProperty("margin-left");
+                continue;
+            }
+
+            const content = page.querySelector(
+                ".detailPagePrimaryContent .detailSection"
+            );
+
+            if (!content || !logo.parentElement) {
+                continue;
+            }
+
+            const targetX = content.getBoundingClientRect().left;
+            const parentX = logo.parentElement.getBoundingClientRect().left;
+            const value = `${targetX - parentX}px`;
+
+            if (logo.style.getPropertyValue("margin-left") !== value) {
+                logo.style.setProperty("margin-left", value, "important");
+            }
+        }
+    }
+
+    function updateInfoBoxes() {
+        const desktop = window.innerWidth >= 1100;
+
+        for (const page of document.querySelectorAll("#itemDetailPage")) {
+            const filmData = page.querySelector(".itemDetailsGroup");
+            const mediaData = page.querySelector("form.trackSelections");
+
+            if (!filmData || !mediaData) {
+                continue;
+            }
+
+            let container = page.querySelector(".nova-detail-info");
+
+            if (!desktop) {
+                for (const element of [filmData, mediaData]) {
+                    const original = originalInfoPositions.get(element);
+
+                    if (original?.parent?.isConnected &&
+                        element.parentElement !== original.parent) {
+                        original.parent.insertBefore(
+                            element,
+                            original.next?.parentElement === original.parent
+                                ? original.next
+                                : null
+                        );
+                    }
+                }
+
+                if (container && !container.children.length) {
+                    container.remove();
+                }
+
+                continue;
+            }
+
+            if (!container) {
+                container = document.createElement("div");
+                container.className = "nova-detail-info";
+                page.appendChild(container);
+            }
+
+            for (const element of [filmData, mediaData]) {
+                if (!originalInfoPositions.has(element)) {
+                    originalInfoPositions.set(element, {
+                        parent: element.parentElement,
+                        next: element.nextSibling
+                    });
+                }
+
+                if (element.parentElement !== container) {
+                    container.appendChild(element);
+                }
+            }
+        }
+    }
+
     function initialize() {
         updateTags();
         updateExternalLinks();
         updateSimilarHeading();
+        updateInfoBoxes();
+        updateLogoAlignment();
 
         const observer = new MutationObserver(() => {
             updateTags();
             updateExternalLinks();
             updateSimilarHeading();
+            updateInfoBoxes();
+            updateLogoAlignment();
         });
 
         observer.observe(document.body, {
             childList: true,
             subtree: true
+        });
+
+        window.addEventListener("resize", () => {
+            updateInfoBoxes();
+            updateLogoAlignment();
         });
     }
 

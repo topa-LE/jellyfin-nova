@@ -684,10 +684,11 @@ html.nova-spotlight-visible[data-theme="dark"] .MuiAppBar-root+div[aria-hidden="
     background: rgba(0, 0, 0, .5) !important;
 }
 
-/* Custom movie logo – approved horizontal alignment */
+/* Movie logo – horizontal alignment handled by detail-loader.js */
 #itemDetailPage .detailLogo {
-    position: static;
-    margin-left: 28.2%;
+    position: relative;
+    top: -80px;
+    margin-left: 0;
     display: block;
     width: 600px !important;
     max-width: 60vw !important;
@@ -697,7 +698,6 @@ html.nova-spotlight-visible[data-theme="dark"] .MuiAppBar-root+div[aria-hidden="
     background-position: left center !important;
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.9)) !important;
     -webkit-filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.9)) !important;
-    transform: translateY(-80px) !important;
     flex-shrink: 0;
     margin-bottom: 2vh;
 }
