@@ -126,7 +126,7 @@ async function buildCss(path) {
         const iconRoot = resolve(sourceRoot, 'assets/icons');
 
         if (insideDirectory(resource, iconRoot)) {
-            if (!/\.(?:png|webp|svg)$/i.test(resource)) {
+            if (!/\.(?:png|webp|jpe?g|svg)$/i.test(resource)) {
                 fail(`Nicht unterstuetztes Nova-Icon: ${resource}`);
             }
 
@@ -328,7 +328,7 @@ async function main() {
                     fail(`Invalid Nova icon entry: ${entry.name}`);
                 }
 
-                if (!/\.(?:png|webp|svg)$/i.test(entry.name)) {
+                if (!/\.(?:png|webp|jpe?g|svg)$/i.test(entry.name)) {
                     fail(`Unsupported Nova icon format: ${entry.name}`);
                 }
 
