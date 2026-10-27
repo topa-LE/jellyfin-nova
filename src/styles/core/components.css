@@ -33,8 +33,7 @@ a[data-role="button"]:hover {
 .raised:hover,
 .fab:hover,
 .navMenuOption:hover,
-.listItem:hover,
-.actionSheetMenuItem:hover {
+.listItem:hover:not(.actionSheetMenuItem) {
     background: rgb(var(--nova-accent-rgb)) !important;
     color: #121212;
     font-weight: 700;
@@ -46,6 +45,33 @@ a[data-role="button"]:hover {
 
 .actionSheetMenuItem {
     border-radius: var(--nova-radius) !important;
+    background: transparent !important;
+    color: #d6dde3;
+    font-weight: 400;
+}
+
+.actionSheetMenuItem:hover,
+.actionSheetMenuItem:focus-visible {
+    background: transparent !important;
+    color: #dc9b66 !important;
+    font-weight: 400;
+}
+
+.actionSheetMenuItem:hover .actionsheetMenuItemIcon,
+.actionSheetMenuItem:hover .actionSheetItemText,
+.actionSheetMenuItem:focus-visible .actionsheetMenuItemIcon,
+.actionSheetMenuItem:focus-visible .actionSheetItemText {
+    color: #dc9b66 !important;
+}
+
+.actionSheet .listItemIcon.actionsheetMenuItemIcon {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    color: inherit !important;
 }
 
 .actionSheetContent {

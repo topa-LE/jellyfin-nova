@@ -32,6 +32,24 @@
         0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
+/* Jellyfin action sheet – Nova dark glass. */
+.actionSheet.actionsheet-not-fullscreen {
+    border: 1px solid #181818 !important;
+    border-radius: 7px !important;
+    background: rgba(9, 13, 16, 0.50) !important;
+    color: #d6dde3 !important;
+    -webkit-backdrop-filter: blur(22px) saturate(115%) !important;
+    backdrop-filter: blur(22px) saturate(115%) !important;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.38),
+        0 2px 6px rgba(0, 0, 0, 0.25) !important;
+}
+
+.actionSheet .actionSheetContent,
+.actionSheet .actionSheetScroller {
+    background: transparent !important;
+}
+
 /*
  * Theme and font switcher buttons.
  * Original glass appearance preserved.

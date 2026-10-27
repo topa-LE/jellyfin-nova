@@ -109,8 +109,7 @@
 }
 
 .emby-button.show-focus:focus,
-.headerButton.show-focus:focus,
-.actionSheetMenuItem.show-focus:focus {
+.headerButton.show-focus:focus {
     background: rgb(var(--nova-accent-rgb)) !important;
     color: #121212 !important;
 }

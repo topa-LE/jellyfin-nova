@@ -626,8 +626,7 @@ html.nova-spotlight-visible[data-theme="dark"] .MuiAppBar-root+div[aria-hidden="
     font-size: large;
 }
 
-.navMenuOptionIcon,
-.listItemIcon {
+.navMenuOptionIcon {
     background: #cccccf69;
     border-radius: 50px;
     padding: 10px;
@@ -635,12 +634,6 @@ html.nova-spotlight-visible[data-theme="dark"] .MuiAppBar-root+div[aria-hidden="
 
 [dir=ltr] .navMenuOptionIcon {
     margin-right: 0.75em;
-}
-
-[dir=ltr] .listItemIcon {
-    background: #cccccf69 !important;
-    border-radius: 50px !important;
-    padding: 10px !important;
 }
 
 [dir=ltr] .navMenuOption {
