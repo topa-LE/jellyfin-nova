@@ -65,6 +65,11 @@ html[data-theme="dark"] header.MuiAppBar-root .nova-switcher {
  * Approved 45% opacity, 7px corners and card spacing
  * ============================================================ */
 
+/* Keep similar-media card borders and shadows visible below the slider. */
+#itemDetailPage .verticalSection:has(.similarContent) {
+    overflow: visible !important;
+}
+
 #itemDetailPage .similarContent .card {
     background: rgba(25, 33, 37, 0.45) !important;
     border: 1px solid #181818 !important;
