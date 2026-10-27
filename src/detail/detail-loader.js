@@ -159,6 +159,39 @@
         }
     }
 
+    function updateFilmDataWidth() {
+        for (const page of document.querySelectorAll("#itemDetailPage")) {
+            const wrapper = page.querySelector(".nova-detail-info");
+            const film = wrapper?.querySelector(".itemDetailsGroup");
+            const media = wrapper?.querySelector("form.trackSelections");
+
+            if (!film || !media) {
+                continue;
+            }
+
+            if (window.innerWidth < 1100) {
+                film.style.removeProperty("max-width");
+                continue;
+            }
+
+            const mediaWidth = media.getBoundingClientRect().width;
+            const gap = parseFloat(getComputedStyle(wrapper).columnGap) || 50;
+            const right = parseFloat(getComputedStyle(wrapper).right) || 0;
+
+            const available = Math.max(
+                0,
+                window.innerWidth - right - mediaWidth - gap - 40
+            );
+
+            const width = Math.min(480, available);
+            const value = `${width}px`;
+
+            if (film.style.getPropertyValue("max-width") !== value) {
+                film.style.setProperty("max-width", value, "important");
+            }
+        }
+    }
+
     function updateInfoBoxes() {
         const desktop = window.innerWidth >= 1100;
 
@@ -220,6 +253,7 @@
         updateExternalLinks();
         updateSimilarHeading();
         updateInfoBoxes();
+        updateFilmDataWidth();
         updateLogoAlignment();
 
         const observer = new MutationObserver(() => {
@@ -227,6 +261,7 @@
             updateExternalLinks();
             updateSimilarHeading();
             updateInfoBoxes();
+            updateFilmDataWidth();
             updateLogoAlignment();
         });
 
@@ -237,6 +272,7 @@
 
         window.addEventListener("resize", () => {
             updateInfoBoxes();
+            updateFilmDataWidth();
             updateLogoAlignment();
         });
     }

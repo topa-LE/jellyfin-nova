@@ -146,6 +146,20 @@ html[data-theme="dark"] header.MuiAppBar-root .nova-switcher {
     min-width: 0;
 }
 
+@media (min-width: 1100px) {
+    #itemDetailPage .nova-detail-info .itemDetailsGroup .detailsGroupItem {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    #itemDetailPage .nova-detail-info .itemDetailsGroup .focuscontainer-x {
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+}
+
 #itemDetailPage .detailsGroupItem .focuscontainer-x a {
     color: inherit !important;
     font: inherit !important;
