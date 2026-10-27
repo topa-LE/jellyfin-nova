@@ -134,7 +134,7 @@
 
 /* Nova cast: local portrait placeholder for people without an image. */
 #itemDetailPage .personCard .cardImageContainer.defaultCardBackground {
-    background-image: url("../../assets/icons/nova-person-placeholder.jpg") !important;
+    background-image: url("../../assets/icons/nova-person-placeholder.webp") !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
