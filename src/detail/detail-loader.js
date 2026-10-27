@@ -125,23 +125,36 @@
 
             if (!desktop) {
                 logo.style.removeProperty("margin-left");
+                logo.style.removeProperty("transform");
                 continue;
             }
 
-            const content = page.querySelector(
-                ".detailPagePrimaryContent .detailSection"
+            const title = page.querySelector(".detailRibbon .itemName");
+
+            if (!title) {
+                continue;
+            }
+
+            // Existing horizontal layout stays unchanged.
+            // Only the visible logo position is corrected.
+            const logoX = logo.getBoundingClientRect().left;
+            const titleX = title.getBoundingClientRect().left;
+
+            const currentTransform = logo.style.getPropertyValue("transform");
+            const match = currentTransform.match(
+                /^translateX\\((-?[\\d.]+)px\\)$/
             );
+            const previousOffset = match ? Number(match[1]) : 0;
 
-            if (!content || !logo.parentElement) {
-                continue;
-            }
+            const correction = titleX - logoX;
+            const nextOffset = previousOffset + correction;
 
-            const targetX = content.getBoundingClientRect().left;
-            const parentX = logo.parentElement.getBoundingClientRect().left;
-            const value = `${targetX - parentX}px`;
-
-            if (logo.style.getPropertyValue("margin-left") !== value) {
-                logo.style.setProperty("margin-left", value, "important");
+            if (Math.abs(correction) > 0.5) {
+                logo.style.setProperty(
+                    "transform",
+                    `translateX(${nextOffset}px)`,
+                    "important"
+                );
             }
         }
     }
