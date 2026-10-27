@@ -199,18 +199,64 @@ html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]):has(.itemDetail
     transform: scale(1.05);
 }
 
-#itemDetailPage:has(.btnReplay.hide) .btnPlayTrailer {
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: rgba(255, 255, 255, 0.9);
+/* Movie detail: four compact Nova-Glass action controls. */
+#itemDetailPage .mainDetailButtons > :is(
+    .btnPlayTrailer,
+    .btnPlaystate,
+    .btnUserRating,
+    .btnMoreCommands
+):not(.hide) {
+    width: 46px !important;
+    height: 46px !important;
+    min-width: 46px !important;
+    min-height: 46px !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+
+    background: var(--nova-detail-action-background) !important;
+    border: 2px solid var(--nova-detail-action-border) !important;
+    outline: none !important;
+    color: var(--nova-detail-action-color) !important;
+    box-shadow: var(--nova-detail-action-shadow) !important;
+
+    backdrop-filter: blur(12px) saturate(115%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(115%) !important;
+
+    transform: none !important;
+    transition: filter 180ms ease !important;
 }
 
-#itemDetailPage:has(.btnReplay.hide) #itemDetailPage .btnPlayTrailer:hover {
-    background: rgba(255, 255, 255, 1);
-    color: rgba(0, 0, 0, 0.9) !important;
-    transform: scale(1.05);
+#itemDetailPage .mainDetailButtons > :is(
+    .btnPlayTrailer,
+    .btnPlaystate,
+    .btnUserRating,
+    .btnMoreCommands
+):not(.hide):hover {
+    border-color: var(--nova-detail-action-border) !important;
+    filter: brightness(1.18) !important;
+    transform: none !important;
+}
+
+#itemDetailPage .mainDetailButtons > :is(
+    .btnPlayTrailer,
+    .btnPlaystate,
+    .btnUserRating,
+    .btnMoreCommands
+) .material-icons,
+#itemDetailPage .mainDetailButtons > :is(
+    .btnPlayTrailer,
+    .btnPlaystate,
+    .btnUserRating,
+    .btnMoreCommands
+) .material-icons::before {
+    font-family: "Material Icons" !important;
+    font-size: 27px !important;
+    line-height: 1 !important;
+    color: inherit !important;
 }
 
 /* NOVA MOVIE MEDIA PANEL

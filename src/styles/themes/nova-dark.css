@@ -21,6 +21,27 @@
    ========================================================== */
 
 :root:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]) {
+    /* Approved Nova-Dark action buttons – live test 1290. */
+    --nova-detail-action-background:
+        radial-gradient(
+            circle at 30% 18%,
+            rgba(175, 205, 209, 0.13),
+            transparent 56%
+        ),
+        linear-gradient(
+            150deg,
+            rgba(52, 70, 76, 0.48) 0%,
+            rgba(29, 43, 49, 0.43) 48%,
+            rgba(13, 22, 27, 0.58) 100%
+        );
+    --nova-detail-action-border: #181818;
+    --nova-detail-action-color: #d6dde3;
+    --nova-detail-action-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.43),
+        inset 0 1px 1px rgba(205, 225, 228, 0.17),
+        inset 0 -3px 7px rgba(0, 0, 0, 0.25);
+
+
     --nova-background: #10151c;
     --nova-surface: #171a1e;
     --nova-glass-tint: 23, 26, 30;

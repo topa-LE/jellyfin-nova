@@ -10,6 +10,26 @@
  */
 
 :root[data-nova-theme="gray"] {
+    /* Approved petrol-glass action buttons – live test 1283. */
+    --nova-detail-action-background:
+        radial-gradient(
+            circle at 32% 18%,
+            rgba(155, 202, 199, 0.18),
+            transparent 52%
+        ),
+        linear-gradient(
+            155deg,
+            #304b4c 0%,
+            #203638 42%,
+            #101c20 100%
+        );
+    --nova-detail-action-border: #101819;
+    --nova-detail-action-color: #d6dde3;
+    --nova-detail-action-shadow:
+        0 5px 13px rgba(0, 0, 0, 0.48),
+        inset 0 1px 1px rgba(180, 221, 217, 0.14),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.35);
+
     --nova-background: #171b20;
     --nova-surface: #252b31;
     --nova-glass-tint: 37, 43, 49;
