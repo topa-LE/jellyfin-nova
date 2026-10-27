@@ -102,12 +102,14 @@
     }
 
     function updateSimilarHeading() {
-        const heading = document.querySelector(
+        const headings = document.querySelectorAll(
             "#itemDetailPage #similarCollapsible > h2.sectionTitle"
         );
 
-        if (heading && heading.textContent.trim() === "Ähnliches") {
-            heading.textContent = "Ähnliche Movies";
+        for (const heading of headings) {
+            if (heading.textContent.trim() === "Ähnliches") {
+                heading.textContent = "Ähnliche Movies";
+            }
         }
     }
 
