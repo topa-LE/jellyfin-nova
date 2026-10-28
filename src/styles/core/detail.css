@@ -50,6 +50,55 @@ html:not([data-nova-theme="gray"]):not([data-nova-theme="blue"]):has(.itemDetail
     line-height: 1.4 !important;
 }
 
+/* Nova movie metadata icons */
+#itemDetailPage .detailRibbon .itemMiscInfo-primary > .mediaInfoItem:nth-child(1),
+#itemDetailPage .detailRibbon .itemMiscInfo-primary > .mediaInfoItem:nth-child(2),
+#itemDetailPage .detailRibbon .itemMiscInfo-primary > .starRatingContainer {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+}
+
+#itemDetailPage .detailRibbon .itemMiscInfo-primary > .mediaInfoItem:nth-child(1)::before,
+#itemDetailPage .detailRibbon .itemMiscInfo-primary > .mediaInfoItem:nth-child(2)::before {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 26px !important;
+    height: 26px !important;
+    font-family: "Material Icons" !important;
+    font-size: 26px !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    line-height: 1 !important;
+    color: #efb783 !important;
+    flex-shrink: 0 !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+#itemDetailPage .detailRibbon .itemMiscInfo-primary > .mediaInfoItem:nth-child(1)::before {
+    content: "event";
+}
+
+#itemDetailPage .detailRibbon .itemMiscInfo-primary > .mediaInfoItem:nth-child(2)::before {
+    content: "schedule";
+}
+
+#itemDetailPage .detailRibbon .itemMiscInfo-primary > .starRatingContainer > .starIcon {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 26px !important;
+    line-height: 1 !important;
+    color: #efb783 !important;
+    flex-shrink: 0 !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    -webkit-font-smoothing: antialiased;
+}
+
 #itemDetailPage .detailRibbon .mediaInfoOfficialRating {
     font-size: 17px !important;
     color: #e0e5e8 !important;
