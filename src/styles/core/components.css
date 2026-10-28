@@ -91,6 +91,44 @@ a[data-role="button"]:hover {
     border-radius: var(--nova-radius);
 }
 
+/* Nova carousel navigation arrows */
+button.emby-scrollbuttons-button.paper-icon-button-light {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background: rgba(24, 27, 30, 0.88) !important;
+    border: 1px solid #181818 !important;
+    color: #d6dde3 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+button.emby-scrollbuttons-button.paper-icon-button-light:hover {
+    background: rgba(34, 38, 42, 0.95) !important;
+    color: var(--nova-avatar-menu-hover, #efb783) !important;
+}
+
+button.emby-scrollbuttons-button.paper-icon-button-light .material-icons {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 20px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    color: inherit !important;
+}
+
 .emby-tab-button {
     padding: 0.5em 1.5em;
     margin: 0 2.5px;
