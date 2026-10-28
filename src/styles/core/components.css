@@ -50,18 +50,18 @@ a[data-role="button"]:hover {
     font-weight: 400;
 }
 
-.actionSheetMenuItem:hover,
-.actionSheetMenuItem:focus-visible {
+.actionSheet .listItem.actionSheetMenuItem:hover,
+.actionSheet .listItem.actionSheetMenuItem:focus-visible {
     background: transparent !important;
-    color: #dc9b66 !important;
+    color: var(--nova-avatar-menu-hover, #efb783) !important;
     font-weight: 400;
 }
 
-.actionSheetMenuItem:hover .actionsheetMenuItemIcon,
-.actionSheetMenuItem:hover .actionSheetItemText,
-.actionSheetMenuItem:focus-visible .actionsheetMenuItemIcon,
-.actionSheetMenuItem:focus-visible .actionSheetItemText {
-    color: #dc9b66 !important;
+.actionSheet .listItem.actionSheetMenuItem:hover .actionSheetItemText,
+.actionSheet .listItem.actionSheetMenuItem:hover .actionsheetMenuItemIcon,
+.actionSheet .listItem.actionSheetMenuItem:focus-visible .actionSheetItemText,
+.actionSheet .listItem.actionSheetMenuItem:focus-visible .actionsheetMenuItemIcon {
+    color: var(--nova-avatar-menu-hover, #efb783) !important;
 }
 
 .actionSheet .listItemIcon.actionsheetMenuItemIcon {
