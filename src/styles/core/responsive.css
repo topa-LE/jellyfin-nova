@@ -108,7 +108,7 @@
     top: -72px !important;
 }
 
-.emby-button.show-focus:focus,
+.emby-button.show-focus:focus:not(.actionSheetMenuItem),
 .headerButton.show-focus:focus {
     background: rgb(var(--nova-accent-rgb)) !important;
     color: #121212 !important;
@@ -126,7 +126,7 @@
     transform: none !important;
 }
 
-#itemDetailPage .emby-button.show-focus:focus {
+#itemDetailPage .emby-button.show-focus:focus:not(.actionSheetMenuItem) {
     transform: scale(1.1) !important;
     padding: 0 .4em;
     margin: .4em;
