@@ -120,15 +120,15 @@ html[data-theme="dark"] header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.Mui
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 42px;
-    width: 42px;
+    flex: 0 0 auto;
+    width: max-content;
     height: 42px;
     min-width: 42px;
     min-height: 42px;
-    padding: 0;
+    padding: 0 12px;
     margin: 0;
     border: 2px solid #121212 !important;
-    border-radius: 50% !important;
+    border-radius: 7px !important;
     background: radial-gradient(
         circle at 35% 25%,
         #364047 0%,
@@ -148,6 +148,11 @@ html[data-theme="dark"] header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.Mui
 
 html[data-theme="dark"] header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.MuiBox-root>.MuiChip-root .MuiChip-label {
     padding: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: nowrap !important;
     color: #f7c59c !important;
     font-family: inherit !important;
     font-size: 17px !important;
