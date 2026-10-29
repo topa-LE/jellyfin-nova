@@ -240,11 +240,12 @@ html[data-theme="dark"] header.MuiAppBar-root .nova-switcher {
 }
 
 /* ============================================================
- * JELLYFIN NOVA – SIMILAR MEDIA PLAY BUTTON
+ * JELLYFIN NOVA – SIMILAR MEDIA AND MOVIE OVERVIEW PLAY BUTTON
  * Circular green play control, 42px, centered on poster
  * ============================================================ */
 
-#itemDetailPage .similarContent .cardOverlayFab-primary {
+#itemDetailPage .similarContent .cardOverlayFab-primary,
+html[data-theme="dark"] .card.portraitCard.card-hoverable .cardOverlayFab-primary {
     width: 42px !important;
     height: 42px !important;
     min-width: 42px !important;
@@ -266,7 +267,8 @@ html[data-theme="dark"] header.MuiAppBar-root .nova-switcher {
 }
 
 #itemDetailPage .similarContent
-.cardOverlayFab-primary .play_arrow {
+.cardOverlayFab-primary .play_arrow,
+html[data-theme="dark"] .card.portraitCard.card-hoverable .cardOverlayFab-primary .play_arrow {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -277,7 +279,8 @@ html[data-theme="dark"] header.MuiAppBar-root .nova-switcher {
 }
 
 #itemDetailPage .similarContent
-.cardOverlayFab-primary .play_arrow::before {
+.cardOverlayFab-primary .play_arrow::before,
+html[data-theme="dark"] .card.portraitCard.card-hoverable .cardOverlayFab-primary .play_arrow::before {
     content: "" !important;
     display: block !important;
     width: 0 !important;
