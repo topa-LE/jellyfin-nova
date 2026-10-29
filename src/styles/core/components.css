@@ -293,6 +293,24 @@ div[data-role="controlgroup"] a[data-role="button"] {
 
 /* Cards */
 
+/* Movie overview cards - same Nova glass as Similar Movies */
+html[data-theme="dark"] .card.portraitCard.card-hoverable {
+    margin: 0 12px 12px 0 !important;
+    background: rgba(25, 33, 37, 0.45) !important;
+    border: 1px solid #181818 !important;
+    border-radius: 7px !important;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.38),
+        0 2px 6px rgba(0, 0, 0, 0.25) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(125%) !important;
+    backdrop-filter: blur(18px) saturate(125%) !important;
+}
+
+html[data-theme="dark"] .card.portraitCard.card-hoverable
+.cardBox.visualCardBox {
+    background: transparent !important;
+}
+
 .visualCardBox,
 .cardImageContainer {
     box-shadow: none;
