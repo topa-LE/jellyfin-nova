@@ -293,6 +293,35 @@ div[data-role="controlgroup"] a[data-role="button"] {
 
 /* Cards */
 
+/* NOVA GREEN WATCHED INDICATOR
+   Movie overview: compact green watched badge, 20px. */
+html[data-theme="dark"] .card.portraitCard .playedIndicator {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    border: 1px solid #101614 !important;
+    background: linear-gradient(145deg, #50bf85, #23754e) !important;
+    color: #f5fff9 !important;
+    box-shadow:
+        0 0 0 1px rgba(114, 224, 162, 0.25),
+        0 3px 8px rgba(0, 0, 0, 0.35),
+        inset 0 1px 2px rgba(255, 255, 255, 0.20),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.25) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+html[data-theme="dark"] .card.portraitCard .playedIndicator svg {
+    width: 13px !important;
+    height: 13px !important;
+    color: #f5fff9 !important;
+    fill: currentColor !important;
+}
+
 /* Movie overview cards - same Nova glass as Similar Movies */
 html[data-theme="dark"] .card.portraitCard.card-hoverable {
     margin: 0 12px 12px 0 !important;
