@@ -339,6 +339,33 @@ async function main() {
             }
         }
 
+        // Nova theme backgrounds: separate from icons.
+        const backgroundsSource = resolve(projectRoot, 'assets/backgrounds');
+        const backgroundsTarget = join(assetsRoot, 'backgrounds');
+        const backgroundFiles = [
+            'nova-dark-bg.webp',
+            'nova-gray-bg.webp',
+            'nova-blue-bg.webp'
+        ];
+
+        await mkdir(backgroundsTarget);
+
+        for (const name of backgroundFiles) {
+            const source = join(backgroundsSource, name);
+
+            if (!existsSync(source)) {
+                fail(`Nova background missing: ${source}`);
+            }
+
+            const sourceInfo = await lstat(source);
+
+            if (!sourceInfo.isFile() || sourceInfo.isSymbolicLink()) {
+                fail(`Invalid Nova background: ${source}`);
+            }
+
+            await copyFile(source, join(backgroundsTarget, name));
+        }
+
         const navigationRoot = join(stagingRoot, 'navigation');
         await mkdir(navigationRoot);
 

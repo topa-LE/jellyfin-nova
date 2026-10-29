@@ -186,3 +186,34 @@ test('Nova Spotlight has no legacy Abyss references and checks Nova releases', a
     assert.ok(html.includes('https://api.github.com/repos/topa-LE/jellyfin-nova/releases/latest'));
     assert.ok(html.includes('https://github.com/topa-LE/jellyfin-nova/releases/tag/'));
 });
+
+test('Nova background resources match their sources and manifest', async () => {
+    const { createHash } = await import('node:crypto');
+
+    const manifest = JSON.parse(
+        await readFile(new URL('dist/nova-manifest.json', root), 'utf8')
+    );
+
+    for (const theme of ['dark', 'gray', 'blue']) {
+        const name = `nova-${theme}-bg.webp`;
+        const source = await readFile(
+            new URL(`assets/backgrounds/${name}`, root)
+        );
+        const output = await readFile(
+            new URL(`dist/assets/backgrounds/${name}`, root)
+        );
+
+        assert.deepEqual(output, source);
+
+        const entries = manifest.files.filter(
+            file => file.path === `assets/backgrounds/${name}`
+        );
+
+        assert.equal(entries.length, 1);
+        assert.equal(entries[0].size, output.length);
+        assert.equal(
+            entries[0].sha256,
+            createHash('sha256').update(output).digest('hex')
+        );
+    }
+});
