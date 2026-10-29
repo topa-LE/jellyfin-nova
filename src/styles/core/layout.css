@@ -114,7 +114,7 @@ html[data-theme="dark"] header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.Mui
     align-items: center !important;
 }
 
-/* Filter count chip - Nova 3D glass */
+/* Filter count chip - Nova toolbar glass */
 html[data-theme="dark"] header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.MuiBox-root>.MuiChip-root {
     box-sizing: border-box;
     display: inline-flex;
@@ -122,27 +122,23 @@ html[data-theme="dark"] header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.Mui
     justify-content: center;
     flex: 0 0 auto;
     width: max-content;
-    height: 42px;
+    height: 36px;
     min-width: 42px;
-    min-height: 42px;
+    min-height: 36px;
     padding: 0 12px;
     margin: 0;
-    border: 2px solid #121212 !important;
+    border: 1px solid #181818 !important;
     border-radius: 7px !important;
-    background: radial-gradient(
-        circle at 35% 25%,
-        #364047 0%,
-        #252d32 48%,
-        #171d21 100%
-    ) !important;
+    background: rgba(25, 33, 37, 0.25) !important;
     color: #f7c59c !important;
     font-family: inherit;
     font-size: 17px;
     font-weight: 600;
     box-shadow:
-        inset 0 2px 3px rgba(255, 255, 255, 0.13),
-        inset 0 -3px 5px rgba(0, 0, 0, 0.38),
-        0 3px 9px rgba(0, 0, 0, 0.32) !important;
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 3px 10px rgba(0, 0, 0, 0.18) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(115%) !important;
+    backdrop-filter: blur(18px) saturate(115%) !important;
     transition: background-color 0.25s var(--nova-ease), color 0.25s var(--nova-ease);
 }
 
@@ -160,9 +156,48 @@ html[data-theme="dark"] header.MuiAppBar-root>.MuiToolbar-root:nth-child(2)>.Mui
     line-height: 1 !important;
 }
 
+/* Movie filter button - same Nova glass proportions as the counter */
+html[data-theme="dark"] header.MuiAppBar-root .MuiToolbar-root button.MuiButton-root:has(.MuiTypography-h2) {
+    box-sizing: border-box !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    border: 1px solid #181818 !important;
+    border-radius: 7px !important;
+    background: rgba(25, 33, 37, 0.25) !important;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.20) !important;
+    -webkit-backdrop-filter: blur(15px) saturate(125%) !important;
+    backdrop-filter: blur(15px) saturate(125%) !important;
+}
+
 /* Movie filter heading inherits the selected Nova font */
 html[data-theme="dark"] header.MuiAppBar-root .MuiToolbar-root button.MuiButton-root .MuiTypography-root.MuiTypography-h2 {
     font-family: inherit !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+}
+
+/* Movie library dropdown - Nova glass and selected item */
+html[data-theme="dark"] #library-view-menu .MuiPopover-paper.MuiMenu-paper {
+    border: 2px solid #181818 !important;
+}
+
+html[data-theme="dark"] #library-view-menu .MuiMenuItem-root {
+    font-family: inherit !important;
+    font-size: 16px !important;
+}
+
+html[data-theme="dark"] #library-view-menu .MuiMenuItem-root.Mui-selected,
+html[data-theme="dark"] #library-view-menu .MuiMenuItem-root[aria-selected="true"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #efb783 !important;
+    font-weight: 600 !important;
+}
+
+html[data-theme="dark"] #library-view-menu .MuiMenuItem-root.Mui-selected *,
+html[data-theme="dark"] #library-view-menu .MuiMenuItem-root[aria-selected="true"] * {
+    color: #efb783 !important;
+    font-weight: 600 !important;
 }
 
 
@@ -336,7 +371,7 @@ html[data-theme="dark"] .MuiToolbar-root .MuiButton-root {
     width: auto;
     min-width: 36px;
     padding: 0 12px;
-    font-size: calc(1rem + 3px);
+    font-size: 17px;
     font-family: inherit;
     font-weight: 600;
     line-height: 1.25;
