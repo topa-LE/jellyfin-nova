@@ -1346,22 +1346,21 @@ start = "/* NOVA THEME START */"
 end = "/* NOVA THEME END */"
 
 pattern = re.escape(start) + r".*?" + re.escape(end) + r"(?:\r?\n)?"
-css = re.sub(pattern, "", css, flags=re.S)
+remaining = re.sub(pattern, "", css, flags=re.S)
 
 if mode == "install":
-    block = (
+    data["CustomCss"] = (
         start
         + "\n@import url(\x27/web/nova/nova.css\x27);"
         + "\n"
         + end
     )
-    css = block + ("\n" if css else "") + css
+else:
+    data["CustomCss"] = remaining
 
-data["CustomCss"] = css
 print(json.dumps(data))
 ' "$mode"
 }
-
 
 
 set_spotlight_index() {
@@ -1511,6 +1510,91 @@ restart_jellyfin() {
 # Install
 # ------------------------------------------------------------------------------
 
+prepare_nova_branding() {
+    local server_url="$1"
+    local api_header="$2"
+    # Prepare and confirm branding before installing Nova assets.
+    step "Preparing Nova CSS..."
+    local branding
+    if ! branding=$(curl -fsSL \
+        -X GET "${server_url}/Branding/Configuration" \
+        -H "Authorization: ${api_header}"); then
+        exit_error "Could not fetch Jellyfin branding configuration. Nova CSS was not activated."
+    fi
+
+    [[ -n "$branding" ]] || exit_error "Empty Jellyfin branding configuration."
+
+    local updated_branding
+    if ! updated_branding=$(printf '%s' "$branding" | transform_branding_json install); then
+        exit_error "Could not prepare Nova CSS configuration."
+    fi
+
+    # Preserve existing branding before replacing custom CSS.
+    local branding_backup_dir="/var/backups/jellyfin-nova/branding"
+    local branding_backup_file=""
+    local css_comparison
+    if ! css_comparison=$(python3 -c '
+import json
+import sys
+
+original = json.loads(sys.argv[1])
+replacement = json.loads(sys.argv[2])
+
+existing_css = original.get("CustomCss") or ""
+replacement_css = replacement.get("CustomCss") or ""
+
+if not isinstance(existing_css, str) or not isinstance(replacement_css, str):
+    raise SystemExit("Invalid CustomCss value")
+
+print("replace" if existing_css and existing_css != replacement_css else "keep")
+' "$branding" "$updated_branding"); then
+        exit_error "Could not compare Jellyfin custom CSS."
+    fi
+
+    if [[ "$css_comparison" == "replace" ]]; then
+        step "Backing up existing Jellyfin branding..."
+
+        if ! mkdir -p -m 700 "$branding_backup_dir"; then
+            exit_error "Could not create branding backup directory."
+        fi
+
+        if ! chmod 700 "$branding_backup_dir"; then
+            exit_error "Could not secure branding backup directory."
+        fi
+
+        branding_backup_file="${branding_backup_dir}/branding-$(date +%Y%m%d-%H%M%S)-$$.json"
+
+        if ! (umask 077; printf '%s\n' "$branding" > "$branding_backup_file"); then
+            exit_error "Could not save existing branding configuration."
+        fi
+
+        if ! python3 -m json.tool "$branding_backup_file" >/dev/null; then
+            exit_error "Branding backup validation failed."
+        fi
+
+        ok "Branding backup: ${branding_backup_file}"
+        echo ""
+        echo "WARNING: Existing Jellyfin custom CSS will be replaced."
+        echo "Only the Nova CSS import will remain."
+        echo "Other branding settings will be preserved."
+        echo ""
+
+        local css_replace_choice
+        read -rp "  Replace existing custom CSS? [y/N]: " css_replace_choice
+
+        case "$css_replace_choice" in
+            y|Y|yes|YES)
+                ;;
+            *)
+                exit_error "Custom CSS replacement declined. Branding unchanged."
+                ;;
+        esac
+    fi
+
+
+    NOVA_UPDATED_BRANDING="$updated_branding"
+}
+
 install_nova() {
     show_header "Installer"
 
@@ -1578,6 +1662,9 @@ install_nova() {
 
     local spotlight_dir="${web_dir}/nova/spotlight"
 
+    prepare_nova_branding "$server_url" "$api_header"
+    local updated_branding="$NOVA_UPDATED_BRANDING"
+
     # Install Nova CSS, fonts, plugins and Spotlight from the package.
     local installer_dir
     installer_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
@@ -1634,22 +1721,6 @@ install_nova() {
         [[ -w "$index_file" ]] || exit_error "Jellyfin index is not writable: ${index_file}"
         python3 -c 'import sys; raise SystemExit(0 if "</body>" in open(sys.argv[1], encoding="utf-8").read().lower() else 1)' "$index_file" \
             || exit_error "Jellyfin index.html has no closing body tag."
-    fi
-
-    # Apply CSS
-    step "Applying Nova CSS..."
-    local branding
-    if ! branding=$(curl -fsSL \
-        -X GET "${server_url}/Branding/Configuration" \
-        -H "Authorization: ${api_header}"); then
-        exit_error "Could not fetch Jellyfin branding configuration. Nova CSS was not activated."
-    fi
-
-    [[ -n "$branding" ]] || exit_error "Empty Jellyfin branding configuration."
-
-    local updated_branding
-    if ! updated_branding=$(printf '%s' "$branding" | transform_branding_json install); then
-        exit_error "Could not prepare Nova CSS configuration."
     fi
 
     if ! curl -fsSL \

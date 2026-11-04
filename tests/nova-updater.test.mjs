@@ -109,3 +109,114 @@ test('Nova updater installs both scripts', () => {
 test('Nova updater restores both scripts on failure', () => {
     runUpdateTest(true);
 });
+
+test('Nova updater activates branding through Jellyfin API', () => {
+    const startMarker = 'echo "===== ACTIVATE NOVA BRANDING ====="';
+    const endMarker = 'echo "===== 8. UPDATE HOST INSTALLATION SCRIPTS ====="';
+
+    const start = source.indexOf(startMarker);
+    const end = source.indexOf(endMarker, start);
+
+    assert.ok(start >= 0, 'Branding activation must exist');
+    assert.ok(end > start, 'Branding activation must precede script updates');
+
+    const activation = source.slice(start, end);
+    const branding = {
+        CustomCss: "/* NOVA THEME START */\n@import url('/web/nova/nova.css');\n/* NOVA THEME END */",
+        LoginDisclaimer: 'Korea Drama Jellyfin',
+        SplashscreenEnabled: true
+    };
+
+    for (const shouldFail of [false, true]) {
+        const root = fs.mkdtempSync(path.join(os.tmpdir(), 'nova-branding-api-'));
+
+        try {
+            const payloadFile = path.join(root, 'payload.json');
+
+            const script = [
+                'set -euo pipefail',
+                'nova_server_url="http://127.0.0.1:8096"',
+                'nova_api_header="Nova test authorization"',
+                'nova_updated_branding=' + JSON.stringify(JSON.stringify(branding)),
+                'curl() {',
+                '  local argument',
+                '  local found_endpoint=0',
+                '  local found_content_type=0',
+                '  local found_stdin=0',
+                '  for argument in "$@"; do',
+                '    [[ "$argument" == "http://127.0.0.1:8096/System/Configuration/Branding" ]] && found_endpoint=1',
+                '    [[ "$argument" == "Content-Type: application/json" ]] && found_content_type=1',
+                '    [[ "$argument" == "@-" ]] && found_stdin=1',
+                '  done',
+                '  [[ "$found_endpoint" -eq 1 && "$found_content_type" -eq 1 && "$found_stdin" -eq 1 ]] || return 2',
+                '  cat > ' + JSON.stringify(payloadFile),
+                shouldFail ? '  return 22' : '  return 0',
+                '}',
+                activation
+            ].join('\n');
+
+            const result = spawnSync('bash', ['-c', script], {
+                encoding: 'utf8'
+            });
+
+            assert.equal(
+                result.status === 0,
+                !shouldFail,
+                `Unexpected updater result: ${result.stderr}`
+            );
+
+            assert.deepEqual(
+                JSON.parse(fs.readFileSync(payloadFile, 'utf8')),
+                branding
+            );
+
+            if (shouldFail) {
+                assert.match(result.stderr, /Could not activate Nova CSS/);
+                assert.doesNotMatch(result.stdout, /OK: Nova CSS activated/);
+            } else {
+                assert.match(result.stdout, /OK: Nova CSS activated/);
+            }
+        } finally {
+            fs.rmSync(root, { recursive: true, force: true });
+        }
+    }
+});
+
+test('Nova updater prepares branding before changing files', () => {
+    const positions = {
+        validation: source.indexOf('validate_nova_package_before_docker "$ARCHIVE"'),
+        authentication: source.indexOf('connect_jellyfin "$nova_server_url"'),
+        preparation: source.indexOf(
+            'prepare_nova_branding "$nova_server_url" "$nova_api_header"'
+        ),
+        hook: source.indexOf('install_nova_docker_init_hook "$CONTAINER"'),
+        package: source.indexOf('install_nova_docker_package "$CONTAINER"'),
+        index: source.indexOf('set_nova_docker_spotlight_index "$CONTAINER"'),
+        hash: source.indexOf('if [[ "$persistent_hash" != "$active_hash" ]]'),
+        activation: source.indexOf('===== ACTIVATE NOVA BRANDING ====='),
+        scriptUpdate: source.indexOf('===== 8. UPDATE HOST INSTALLATION SCRIPTS =====')
+    };
+
+    for (const [name, position] of Object.entries(positions)) {
+        assert.ok(position >= 0, `Missing updater stage: ${name}`);
+    }
+
+    const order = [
+        'validation',
+        'authentication',
+        'preparation',
+        'hook',
+        'package',
+        'index',
+        'hash',
+        'activation',
+        'scriptUpdate'
+    ];
+
+    for (let i = 1; i < order.length; i++) {
+        assert.ok(
+            positions[order[i]] > positions[order[i - 1]],
+            `${order[i]} must follow ${order[i - 1]}`
+        );
+    }
+});

@@ -55,6 +55,12 @@ if ! docker exec "$CONTAINER" test -f /config/nova/nova.css; then
     exit 1
 fi
 
+
+
+
+
+
+
 TEMP_DIR="$(mktemp -d)"
 trap 'rm -rf -- "$TEMP_DIR"' EXIT
 
@@ -101,6 +107,19 @@ source "$CURRENT_INSTALLER"
 validate_nova_package_before_docker "$ARCHIVE"
 
 echo
+echo "===== BRANDING PREPARATION ====="
+echo "Jellyfin server URL (default: http://localhost:8096)"
+read -rp "URL: " nova_server_input
+nova_server_url="${nova_server_input:-http://localhost:8096}"
+nova_server_url="${nova_server_url%/}"
+
+connect_jellyfin "$nova_server_url"
+nova_api_header="$(get_api_header "$NOVA_TOKEN")"
+
+prepare_nova_branding "$nova_server_url" "$nova_api_header"
+nova_updated_branding="$NOVA_UPDATED_BRANDING"
+
+echo
 echo "===== 4. UPDATE PERSISTENT STARTUP HOOK ====="
 install_nova_docker_init_hook "$CONTAINER" "$TEMP_DIR/installer"
 
@@ -129,6 +148,18 @@ echo "CSS SHA256: $active_hash"
 echo "Persistent and active Nova CSS match."
 
 echo
+echo "===== ACTIVATE NOVA BRANDING ====="
+if ! printf '%s' "$nova_updated_branding" | curl -fsSL \
+    -X POST "${nova_server_url}/System/Configuration/Branding" \
+    -H "Authorization: ${nova_api_header}" \
+    -H "Content-Type: application/json" \
+    --data-binary @- >/dev/null; then
+    echo "ERROR: Could not activate Nova CSS in Jellyfin branding." >&2
+    exit 1
+fi
+
+echo "OK: Nova CSS activated in Jellyfin branding."
+
 echo
 echo "===== 8. UPDATE HOST INSTALLATION SCRIPTS ====="
 
