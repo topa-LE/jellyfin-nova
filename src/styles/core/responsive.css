@@ -477,3 +477,23 @@
     margin-top: 3px;
     margin-bottom: 3px;
 }
+
+/* Series backdrop grid - six columns */
+@media (min-width: 1200px) {
+    html[data-theme="dark"] .libraryPage
+    .itemsContainer.vertical-wrap {
+        display: grid !important;
+        grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+        width: calc(100% - 48px) !important;
+        box-sizing: border-box !important;
+    }
+
+    html[data-theme="dark"] .libraryPage
+    .itemsContainer.vertical-wrap > .card.backdropCard {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+}
